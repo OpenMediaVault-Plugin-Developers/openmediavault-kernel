@@ -1,0 +1,6 @@
+version: "1.0"
+type: route
+data:
+  url: "/system/kernel/proxmox"
+  title: "Proxmox"
+  component: omv-system-kernel-proxmox-form-page

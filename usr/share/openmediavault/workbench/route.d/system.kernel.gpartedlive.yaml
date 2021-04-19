@@ -1,0 +1,6 @@
+version: "1.0"
+type: route
+data:
+  url: "/system/kernel/gpartedlive"
+  title: "GParted Live"
+  component: omv-system-kernel-gpartedlive-form-page

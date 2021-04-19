@@ -1,0 +1,55 @@
+version: "1.0"
+type: component
+data:
+  name: omv-system-kernel-proxmox-form-page
+  type: formPage
+  config:
+    buttons:
+      - text: _("Install Proxmox kernel")
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Installing Proxmox kernel  ...")
+              startOnInit: true
+              request:
+                service: Kernel
+                method: doProxmox
+                params:
+                  command: "install"
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/kernel
+      - text: _("Install Proxmox test kernel")
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Installing Proxmox test kernel  ...")
+              startOnInit: true
+              request:
+                service: Kernel
+                method: doProxmox
+                params:
+                  command: "installtest"
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/kernel
+      - text: _("Remove non-Proxmox kernels and headers")
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Removing non-Proxmox kernels and headers  ...")
+              startOnInit: true
+              request:
+                service: Kernel
+                method: doProxmox
+                params:
+                  command: "remove"
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/kernel

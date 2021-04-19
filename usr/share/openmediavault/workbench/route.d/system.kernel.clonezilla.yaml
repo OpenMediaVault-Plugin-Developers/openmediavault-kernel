@@ -1,0 +1,6 @@
+version: "1.0"
+type: route
+data:
+  url: "/system/kernel/clonezilla"
+  title: "Clonezilla"
+  component: omv-system-kernel-clonezilla-form-page

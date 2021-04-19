@@ -1,0 +1,8 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "system.kernel.proxmox"
+  text: "Proxmox"
+  position: 20
+  icon: "mdi:tray-full"
+  url: "/system/kernel/proxmox"

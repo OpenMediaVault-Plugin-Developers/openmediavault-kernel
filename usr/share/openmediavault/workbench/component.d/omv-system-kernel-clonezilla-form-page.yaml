@@ -1,0 +1,39 @@
+version: "1.0"
+type: component
+data:
+  name: omv-system-kernel-clonezilla-form-page
+  type: formPage
+  config:
+    buttons:
+      - text: _("Install Clonezilla")
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Installing Clonezilla ...")
+              startOnInit: true
+              request:
+                service: Kernel
+                method: doCommand
+                params:
+                  command: "installcz"
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/kernel
+      - text: _("Reboot to Clonezilla once")
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Reboot to Clonezilla once ...")
+              startOnInit: true
+              request:
+                service: Kernel
+                method: doCommand
+                params:
+                  command: "rebootcz"
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/kernel

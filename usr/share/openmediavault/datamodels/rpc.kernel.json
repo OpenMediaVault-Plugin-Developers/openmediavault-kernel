@@ -1,0 +1,47 @@
+[{
+	"type": "rpc",
+	"id": "rpc.kernel.docommand",
+	"params": {
+		"type": "object",
+		"properties": {
+			"command": {
+				"type": "string",
+				"enum": [
+					"installcz",
+					"installgp",
+					"installsys",
+					"rebootcz",
+					"rebootgp",
+					"rebootsys"
+				],
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.kernel.dohold",
+	"params": {
+		"type": "object",
+		"properties": {
+			"command": {
+				"type": "string",
+				"enum": [ "hold", "unhold" ],
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.kernel.doproxmox",
+	"params": {
+		"type": "object",
+		"properties": {
+			"command": {
+				"type": "string",
+				"enum": [ "install", "installtest", "remove" ],
+				"required": true
+			}
+		}
+	}
+}]

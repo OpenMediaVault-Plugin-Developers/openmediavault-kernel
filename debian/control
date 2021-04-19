@@ -1,0 +1,19 @@
+Source: openmediavault-kernel
+Section: net
+XB-Plugin-Section: utilities
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 12 )
+Standards-Version: 3.9.6
+Homepage: http://omv-extras.org/
+
+Package: openmediavault-kernel
+Architecture: all
+Depends: openmediavault (>= 6.0),
+         ${misc:Depends}
+Breaks: openmediavault (<< 6.0)
+Description: kernel package
+ The plugin allows installation of the Proxmo kernel for increased
+ compatibility with newer hardware.
+ .
+ Allows installation of various ISOs to boot from.

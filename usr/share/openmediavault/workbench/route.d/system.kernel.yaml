@@ -1,0 +1,6 @@
+version: "1.0"
+type: route
+data:
+  url: "/system/kernel"
+  title: _("Kernel")
+  component: omv-system-kernel-navigation-page

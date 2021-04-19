@@ -1,0 +1,7 @@
+version: "1.0"
+type: route
+data:
+  url: "/system/kernel/kernel"
+  title: "Kernel"
+  editing: true
+  component: omv-system-kernel-kernel-form-page

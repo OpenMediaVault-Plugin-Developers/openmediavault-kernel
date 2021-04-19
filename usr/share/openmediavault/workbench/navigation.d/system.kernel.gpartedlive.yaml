@@ -1,0 +1,8 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "system.kernel.gpartedlive"
+  text: "GParted Live"
+  position: 40
+  icon: "mdi:harddisk"
+  url: "/system/kernel/gpartedlive"

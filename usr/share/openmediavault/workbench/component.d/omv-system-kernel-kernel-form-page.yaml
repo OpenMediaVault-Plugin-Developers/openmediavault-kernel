@@ -1,0 +1,30 @@
+version: "1.0"
+type: component
+data:
+  name: omv-system-kernel-kernel-form-page
+  type: formPage
+  config:
+    request:
+      service: Kernel
+      get:
+        method: getKernel
+      post:
+        method: setKernel
+    fields:
+      - type: select
+        name: kernels
+        label: _('Installed kernels and ISOs')
+        textField: name
+        valueField: key
+        store:
+          proxy:
+            service: 'Kernel'
+            get:
+              method: 'getKernelList'
+        hint: _('Set boot option.')
+    buttons:
+      - template: submit
+      - template: cancel
+        execute:
+          type: url
+          url: "/system/kernel"
