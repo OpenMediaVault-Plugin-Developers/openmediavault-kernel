@@ -9,6 +9,7 @@ declare -i kernnum=0
 distro="$(lsb_release --codename --short)"
 grubconfig="/boot/grub/grub.cfg";
 grubdefault="/etc/default/grub";
+pvekey="/usr/share/keyrings/proxmox-release-${distro}.gpg"
 pverepo="/etc/apt/sources.list.d/pvekernel.list"
 repourl=${OMV_PROXMOX_APT_REPOSITORY_URL:-"http://download.proxmox.com/debian/pve"}
 repo="pve-no-subscription"
@@ -32,7 +33,7 @@ case "$(/usr/bin/arch)" in
 esac
 
 # add repo list file
-echo "deb ${repourl} ${distro} ${repo}" > ${pverepo}
+echo "deb [arch=amd64 signed-by=${pvekey}] ${repourl} ${distro} ${repo}" > ${pverepo}
 apt-get update
 
 # remove conflicting firmware packages

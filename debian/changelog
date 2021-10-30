@@ -1,3 +1,9 @@
+openmediavault-kernel (6.0.1) stable; urgency=low
+
+  * Use new proxmox key
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 30 Oct 2021 16:46:57 -0500
+
 openmediavault-kernel (6.0) stable; urgency=low
 
   * Initial release
