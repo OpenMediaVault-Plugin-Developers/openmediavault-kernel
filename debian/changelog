@@ -1,3 +1,9 @@
+openmediavault-kernel (6.0.2) stable; urgency=low
+
+  * Remove 5.4 proxmox kernel since 5.11 is regular kernel
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 31 Oct 2021 09:57:53 -0500
+
 openmediavault-kernel (6.0.1) stable; urgency=low
 
   * Use new proxmox key

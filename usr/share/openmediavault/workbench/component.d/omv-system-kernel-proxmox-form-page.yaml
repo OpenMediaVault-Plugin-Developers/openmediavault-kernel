@@ -21,22 +21,6 @@ data:
                 stop:
                   hidden: true
             successUrl: /system/kernel
-      - text: _("Install Proxmox test kernel")
-        execute:
-          type: taskDialog
-          taskDialog:
-            config:
-              title: _("Installing Proxmox test kernel  ...")
-              startOnInit: true
-              request:
-                service: Kernel
-                method: doProxmox
-                params:
-                  command: "installtest"
-              buttons:
-                stop:
-                  hidden: true
-            successUrl: /system/kernel
       - text: _("Remove non-Proxmox kernels and headers")
         execute:
           type: taskDialog

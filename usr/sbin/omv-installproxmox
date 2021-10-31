@@ -14,12 +14,7 @@ pverepo="/etc/apt/sources.list.d/pvekernel.list"
 repourl=${OMV_PROXMOX_APT_REPOSITORY_URL:-"http://download.proxmox.com/debian/pve"}
 repo="pve-no-subscription"
 
-# use 5.11 kernel if argument of installtest is passed
-if [[ "${1}" = "installtest" ]]; then
-  kernelversion="5.11"
-else
-  kernelversion="5.4"
-fi
+kernelversion="5.11"
 
 # only 64 bit amd/intel supported
 case "$(/usr/bin/arch)" in
