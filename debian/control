@@ -13,7 +13,9 @@ Depends: openmediavault (>= 6.0),
          ${misc:Depends}
 Breaks: openmediavault (<< 6.0)
 Description: kernel package
- The plugin allows installation of the Proxmo kernel for increased
- compatibility with newer hardware.
- .
- Allows installation of various ISOs to boot from.
+ The plugin allows the user to select which grub entry to boot from and
+ installation of the Proxmox kernel.  It also allows for the download
+ and grub entry to boot from the following rescue Linux distros:
+   - Clonezilla
+   - GParted Live
+   - SystemRescue
