@@ -1,6 +1,0 @@
-version: "1.0"
-type: route
-data:
-  url: "/system/kernel/systemrescue"
-  title: "SystemRescue"
-  component: omv-system-kernel-systemrescue-form-page

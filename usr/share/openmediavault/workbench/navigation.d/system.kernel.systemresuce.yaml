@@ -1,8 +1,0 @@
-version: "1.0"
-type: navigation-item
-data:
-  path: "system.kernel.systemrescue"
-  text: "SystemResuce"
-  position: 50
-  icon: "mdi:medical-bag"
-  url: "/system/kernel/systemrescue"

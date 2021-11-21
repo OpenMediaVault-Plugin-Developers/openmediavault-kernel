@@ -1,0 +1,199 @@
+version: "1.0"
+type: component
+data:
+  name: omv-system-kernel-datatable-page
+  type: datatablePage
+  config:
+    autoReload: false
+    hasSearchField: true
+    stateId: b0079164-4add-11ec-a977-ebf62ed2368a
+    rowId: key
+    store:
+      proxy:
+        service: Kernel
+        get:
+          method: getKernelList
+    columns:
+      - name: _("Name")
+        prop: name
+        flexGrow: 3
+        sortable: true
+      - name: _("Default")
+        prop: default
+        flexGrow: 1
+        sortable: true
+        cellTemplateName: checkIcon
+      - name: _("Key")
+        prop: key
+        flexGrow: 1
+        sortable: true
+        hidden: true
+    actions:
+      - type: iconButton
+        tooltip: _("Set boot")
+        icon: mdi:update
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+        execute:
+          type: request
+          request:
+            service: Kernel
+            method: setKernel
+            params:
+              name: "{{ _selected[0].name }}"
+              key: "{{ _selected[0].key }}"
+            task: false
+          successUrl: /system/kernel
+      - type: menu
+        icon: mdi:archive-arrow-down-outline
+        tooltip: _("Proxmox")
+        actions:
+          - text: _("Install Proxmox kernel")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing Proxmox kernel  ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doProxmox
+                    params:
+                      command: "install"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel
+          - text: _("Remove non-Proxmox kernels")
+            icon: mdi:close-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Removing non-Proxmox kernels and headers  ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doProxmox
+                    params:
+                      command: "remove"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel
+      - type: menu
+        icon: mdi:content-copy
+        tooltip: _("Clonezilla")
+        actions:
+          - text: _("Install Clonezilla")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing Clonezilla ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "installcz"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel
+          - text: _("Reboot to Clonezilla once")
+            icon: mdi:restart
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Reboot to Clonezilla once ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "rebootcz"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel
+      - type: menu
+        icon: mdi:database-plus-outline
+        tooltip: _("GParted Live")
+        actions:
+          - text: _("Install GParted Live")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing GParted Live ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "installgp"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel
+          - text: _("Reboot to GParted Live once")
+            icon: mdi:restart
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Reboot to GParted Live once ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "rebootgp"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel
+      - type: menu
+        icon: mdi:hammer-screwdriver
+        tooltip: _("SystemRescue")
+        actions:
+          - text: _("Install SystemRescue")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing SystemRescue ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "installsys"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel
+          - text: _("Reboot to SystemRescue once")
+            icon: mdi:restart
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Reboot to SystemRescue once ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "rebootsys"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel

@@ -3,4 +3,4 @@ type: route
 data:
   url: "/system/kernel"
   title: _("Kernel")
-  component: omv-system-kernel-navigation-page
+  component: omv-system-kernel-datatable-page

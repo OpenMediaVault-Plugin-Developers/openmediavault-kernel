@@ -1,8 +1,0 @@
-version: "1.0"
-type: navigation-item
-data:
-  path: "system.kernel.kernel"
-  text: _("Kernel")
-  position: 10
-  icon: "mdi:penguin"
-  url: "/system/kernel/kernel"

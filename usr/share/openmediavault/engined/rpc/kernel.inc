@@ -29,7 +29,6 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
     {
         $this->registerMethod('getArch');
 
-        $this->registerMethod('getKernel');
         $this->registerMethod('setKernel');
         $this->registerMethod('getKernelList');
 
@@ -51,22 +50,6 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         return $object;
     }
 
-    public function getKernel($params, $context)
-    {
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
-        // Get boot kernel
-        $grub = '/etc/default/grub';
-        if (file_exists($grub)) {
-            $line_grub = 'GRUB_DEFAULT=';
-            $cmd = new \OMV\System\Process(sprintf('grep %s %s', $line_grub, $grub));
-            $cmd->execute($output);
-            $object['kernels'] = intval(str_replace($line_grub, '', $output[0]));
-        }
-        // Return object
-        return $object;
-    }
-
     public function setKernel($params, $context)
     {
         // Validate the RPC caller context.
@@ -74,11 +57,14 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         // Set boot kernel
         $grub = '/etc/default/grub';
         if (file_exists($grub)) {
-            $cmdArgs = sprintf('-p -i -e "s/GRUB_DEFAULT=.*/GRUB_DEFAULT=%s/g" %s', $params['kernels'], $grub);
+            $cmdArgs = sprintf('-p -i -e "s/GRUB_DEFAULT=.*/GRUB_DEFAULT=%s/g" %s', $params['key'], $grub);
+            $output = [];
             $cmd = new \OMV\System\Process('perl', $cmdArgs);
             $cmd->execute($output);
-            $cmd = new \OMV\System\Process('grub-set-default', $params['kernels']);
+            $output = [];
+            $cmd = new \OMV\System\Process('grub-set-default', $params['key']);
             $cmd->execute($output);
+            $output = [];
             $cmd = new \OMV\System\Process('update-grub');
             $cmd->execute($output);
         }
@@ -88,19 +74,37 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
     {
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Get boot kernel
+        $grub = '/etc/default/grub';
+        if (file_exists($grub)) {
+            $output = [];
+            $line_grub = 'GRUB_DEFAULT=';
+            $cmd = new \OMV\System\Process(sprintf('grep %s %s', $line_grub, $grub));
+            $cmd->execute($output);
+            $defaultKernel = intval(str_replace($line_grub, '', $output[0]));
+        } else {
+            $defaultKernel = -1;
+        }
         // Get configuration data.
         $kernels = [];
-        $awkArgs = '-F "\'" \'$1 == "menuentry " { print $2 }\'';
         $grub = '/boot/grub/grub.cfg';
         if (file_exists($grub)) {
+            $output = [];
+            $awkArgs = '-F "\'" \'$1 == "menuentry " { print $2 }\'';
             $cmd = new \OMV\System\Process('awk', $awkArgs, $grub);
             $cmd->execute($output);
             foreach ($output as $kernelk => $kernelv) {
                 if (empty($kernelv))
                     continue;
+                if ($kernelk == $defaultKernel) {
+                    $default = true;
+                } else {
+                    $default = false;
+                }
                 $kernels[] = [
                     'key'  => $kernelk,
-                    'name' => $kernelv
+                    'name' => $kernelv,
+                    'default' => $default
                 ];
             }
         }

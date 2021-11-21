@@ -1,3 +1,9 @@
+openmediavault-kernel (6.1) stable; urgency=low
+
+  * Move all tabs to datatable
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 21 Nov 2021 10:40:07 -0600
+
 openmediavault-kernel (6.0.2) stable; urgency=low
 
   * Remove 5.4 proxmox kernel since 5.11 is regular kernel
