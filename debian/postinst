@@ -25,6 +25,11 @@ case "$1" in
     configure)
         # Activate package triggers.
         dpkg-trigger update-workbench
+
+        # disable grub submenus on systems that use grub
+        if [ -f /usr/sbin/update-grub ]; then
+            omv-grubiso disablesubmenu
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
