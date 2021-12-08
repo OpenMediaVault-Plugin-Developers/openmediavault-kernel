@@ -14,7 +14,7 @@ pverepo="/etc/apt/sources.list.d/pvekernel.list"
 repourl=${OMV_PROXMOX_APT_REPOSITORY_URL:-"http://download.proxmox.com/debian/pve"}
 repo="pve-no-subscription"
 
-kernelversion="5.13"
+kernelversion="5.15"
 
 # only 64 bit amd/intel supported
 case "$(/usr/bin/arch)" in

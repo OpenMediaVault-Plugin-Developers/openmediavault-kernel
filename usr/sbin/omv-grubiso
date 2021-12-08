@@ -31,9 +31,11 @@ arch="$(dpkg --print-architecture)"
 if [[ "${arch}" == "amd64" ]]; then
   isoArch="amd64"
   paeArch="amd64"
+  SYSRESCCD_VERSION="8.06"
 elif [[ "${arch}" == "i386" ]]; then
   isoArch="i686"
   paeArch="i686-pae"
+  SYSRESCCD_VERSION="8.04"
 else
   echo "Unsupported architecture."
   exit 0
@@ -51,12 +53,11 @@ CLONEZILLA_CHECKSUM_i686="8c2d788b4ea0b8db015227e919bc989dabc10ed89f5f671b90d5b7
 CLONEZILLA_CHECKSUM_amd64="5550e19d2f795b4063e6dd7aae8e2855c581d3b3264edd3e2c2b71f3a22a08b9"
 
 GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
-SYSRESCCD_VERSION="8.01"
 SYSRESCCD_FILE="systemrescue-${SYSRESCCD_VERSION}-${isoArch}.iso"
 SYSRESCCD_ISO="${ISO_PATH}/${SYSRESCCD_FILE}"
 SYSRESCCD_URL="${OMV_SOURCEFORGE_URL}/systemrescuecd/files/sysresccd-x86/${SYSRESCCD_VERSION}/${SYSRESCCD_FILE}/download"
-SYSRESCCD_CHECKSUM_amd64="942fb74e8d36af9be5ceeb2b04c0ec19d8b716e50e72d08e1c09b676c006b4c7"
-SYSRESCCD_CHECKSUM_i686="e93cdb95ae7a6f754567cb4b2838304d75190c801b808c794a4c6517011a9643"
+SYSRESCCD_CHECKSUM_amd64="324cbb2548e6be517899fb95618f790dde9ef7855ae54fbd713475d9a17db90e"
+SYSRESCCD_CHECKSUM_i686="7be0b1529ce2aab5227a93a9ba19a03eb61d6923bfee68b3cf6e9edf435f9100"
 
 GRUB_GPARTEDLIVE="/etc/grub.d/42_gpartedlive"
 GPARTEDLIVE_VERSION="1.2.0-1"
