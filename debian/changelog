@@ -1,3 +1,10 @@
+openmediavault-kernel (6.1.2) stable; urgency=low
+
+  * Use SystemRescue 8.06 (8.04 on i386)
+  * Use Proxmox kernel 5.15
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 08 Dec 2021 16:20:53 -0600
+
 openmediavault-kernel (6.1.1) stable; urgency=low
 
   * Re-add command to disable grub submenu lost when moved to separate
