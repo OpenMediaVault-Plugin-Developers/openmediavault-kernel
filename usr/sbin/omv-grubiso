@@ -31,7 +31,7 @@ arch="$(dpkg --print-architecture)"
 if [[ "${arch}" == "amd64" ]]; then
   isoArch="amd64"
   paeArch="amd64"
-  SYSRESCCD_VERSION="8.06"
+  SYSRESCCD_VERSION="8.07"
   vnc="dovnc vncpass=openmediavault "
 elif [[ "${arch}" == "i386" ]]; then
   isoArch="i686"
@@ -58,7 +58,7 @@ GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
 SYSRESCCD_FILE="systemrescue-${SYSRESCCD_VERSION}-${isoArch}.iso"
 SYSRESCCD_ISO="${ISO_PATH}/${SYSRESCCD_FILE}"
 SYSRESCCD_URL="${OMV_SOURCEFORGE_URL}/systemrescuecd/files/sysresccd-x86/${SYSRESCCD_VERSION}/${SYSRESCCD_FILE}/download"
-SYSRESCCD_CHECKSUM_amd64="324cbb2548e6be517899fb95618f790dde9ef7855ae54fbd713475d9a17db90e"
+SYSRESCCD_CHECKSUM_amd64="3d69dec7392ecb98893997aac919e2813bf6bb69ca4b2d9d2610b9bbcb1e7da7"
 SYSRESCCD_CHECKSUM_i686="7be0b1529ce2aab5227a93a9ba19a03eb61d6923bfee68b3cf6e9edf435f9100"
 
 GRUB_GPARTEDLIVE="/etc/grub.d/42_gpartedlive"
