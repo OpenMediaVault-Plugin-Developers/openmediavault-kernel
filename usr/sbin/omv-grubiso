@@ -7,7 +7,7 @@
 # @author    Volker Theile <volker.theile@openmediavault.org>
 # @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 # @copyright Copyright (c) 2009-2013 Volker Theile
-# @copyright Copyright (c) 2013-2021 OpenMediaVault Plugin Developers
+# @copyright Copyright (c) 2013-2022 OpenMediaVault Plugin Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,13 +31,11 @@ arch="$(dpkg --print-architecture)"
 if [[ "${arch}" == "amd64" ]]; then
   isoArch="amd64"
   paeArch="amd64"
-  SYSRESCCD_VERSION="8.07"
-  vnc="dovnc vncpass=openmediavault "
+  SYSRESCCD_VERSION="9.00"
 elif [[ "${arch}" == "i386" ]]; then
   isoArch="i686"
   paeArch="i686-pae"
-  SYSRESCCD_VERSION="8.04"
-  vnc=""
+  SYSRESCCD_VERSION="9.00"
 else
   echo "Unsupported architecture."
   exit 0
@@ -58,8 +56,8 @@ GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
 SYSRESCCD_FILE="systemrescue-${SYSRESCCD_VERSION}-${isoArch}.iso"
 SYSRESCCD_ISO="${ISO_PATH}/${SYSRESCCD_FILE}"
 SYSRESCCD_URL="${OMV_SOURCEFORGE_URL}/systemrescuecd/files/sysresccd-x86/${SYSRESCCD_VERSION}/${SYSRESCCD_FILE}/download"
-SYSRESCCD_CHECKSUM_amd64="3d69dec7392ecb98893997aac919e2813bf6bb69ca4b2d9d2610b9bbcb1e7da7"
-SYSRESCCD_CHECKSUM_i686="7be0b1529ce2aab5227a93a9ba19a03eb61d6923bfee68b3cf6e9edf435f9100"
+SYSRESCCD_CHECKSUM_amd64="17374f4eea50ac0b7f094d54e3ab81d028581bfa97ea1ec6b099b63a0d66e996"
+SYSRESCCD_CHECKSUM_i686="6948723b14a9ba071cbda10e71608b49045e825bd3d57951e697aca94f37cbfd"
 
 GRUB_GPARTEDLIVE="/etc/grub.d/42_gpartedlive"
 GPARTEDLIVE_VERSION="1.2.0-1"
@@ -157,7 +155,7 @@ menuentry 'SystemRescue' {
   set imgdevpath="/dev/disk/by-uuid/\$rootuuid"
   set isofile="${SYSRESCCD_ISO}"
   loopback loop \$isofile
-  linux (loop)/sysresccd/boot/x86_64/vmlinuz rootpass=openmediavault nomodeset nofirewall archisobasedir=sysresccd copytoram ${vnc}setkmap=us img_dev=\$imgdevpath img_loop=\$isofile earlymodules=loop
+  linux (loop)/sysresccd/boot/x86_64/vmlinuz rootpass=openmediavault nomodeset nofirewall archisobasedir=sysresccd copytoram dovnc vncpass=openmediavault setkmap=us img_dev=\$imgdevpath img_loop=\$isofile earlymodules=loop
   initrd (loop)/sysresccd/boot/intel_ucode.img (loop)/sysresccd/boot/amd_ucode.img (loop)/sysresccd/boot/x86_64/sysresccd.img
 }
 EOF
