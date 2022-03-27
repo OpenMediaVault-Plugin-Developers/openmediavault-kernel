@@ -121,6 +121,25 @@ data:
                     stop:
                       hidden: true
                 successUrl: /system/kernel
+          - text: _("Remove Clonezilla")
+            icon: mdi:delete-forever-outline
+            confirmationDialogConfig:
+              template: confirmation-danger
+              message: _("Are you sure you want to remove?")
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Remove Clonezilla ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "removecz"
+                  buttons:
+                    stop:
+                      hidden: true
       - type: menu
         icon: mdi:database-plus-outline
         tooltip: _("GParted Live")
@@ -159,6 +178,25 @@ data:
                     stop:
                       hidden: true
                 successUrl: /system/kernel
+          - text: _("Remove GParted Live")
+            icon: mdi:delete-forever-outline
+            confirmationDialogConfig:
+              template: confirmation-danger
+              message: _("Are you sure you want to remove?")
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Remove GParted Live ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "removegp"
+                  buttons:
+                    stop:
+                      hidden: true
       - type: menu
         icon: mdi:hammer-screwdriver
         tooltip: _("SystemRescue")
@@ -197,3 +235,22 @@ data:
                     stop:
                       hidden: true
                 successUrl: /system/kernel
+          - text: _("Remove SystemRescue")
+            icon: mdi:delete-forever-outline
+            confirmationDialogConfig:
+              template: confirmation-danger
+              message: _("Are you sure you want to remove?")
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Remove SystemRescue ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      command: "removesys"
+                  buttons:
+                    stop:
+                      hidden: true

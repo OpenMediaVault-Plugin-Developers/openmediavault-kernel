@@ -1,3 +1,9 @@
+openmediavault-kernel (6.3) stable; urgency=low
+
+  * Add options to remove systemrescue, gparted live, and clonezilla
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 27 Mar 2022 10:25:30 -0500
+
 openmediavault-kernel (6.2) stable; urgency=low
 
   * Use SystemRescue 9.00

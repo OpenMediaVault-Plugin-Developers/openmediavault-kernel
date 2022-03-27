@@ -129,6 +129,15 @@ EOF
     update-grub
 }
 
+removeclonezilla()
+{
+    echo "Removing Clonezilla ISOs..."
+    find ${ISO_PATH} -type f -name "clonezilla*.iso" -ls -delete
+    echo "Removing GRUB entry..."
+    rm -fv ${GRUB_CLONEZILLA}
+    update-grub
+}
+
 installsysresccd()
 {
     checkDNS
@@ -160,6 +169,15 @@ menuentry 'SystemRescue' {
 }
 EOF
     chmod 755 ${GRUB_SYSRESCCD}
+    update-grub
+}
+
+removesysresccd()
+{
+    echo "Removing SystemRescue ISOs..."
+    find ${ISO_PATH} -type f -name "systemresuce*.iso" -ls -delete
+    echo "Removing GRUB entry..."
+    rm -fv ${GRUB_SYSRESCCD}
     update-grub
 }
 
@@ -195,6 +213,16 @@ EOF
     chmod 755 ${GRUB_GPARTEDLIVE}
     update-grub
 }
+
+removegpartedlive()
+{
+    echo "Removing gparted live ISOs..."
+    find ${ISO_PATH} -type f -name "gparted-live*.iso" -ls -delete
+    echo "Removing GRUB entry..."
+    rm -fv ${GRUB_GPARTEDLIVE}
+    update-grub
+}
+
 
 rebootclonezilla()
 {
@@ -303,6 +331,18 @@ case $1 in
 
     rebootsys)
         rebootsysresccd
+    ;;
+
+    removecz)
+        removeclonezilla
+    ;;
+
+    removegp)
+        removegpartedlive
+    ;;
+
+    removesys)
+        removesysresccd
     ;;
 esac
 
