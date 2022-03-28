@@ -103,6 +103,11 @@ installclonezilla()
     if [ ! -f "${CLONEZILLA_ISO}" ]; then
         rm -f ${ISO_PATH}/clonezilla*.iso
         wget "${CLONEZILLA_URL}" -O ${CLONEZILLA_ISO} 2>&1
+        if [ $? -gt 0 ]; then
+            echo "Download failed.  Deleting Clonezilla file and exiting..."
+            rm -f ${CLONEZILLA_ISO}
+            exit 2
+        fi
         echo "Checking sha256sum..."
         echo "${CLONEZILLA_CHECKSUM} ${CLONEZILLA_ISO}" | sha256sum --check
         if [ $? -gt 0 ]; then
@@ -145,6 +150,11 @@ installsysresccd()
     if [ ! -f "${SYSRESCCD_ISO}" ]; then
         rm -f ${ISO_PATH}/systemrescue*.iso
         wget "${SYSRESCCD_URL}" -O ${SYSRESCCD_ISO} 2>&1
+        if [ $? -gt 0 ]; then
+            echo "Download failed.  Deleting SystemRescue file and exiting..."
+            rm -f ${SYSRESCCD_ISO}
+            exit 21
+        fi
         echo "Checking sha256sum..."
         echo "${SYSRESCCD_CHECKSUM} ${SYSRESCCD_ISO}" | sha256sum --check
         if [ $? -gt 0 ]; then
@@ -188,6 +198,11 @@ installgpartedlive()
     if [ ! -f "${GPARTEDLIVE_ISO}" ]; then
         rm -f ${ISO_PATH}/gparted-live*.iso
         wget "${GPARTEDLIVE_URL}" -O ${GPARTEDLIVE_ISO} 2>&1
+        if [ $? -gt 0 ]; then
+            echo "Download failed.  Deleting GParted Live file and exiting..."
+            rm -f ${GPARTEDLIVE_ISO}
+            exit 22
+        fi
         echo "Checking sha256sum..."
         echo "${GPARTEDLIVE_CHECKSUM} ${GPARTEDLIVE_ISO}" | sha256sum --check
         if [ $? -gt 0 ]; then
