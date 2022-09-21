@@ -1,3 +1,11 @@
+openmediavault-kernel (6.3.1) stable; urgency=low
+
+  * Use gparted-live 1.4.0-5
+  * Use systemrescue 9.04 on amd64 and 9.03 on i386
+  * Add proxmox 5.19 kernel install
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 21 Sep 2022 16:47:39 -0500
+
 openmediavault-kernel (6.3) stable; urgency=low
 
   * Add options to remove systemrescue, gparted live, and clonezilla
