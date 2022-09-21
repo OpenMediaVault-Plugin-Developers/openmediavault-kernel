@@ -155,12 +155,14 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         // Create the background process.
         return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
             use ($params) {
+                $cmdArgs = [];
                 if ($params['command'] == 'remove') {
                     $cmdBin = 'omv-removekernels';
                 } else {
                     $cmdBin = 'omv-installproxmox';
+                    $cmdArgs[] = $params['version'];
                 }
-                $cmd = new \OMV\System\Process($cmdBin, $params['command']);
+                $cmd = new \OMV\System\Process($cmdBin, $cmdArgs);
                 $cmdLine = $cmd->getCommandLine();
                 if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
                     throw new \OMV\ExecException($cmdLine, $output);

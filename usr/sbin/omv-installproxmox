@@ -14,7 +14,6 @@ pverepo="/etc/apt/sources.list.d/pvekernel.list"
 repourl=${OMV_PROXMOX_APT_REPOSITORY_URL:-"http://download.proxmox.com/debian/pve"}
 repo="pve-no-subscription"
 
-kernelversion="5.15"
 
 # only 64 bit amd/intel supported
 case "$(/usr/bin/arch)" in
@@ -26,6 +25,14 @@ case "$(/usr/bin/arch)" in
     exit 1
     ;;
 esac
+
+kernelinput="${1}"
+if [[ "${kernelinput}" =~ ^[5-6]\.[0-9]{1,2}$ ]]; then
+  kernelversion="${kernelinput}"
+else
+  kernelversion="5.15"
+  echo "Invalid kernel version specified.  Using ${kernelversion}"
+fi
 
 # add repo list file
 echo "deb [arch=amd64 signed-by=${pvekey}] ${repourl} ${distro} ${repo}" > ${pverepo}
