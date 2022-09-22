@@ -90,7 +90,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $grub = '/boot/grub/grub.cfg';
         if (file_exists($grub)) {
             $output = [];
-            $awkArgs = '-F "\'" \'$1 == "menuentry " { print $2 }\'';
+            $awkArgs = '-F "\'|\"" \'$1 == "menuentry " { print $2 }\'';
             $cmd = new \OMV\System\Process('awk', $awkArgs, $grub);
             $cmd->execute($output);
             foreach ($output as $kernelk => $kernelv) {

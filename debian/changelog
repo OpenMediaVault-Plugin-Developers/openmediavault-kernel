@@ -1,3 +1,9 @@
+openmediavault-kernel (6.3.3) stable; urgency=low
+
+  * Fix menu entry list
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 22 Sep 2022 10:25:47 -0500
+
 openmediavault-kernel (6.3.2) stable; urgency=low
 
   * Add memtest86+ dependency
