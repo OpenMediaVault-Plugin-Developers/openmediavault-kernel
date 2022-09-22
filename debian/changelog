@@ -1,3 +1,9 @@
+openmediavault-kernel (6.3.2) stable; urgency=low
+
+  * Add memtest86+ dependency
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 22 Sep 2022 07:43:59 -0500
+
 openmediavault-kernel (6.3.1) stable; urgency=low
 
   * Use gparted-live 1.4.0-5
