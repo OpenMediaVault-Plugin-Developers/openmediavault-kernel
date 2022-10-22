@@ -31,6 +31,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
 
         $this->registerMethod('setKernel');
         $this->registerMethod('getKernelList');
+        $this->registerMethod('deleteKernel');
 
         $this->registerMethod('doCommand');
         $this->registerMethod('doHold');
@@ -94,23 +95,62 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             $cmd = new \OMV\System\Process('awk', $awkArgs, $grub);
             $cmd->execute($output);
             foreach ($output as $kernelk => $kernelv) {
+                $remove = false;
                 if (empty($kernelv))
                     continue;
                 if ($kernelk == $defaultKernel) {
                     $default = true;
                 } else {
                     $default = false;
+                    $pos1 = strpos($kernelv, 'Debian GNU/Linux, with Linux');
+                    $pos2 = strpos($kernelv, 'recovery mode');
+                    if (false === $pos1 || false !== $pos2) {
+                        $remove = false;
+                    } else {
+                        $remove = true;
+                    }
                 }
                 $kernels[] = [
                     'key'  => $kernelk,
                     'name' => $kernelv,
-                    'default' => $default
+                    'default' => $default,
+                    'remove' => $remove
                 ];
             }
         }
         return $this->applyFilter($kernels, $params['start'], $params['limit'],
             $params['sortfield'], $params['sortdir']
         );
+    }
+
+    public function deleteKernel($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Check if the package database is locked.
+        \OMV\System\Apt::assertNotLocked();
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+          use ($params) {
+            $kernel = explode(' ', $params['name']);
+            // Upgrade the given packages.
+            $cmdArgs = [];
+            $cmdArgs[] = "dpkg -l |";
+            $cmdArgs[] = sprintf("grep %s", $kernel[4]);
+            $cmdArgs[] = "| cut -d' ' -f3";
+            $cmdArgs[] = "| grep -E 'pve-kernel|linux-image'";
+            $cmdArgs[] = "| xargs";
+            $cmdArgs[] = "apt-get";
+            $cmdArgs[] = "--yes";
+            $cmdArgs[] = "purge";
+            $cmd = new \OMV\System\Process($cmdArgs);
+            $cmd->setRedirect2to1();
+            $cmd->setEnv("DEBIAN_FRONTEND", "noninteractive");
+            if (0 !== ($exitStatus = $this->exec($cmd->getCommandLine(), $output, $bgOutputFilename))) {
+                throw new \OMV\ExecException($cmd->getCommandLine(), $output, $exitStatus);
+            }
+            return $output;
+        });
     }
 
     public function doCommand($params, $context)

@@ -23,6 +23,11 @@ data:
         flexGrow: 1
         sortable: true
         cellTemplateName: checkIcon
+      - name: _("Removeable")
+        prop: remove
+        flexGrow: 1
+        sortable: true
+        cellTemplateName: checkIcon
       - name: _("Key")
         prop: key
         flexGrow: 1
@@ -45,6 +50,31 @@ data:
               key: "{{ _selected[0].key }}"
             task: false
           successUrl: /system/kernel
+      - type: iconButton
+        tooltip: _("Delete kernel")
+        icon: mdi:delete
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+          constraint:
+            - operator: truthy
+              arg0:
+                prop: remove
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Delete kernel ...")
+              startOnInit: false
+              request:
+                service: kernel
+                method: deleteKernel
+                params:
+                  name: "{{ _selected[0].name }}"
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/kernel
       - type: menu
         icon: mdi:archive-arrow-down-outline
         tooltip: _("Proxmox")
