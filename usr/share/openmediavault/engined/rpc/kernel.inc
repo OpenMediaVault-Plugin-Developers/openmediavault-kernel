@@ -79,10 +79,10 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $grub = '/etc/default/grub';
         if (file_exists($grub)) {
             $output = [];
-            $line_grub = 'GRUB_DEFAULT=';
-            $cmd = new \OMV\System\Process(sprintf('grep %s %s', $line_grub, $grub));
+            $fnd = sprintf('grep -v "#" %s | awk -F "=" "/GRUB_DEFAULT/ { print \$2 }"', $grub);
+            $cmd = new \OMV\System\Process($fnd);
             $cmd->execute($output);
-            $defaultKernel = intval(str_replace($line_grub, '', $output[0]));
+            $defaultKernel = intval($output[0]);
         } else {
             $defaultKernel = -1;
         }
