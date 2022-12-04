@@ -1,3 +1,9 @@
+openmediavault-kernel (6.4.2) stable; urgency=low
+
+  * Add link to omv-extras wiki entry for Kernel plugin
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 04 Dec 2022 11:31:58 -0600
+
 openmediavault-kernel (6.4.1) stable; urgency=low
 
   * Improve code to find current boot kernel
