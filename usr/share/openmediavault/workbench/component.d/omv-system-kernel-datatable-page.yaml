@@ -92,7 +92,7 @@ data:
                     method: doProxmox
                     params:
                       command: "install"
-                      version: "5.19"
+                      version: "5.15"
                   buttons:
                     stop:
                       hidden: true
