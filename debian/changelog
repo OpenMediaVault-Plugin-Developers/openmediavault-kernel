@@ -1,3 +1,9 @@
+openmediavault-kernel (6.4.5) stable; urgency=low
+
+  * Add 6.1 proxmox kernel option
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 20 Dec 2022 17:20:46 -0600
+
 openmediavault-kernel (6.4.4) stable; urgency=low
 
   * Update SystemRescue version to 9.06
