@@ -21,11 +21,17 @@ set -e
 
 . /usr/share/openmediavault/scripts/helper-functions
 
+remove_action() {
+    dpkg-trigger update-workbench
+}
+
 case "$1" in
     purge)
+        remote_action
     ;;
 
     remove)
+        remote_action
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
