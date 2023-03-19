@@ -172,7 +172,7 @@ menuentry 'SystemRescue' {
   set imgdevpath="/dev/disk/by-uuid/\$rootuuid"
   set isofile="${SYSRESCCD_ISO}"
   loopback loop \$isofile
-  linux (loop)/sysresccd/boot/x86_64/vmlinuz rootpass=openmediavault nomodeset nofirewall archisobasedir=sysresccd copytoram dovnc vncpass=openmediavault setkmap=us img_dev=\$imgdevpath img_loop=\$isofile earlymodules=loop
+  linux (loop)/sysresccd/boot/x86_64/vmlinuz rootpass=openmediavault nofirewall archisobasedir=sysresccd copytoram dovnc vncpass=openmediavault setkmap=us img_dev=\$imgdevpath img_loop=\$isofile earlymodules=loop
   initrd (loop)/sysresccd/boot/intel_ucode.img (loop)/sysresccd/boot/amd_ucode.img (loop)/sysresccd/boot/x86_64/sysresccd.img
 }
 EOF
