@@ -29,7 +29,7 @@ arch="$(dpkg --print-architecture)"
 if [[ "${arch}" == "amd64" ]]; then
   isoArch="amd64"
   paeArch="amd64"
-  SYSRESCCD_VERSION="9.06"
+  SYSRESCCD_VERSION="10.00"
 elif [[ "${arch}" == "i386" ]]; then
   isoArch="i686"
   paeArch="i686-pae"
@@ -43,18 +43,18 @@ OMV_SOURCEFORGE_URL=${OMV_SOURCEFORGE_URL:-"https://sourceforge.net/projects"}
 
 ISO_PATH="/boot"
 GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
-CLONEZILLA_VERSION="3.0.2-21"
+CLONEZILLA_VERSION="3.0.3-22"
 CLONEZILLA_FILE="clonezilla-live-${CLONEZILLA_VERSION}-${paeArch}.iso"
 CLONEZILLA_ISO="${ISO_PATH}/${CLONEZILLA_FILE}"
 CLONEZILLA_URL="${OMV_SOURCEFORGE_URL}/clonezilla/files/clonezilla_live_stable/${CLONEZILLA_VERSION}/${CLONEZILLA_FILE}/download"
-CLONEZILLA_CHECKSUM_i686="6f128181f672b7f6cbdb57db2d52fd8960aedbbed752e480e8930ad5403e265b"
-CLONEZILLA_CHECKSUM_amd64="4ec679634ac012fa7a7fceda988ba58546f8140cdfe522b5e75edf916232e8db"
+CLONEZILLA_CHECKSUM_i686="b9120f24d84cb5fd1f87378b31c3de07474b9603c93007bdb8251ab07d38e6aa"
+CLONEZILLA_CHECKSUM_amd64="a22c69e0282eddc3bc36bf85b300fbfab4370eac3503d0ec83eb85812030a5aa"
 
 GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
 SYSRESCCD_FILE="systemrescue-${SYSRESCCD_VERSION}-${isoArch}.iso"
 SYSRESCCD_ISO="${ISO_PATH}/${SYSRESCCD_FILE}"
 SYSRESCCD_URL="${OMV_SOURCEFORGE_URL}/systemrescuecd/files/sysresccd-x86/${SYSRESCCD_VERSION}/${SYSRESCCD_FILE}/download"
-SYSRESCCD_CHECKSUM_amd64="15749b2dab752eebd4959a891df51f29816d8d989c21a7b955c2f8e0fe1367c4"
+SYSRESCCD_CHECKSUM_amd64="586d8c0bb47db6a7c2b307570ee8224de92689b89a54fb7d2f0762e934cf37a3"
 SYSRESCCD_CHECKSUM_i686="f6abb302f2c326bb647dffe9110dc7f9a1bb012f003723c9eb5a59acd8a9e0ec"
 
 GRUB_GPARTEDLIVE="/etc/grub.d/42_gpartedlive"
