@@ -27,11 +27,11 @@ remove_action() {
 
 case "$1" in
     purge)
-        remote_action
+        remove_action
     ;;
 
     remove)
-        remote_action
+        remove_action
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
