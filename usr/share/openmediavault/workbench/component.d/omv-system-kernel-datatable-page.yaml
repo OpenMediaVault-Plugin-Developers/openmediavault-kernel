@@ -115,20 +115,20 @@ data:
                     stop:
                       hidden: true
                 successUrl: /system/kernel
-          - text: _("Install Proxmox kernel 6.1")
+          - text: _("Install Proxmox kernel 6.2")
             icon: mdi:plus-circle-outline
             execute:
               type: taskDialog
               taskDialog:
                 config:
-                  title: _("Installing 6.1 Proxmox kernel  ...")
+                  title: _("Installing 6.2 Proxmox kernel  ...")
                   startOnInit: true
                   request:
                     service: Kernel
                     method: doProxmox
                     params:
                       command: "install"
-                      version: "6.1"
+                      version: "6.2"
                   buttons:
                     stop:
                       hidden: true
