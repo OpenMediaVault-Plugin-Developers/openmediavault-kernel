@@ -1,3 +1,10 @@
+openmediavault-kernel (6.4.7) stable; urgency=low
+
+  * Fix uninstall typo
+  * Use Proxmox 6.2 kernel instead of 6.1
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 01 Apr 2023 11:28:25 -0500
+
 openmediavault-kernel (6.4.6) stable; urgency=low
 
   * Update SystemRescue version to 10.00
