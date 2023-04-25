@@ -39,7 +39,7 @@ echo "deb [arch=amd64 signed-by=${pvekey}] ${repourl} ${distro} ${repo}" > ${pve
 apt-get update
 
 # remove conflicting firmware packages
-for pkg in linux linux-nonfree ti-connectivity amd-graphics cavium siano netronome; do
+for pkg in linux linux-nonfree ti-connectivity amd-graphics ath9k-htc cavium siano netronome; do
   if dpkg -l firmware-${pkg} > /dev/null; then
     if ! dpkg --purge firmware-${pkg} 2>/dev/null; then
       echo "Failed to remove firmware-${pkg} package.  Exiting..."
