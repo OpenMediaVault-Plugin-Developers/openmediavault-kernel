@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# shellcheck disable=SC1091,SC2162,SC2181
+# shellcheck disable=SC1091,SC2086,SC2162,SC2181
 
 declare -i kernnum=0
 
@@ -38,6 +38,7 @@ fi
 # add repo list file
 echo "deb [arch=amd64 signed-by=${pvekey}] ${repourl} ${distro} ${repo}" > ${pverepo}
 wget --quiet --output-document=- "${keyurl}" | gpg --dearmor > "${pvekey}"
+chmod 644 ${pverepo} ${pvekey}
 apt-get update
 
 # remove conflicting firmware packages
