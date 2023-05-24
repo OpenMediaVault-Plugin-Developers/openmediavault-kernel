@@ -11,6 +11,7 @@ Package: openmediavault-kernel
 Architecture: all
 Depends: memtest86+,
          openmediavault (>= 6.0.40),
+         openmediavault-omvextrasorg (>= 6.3),
          ${misc:Depends}
 Breaks: openmediavault (<< 6.0)
 Description: kernel package
