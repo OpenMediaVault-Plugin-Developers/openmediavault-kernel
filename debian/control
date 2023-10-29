@@ -3,15 +3,15 @@ Section: net
 XB-Plugin-Section: utilities
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-Build-Depends: debhelper (>= 12 )
-Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 13)
+Standards-Version: 4.3.0
 Homepage: http://omv-extras.org/
 
 Package: openmediavault-kernel
 Architecture: all
 Depends: memtest86+,
-         openmediavault (>= 6.0.40),
-         openmediavault-omvextrasorg (>= 6.3),
+         openmediavault (>= 7),
+         openmediavault-omvextrasorg (>= 7),
          ${misc:Depends}
 Breaks: openmediavault (<< 6.0)
 Description: kernel package
