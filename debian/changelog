@@ -1,3 +1,11 @@
+openmediavault-kernel (7.0.1) stable; urgency=low
+
+  * Use clonezille 3.1.1-27
+  * Use gparted-live 1.5.0-6
+  * Use systemrescue 10.02
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 12 Nov 2023 14:01:54 -0600
+
 openmediavault-kernel (7.0) stable; urgency=low
 
   * Update for OMV 7.x
