@@ -1,3 +1,10 @@
+openmediavault-kernel (7.0.2) stable; urgency=low
+
+  * Add 6.5 proxmox kernel
+  * Remove 5.15 and 5.19 proxmix kernels from bullseye
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 25 Nov 2023 10:44:25 -0600
+
 openmediavault-kernel (7.0.1) stable; urgency=low
 
   * Use clonezille 3.1.1-27
