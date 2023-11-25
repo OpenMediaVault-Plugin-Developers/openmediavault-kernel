@@ -79,42 +79,6 @@ data:
         icon: mdi:archive-arrow-down-outline
         tooltip: _("Proxmox")
         actions:
-          - text: _("Install Proxmox kernel 5.15")
-            icon: mdi:plus-circle-outline
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing 5.15 Proxmox kernel  ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doProxmox
-                    params:
-                      command: "install"
-                      version: "5.15"
-                  buttons:
-                    stop:
-                      hidden: true
-                successUrl: /system/kernel
-          - text: _("Install Proxmox kernel 5.19")
-            icon: mdi:plus-circle-outline
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing 5.19 Proxmox kernel  ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doProxmox
-                    params:
-                      command: "install"
-                      version: "5.19"
-                  buttons:
-                    stop:
-                      hidden: true
-                successUrl: /system/kernel
           - text: _("Install Proxmox kernel 6.2")
             icon: mdi:plus-circle-outline
             execute:
@@ -129,6 +93,24 @@ data:
                     params:
                       command: "install"
                       version: "6.2"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /system/kernel
+          - text: _("Install Proxmox kernel 6.5")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing 6.5 Proxmox kernel  ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doProxmox
+                    params:
+                      command: "install"
+                      version: "6.5"
                   buttons:
                     stop:
                       hidden: true
