@@ -123,7 +123,7 @@ exec tail -n +3 \$0
 menuentry 'Clonezilla Live' {
   set isofile="${CLONEZILLA_ISO}"
   loopback loop \$isofile
-  linux (loop)/live/vmlinuz boot=live live-config noswap edd=on nomodeset ocs_prerun="dhclient" ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts=NONE ocs_live_batch="no" locales="en_US.UTF-8" ocs_daemonon="ssh" vga=788 nosplash toram=filesystem.squashfs findiso=\$isofile
+  linux (loop)/live/vmlinuz boot=live live-config noswap edd=on nomodeset ocs_prerun="dhclient" ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts=NONE ocs_live_batch="no" locales="en_US.UTF-8" ocs_daemonon="ssh" gfxpayload=text nosplash toram=filesystem.squashfs findiso=\$isofile
   initrd (loop)/live/initrd.img
 }
 EOF
