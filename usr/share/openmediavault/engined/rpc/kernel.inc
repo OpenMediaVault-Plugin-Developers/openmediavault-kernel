@@ -138,7 +138,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             $cmdArgs[] = "dpkg -l |";
             $cmdArgs[] = sprintf("grep %s", $kernel[4]);
             $cmdArgs[] = "| cut -d' ' -f3";
-            $cmdArgs[] = "| grep -E 'pve-kernel|linux-image'";
+            $cmdArgs[] = "| grep -E 'proxmox-kernel|pve-kernel|linux-image'";
             $cmdArgs[] = "| xargs";
             $cmdArgs[] = "apt-get";
             $cmdArgs[] = "--yes";
