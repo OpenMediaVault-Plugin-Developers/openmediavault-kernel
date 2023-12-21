@@ -49,7 +49,6 @@ data:
               name: "{{ _selected[0].name }}"
               key: "{{ _selected[0].key }}"
             task: false
-          successUrl: /system/kernel
       - type: iconButton
         tooltip: _("Delete kernel")
         icon: mdi:delete
@@ -74,7 +73,6 @@ data:
               buttons:
                 stop:
                   hidden: true
-            successUrl: /system/kernel
       - type: menu
         icon: mdi:archive-arrow-down-outline
         tooltip: _("Proxmox")
@@ -96,7 +94,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
           - text: _("Install Proxmox kernel 6.5")
             icon: mdi:plus-circle-outline
             execute:
@@ -114,7 +111,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
           - text: _("Remove non-Proxmox kernels")
             icon: mdi:close-circle-outline
             execute:
@@ -131,7 +127,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
       - type: menu
         icon: mdi:content-copy
         tooltip: _("Clonezilla")
@@ -152,7 +147,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
           - text: _("Reboot to Clonezilla once")
             icon: mdi:restart
             execute:
@@ -169,7 +163,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
           - text: _("Remove Clonezilla")
             icon: mdi:delete-forever-outline
             confirmationDialogConfig:
@@ -209,7 +202,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
           - text: _("Reboot to GParted Live once")
             icon: mdi:restart
             execute:
@@ -226,7 +218,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
           - text: _("Remove GParted Live")
             icon: mdi:delete-forever-outline
             confirmationDialogConfig:
@@ -266,7 +257,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
           - text: _("Reboot to SystemRescue once")
             icon: mdi:restart
             execute:
@@ -283,7 +273,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-                successUrl: /system/kernel
           - text: _("Remove SystemRescue")
             icon: mdi:delete-forever-outline
             confirmationDialogConfig:
