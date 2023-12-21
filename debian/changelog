@@ -1,3 +1,10 @@
+openmediavault-kernel (7.0.3) stable; urgency=low
+
+  * Fix delete kernel for newer proxmox kernel where package name has
+    changed from pve-kernel to proxmox-kernel
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 21 Dec 2023 10:07:37 -0600
+
 openmediavault-kernel (7.0.2) stable; urgency=low
 
   * Add 6.5 proxmox kernel
