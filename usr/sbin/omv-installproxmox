@@ -52,7 +52,7 @@ for pkg in linux linux-nonfree ti-connectivity amd-graphics ath9k-htc cavium sia
 done
 
 # install kernel and headers
-DEBIAN_FRONTEND=noninteractive apt-get --yes --fix-missing install proxmox-kernel-${kernelversion} proxmox-headers-${kernelversion} proxmox-headers
+DEBIAN_FRONTEND=noninteractive apt-get --yes --fix-missing install proxmox-kernel-${kernelversion} proxmox-headers-${kernelversion} proxmox-default-headers pve-headers
 if [ $? -gt 0 ]; then
   echo "Failed to install Proxmox kernel.  Exiting..."
   exit 4
