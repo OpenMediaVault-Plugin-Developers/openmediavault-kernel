@@ -29,7 +29,7 @@ arch="$(dpkg --print-architecture)"
 if [[ "${arch}" == "amd64" ]]; then
   isoArch="amd64"
   paeArch="amd64"
-  SYSRESCCD_VERSION="10.02"
+  SYSRESCCD_VERSION="11.00"
 elif [[ "${arch}" == "i386" ]]; then
   isoArch="i686"
   paeArch="i686-pae"
@@ -54,7 +54,7 @@ GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
 SYSRESCCD_FILE="systemrescue-${SYSRESCCD_VERSION}-${isoArch}.iso"
 SYSRESCCD_ISO="${ISO_PATH}/${SYSRESCCD_FILE}"
 SYSRESCCD_URL="${OMV_SOURCEFORGE_URL}/systemrescuecd/files/sysresccd-x86/${SYSRESCCD_VERSION}/${SYSRESCCD_FILE}/download"
-SYSRESCCD_CHECKSUM_amd64="d7d0af245c6e1e4360136e0ad378ede56a9f1285db4454c6055092dfc2c63d67"
+SYSRESCCD_CHECKSUM_amd64="b25579c9e8814eed84ec3260fa10566cf979e1569f857fa8fe15505968b527ed"
 SYSRESCCD_CHECKSUM_i686="f6abb302f2c326bb647dffe9110dc7f9a1bb012f003723c9eb5a59acd8a9e0ec"
 
 GRUB_GPARTEDLIVE="/etc/grub.d/42_gpartedlive"
