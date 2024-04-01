@@ -1,3 +1,9 @@
+openmediavault-kernel (7.0.4) stable; urgency=low
+
+  * Improve removable kernel detection for Proxmox kernels
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 01 Apr 2024 10:17:22 -0500
+
 openmediavault-kernel (7.0.3) stable; urgency=low
 
   * Fix delete kernel for newer proxmox kernel where package name has
