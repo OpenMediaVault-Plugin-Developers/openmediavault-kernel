@@ -103,10 +103,11 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 } else {
                     $default = false;
                     $pos1 = strpos($kernelv, 'Debian GNU/Linux, with Linux');
-                    $pos2 = strpos($kernelv, 'recovery mode');
-                    if (false === $pos1 || false !== $pos2) {
+                    $pos2 = strpos($kernelv, 'Proxmox Virtual Environment GNU/Linux, with Linux');
+                    $pos3 = strpos($kernelv, 'recovery mode');
+                    if (false !== $pos3) {
                         $remove = false;
-                    } else {
+		    } elseif ($pos1 > -1 || $pos2 > -1) {
                         $remove = true;
                     }
                 }
