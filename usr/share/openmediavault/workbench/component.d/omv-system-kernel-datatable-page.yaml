@@ -89,7 +89,7 @@ data:
                     service: Kernel
                     method: doProxmox
                     params:
-                      command: "install"
+                      action: "install"
                       version: "6.2"
                   buttons:
                     stop:
@@ -106,7 +106,7 @@ data:
                     service: Kernel
                     method: doProxmox
                     params:
-                      command: "install"
+                      action: "install"
                       version: "6.5"
                   buttons:
                     stop:
@@ -123,7 +123,7 @@ data:
                     service: Kernel
                     method: doProxmox
                     params:
-                      command: "install"
+                      action: "install"
                       version: "6.8"
                   buttons:
                     stop:
@@ -140,7 +140,7 @@ data:
                     service: Kernel
                     method: doProxmox
                     params:
-                      command: "remove"
+                      action: "remove"
                   buttons:
                     stop:
                       hidden: true
@@ -160,7 +160,8 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "installcz"
+                      action: "install"
+                      distro: "clonezilla"
                   buttons:
                     stop:
                       hidden: true
@@ -176,7 +177,8 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "rebootcz"
+                      action: "reboot"
+                      distro: "clonezilla"
                   buttons:
                     stop:
                       hidden: true
@@ -195,7 +197,66 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "removecz"
+                      action: "remove"
+                      distro: "clonezilla"
+                  buttons:
+                    stop:
+                      hidden: true
+      - type: menu
+        icon: mdi:content-copy
+        tooltip: _("Finnix")
+        actions:
+          - text: _("Install Finnix")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing Finnix ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      action: "install"
+                      distro: "finnix"
+                  buttons:
+                    stop:
+                      hidden: true
+          - text: _("Reboot to Finnix once")
+            icon: mdi:restart
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Reboot to Finnix once ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      action: "reboot"
+                      distro: "finnix"
+                  buttons:
+                    stop:
+                      hidden: true
+          - text: _("Remove Finnix")
+            icon: mdi:delete-forever-outline
+            confirmationDialogConfig:
+              template: confirmation-danger
+              message: _("Are you sure you want to remove?")
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Remove Finnix ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doCommand
+                    params:
+                      action: "remove"
+                      distro: "finnix"
                   buttons:
                     stop:
                       hidden: true
@@ -215,7 +276,8 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "installgp"
+                      action: "install"
+                      distro: "gpartedlive"
                   buttons:
                     stop:
                       hidden: true
@@ -231,7 +293,8 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "rebootgp"
+                      action: "reboot"
+                      distro: "gpartedlive"
                   buttons:
                     stop:
                       hidden: true
@@ -250,7 +313,8 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "removegp"
+                      action: "remove"
+                      distro: "gpartedlive"
                   buttons:
                     stop:
                       hidden: true
@@ -270,7 +334,8 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "installsys"
+                      action: "install"
+                      distro: "sysresccd"
                   buttons:
                     stop:
                       hidden: true
@@ -286,7 +351,8 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "rebootsys"
+                      action: "reboot"
+                      distro: "sysresccd"
                   buttons:
                     stop:
                       hidden: true
@@ -305,7 +371,8 @@ data:
                     service: Kernel
                     method: doCommand
                     params:
-                      command: "removesys"
+                      action: "remove"
+                      distro: "sysresccd"
                   buttons:
                     stop:
                       hidden: true

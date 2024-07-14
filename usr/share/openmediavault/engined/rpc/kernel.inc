@@ -163,9 +163,11 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         // Create the background process.
         return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
             use ($params) {
-                $cmdBin = 'omv-grubiso';
-                $cmdParams = $params['command'];
-                $cmd = new \OMV\System\Process($cmdBin, $cmdParams);
+                $cmdParams = [];
+                $cmdParams[] = '/usr/sbin/omv-installiso';
+                $cmdParams[] = $params['action'];
+                $cmdParams[] = $params['distro'];
+                $cmd = new \OMV\System\Process($cmdParams);
                 $cmdLine = $cmd->getCommandLine();
                 if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
                     throw new \OMV\ExecException($cmdLine, $output);

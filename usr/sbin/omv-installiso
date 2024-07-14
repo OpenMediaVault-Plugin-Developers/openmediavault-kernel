@@ -1,0 +1,251 @@
+#!/bin/bash
+
+# shellcheck disable=SC1091,SC2016,SC2086,SC2181
+
+# @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
+# @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+# @copyright Copyright (c) 2013-2024 OpenMediaVault Plugin Developers
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+. /etc/default/openmediavault
+
+arch="$(dpkg --print-architecture)"
+if [ ! "${arch}" = "amd64" ]; then
+  echo "Unsupported architecture."
+  exit 1
+fi
+
+OMV_SOURCEFORGE_URL=${OMV_SOURCEFORGE_URL:-"https://sourceforge.net/projects"}
+GRUB_PATH="/etc/grub.d"
+ISO_PATH="/boot"
+
+declare -A VERSIONS=(
+  ["clonezilla"]="3.1.3-11"
+  ["finnix"]="126"
+  ["gpartedlive"]="1.6.0-3"
+  ["sysresccd"]="11.01"
+)
+
+declare -A GRUB_FILES=(
+  ["clonezilla"]="${GRUB_PATH}/42_clonezilla"
+  ["finnix"]="${GRUB_PATH}/42_finnix"
+  ["gpartedlive"]="${GRUB_PATH}/42_gpartedlive"
+  ["sysresccd"]="${GRUB_PATH}/42_sysresccd"
+)
+
+declare -A GRUB_NAMES=(
+  ["clonezilla"]="Clonezilla Live ${VERSIONS[clonezilla]}"
+  ["finnix"]="Finnix ${VERSIONS[finnix]}"
+  ["gpartedlive"]="GParted Live ${VERSIONS[gpartedlive]}"
+  ["sysresccd"]="SystemRescue ${VERSIONS[sysresccd]}"
+)
+
+declare -A URLS=(
+  ["clonezilla"]="${OMV_SOURCEFORGE_URL}/clonezilla/files/clonezilla_live_stable/${VERSIONS[clonezilla]}/clonezilla-live-${VERSIONS[clonezilla]}-amd64.iso/download"
+  ["finnix"]="https://www.finnix.org/releases/${VERSIONS[finnix]}/finnix-${VERSIONS[finnix]}.iso"
+  ["gpartedlive"]="${OMV_SOURCEFORGE_URL}/gparted/files/gparted-live-stable/${VERSIONS[gpartedlive]}/gparted-live-${VERSIONS[gpartedlive]}-amd64.iso/download"
+  ["sysresccd"]="${OMV_SOURCEFORGE_URL}/systemrescuecd/files/sysresccd-x86/${VERSIONS[sysresccd]}/systemrescue-${VERSIONS[sysresccd]}-amd64.iso/download"
+)
+
+declare -A CHECKSUMS=(
+  ["clonezilla"]="819b79d37b2d241e0834941deb6cf1de3b396ed649f8f9404201256cdb304b24"
+  ["finnix"]="a74173bdf1198eafb01e52de35e08e0096587baaef8f258dd2ed66348b3fb3a1"
+  ["gpartedlive"]="9a82825841969b803962c754fec249fb9592bea8096cd3c0cecf939b469a46ed"
+  ["sysresccd"]="a2602cde72e3fdefba48d171d032d012bd6f1fe7bc86849e4a8bcbd9a529b795"
+)
+
+declare -A FILES=(
+  ["clonezilla"]="clonezilla-live-${VERSIONS[clonezilla]}-amd64.iso"
+  ["finnix"]="finnix-${VERSIONS[finnix]}.iso"
+  ["gpartedlive"]="gparted-live-${VERSIONS[gpartedlive]}-amd64.iso"
+  ["sysresccd"]="systemrescue-${VERSIONS[sysresccd]}-amd64.iso"
+)
+
+declare -A RM=(
+  ["clonezilla"]="clonezilla-live*.iso"
+  ["finnix"]="finnix*.iso"
+  ["gpartedlive"]="gparted-live*.iso"
+  ["sysresccd"]="systemrescue*.iso"
+)
+
+GRUB="/etc/default/grub"
+GRUB_CFG="/boot/grub/grub.cfg"
+
+checkDNS() {
+  host="/usr/bin/host"
+  hostDomain="$(echo "${OMV_SOURCEFORGE_URL}" | sed -e 's/[^/]*\/\/\([^@]*@\)\?\([^:/]*\).*/\2/')"
+  echo "Checking DNS with '${hostDomain}' ..."
+  if [ -f "${host}" ]; then
+    if ! ${host} ${hostDomain} > /dev/null; then
+      echo "DNS error.  Exiting ..."
+      exit 1
+    else
+      echo "DNS OK."
+    fi
+  fi
+}
+
+install_iso() {
+  local iso=$1
+  local url=${URLS[$iso]}
+  local iso_file="${ISO_PATH}/${FILES[$iso]}"
+  local iso_pattern="${RM[$iso]}"
+  local checksum=${CHECKSUMS[$iso]}
+  local grub_file=${GRUB_FILES[$iso]}
+  local grub_name=${GRUB_NAMES[$iso]}
+
+  checkDNS
+
+  echo "Installing ${iso}..."
+  if [ ! -f "${iso_file}" ]; then
+    find ${ISO_PATH} -type f -name "${iso_pattern}" -ls -delete
+    wget "${url}" -O "${iso_file}" 2>&1
+    if [ $? -gt 0 ]; then
+      echo "Download failed. Deleting ${iso} file and exiting..."
+      rm -f "${iso_file}"
+      exit 2
+    fi
+    echo "Checking sha256sum..."
+    echo "${checksum} ${iso_file}" | sha256sum --check
+    if [ $? -gt 0 ]; then
+      echo "Checksum failed. Deleting ${iso} file and exiting..."
+      rm -f "${iso_file}"
+      exit 10
+    fi
+  else
+    echo "${iso_file} already exists. Skipping download."
+  fi
+
+  echo "Creating GRUB entry..."
+  cat <<EOF > ${grub_file}
+#!/bin/sh
+exec tail -n +3 \$0
+menuentry '${grub_name}' {
+EOF
+
+  # extra systemrescue lines
+  if [ "${iso}" = "sysresccd" ]; then
+    echo '  probe -u \$root --set=rootuuid' >> ${grub_file}
+    echo '  set imgdevpath="/dev/disk/by-uuid/\$rootuuid"' >> ${grub_file}
+  fi
+
+  # isofile and loopback lines
+  echo '  set isofile=\"${iso_file}\"' >> ${grub_file}
+  echo '  loopback loop \$isofile' >> ${grub_file}
+
+  # linux line
+  case "${iso}" in
+    clonezilla)
+      linux='linux (loop)/live/vmlinuz boot=live live-config noswap edd=on nomodeset ocs_prerun="dhclient" ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts=NONE ocs_live_batch="no" locales="en_US.UTF-8" ocs_daemonon="ssh" gfxpayload=text nosplash toram=filesystem.squashfs findiso=\$isofile'
+      ;;
+    finnix)
+      linux='linux (loop)/live/vmlinuz linux boot=live toram sshd passwd=openmediavault findiso=\$isofile'
+      ;;
+    gpartedlive)
+      linux='linux (loop)/live/vmlinuz boot="live" union="overlay" username="user" config components noswap noeject toram="filesystem.squashfs" ip="" nosplash findiso=\$isofile'
+      ;;
+    sysresccd)
+      linux='linux (loop)/sysresccd/boot/x86_64/vmlinuz rootpass=openmediavault nofirewall archisobasedir=sysresccd copytoram dovnc vncpass=openmediavault setkmap=us img_dev=\$imgdevpath img_loop=\$isofile earlymodules=loop'
+      ;;
+  esac
+  echo "  ${linux}" >> ${grub_file}
+
+  # initrd line
+  if [ "${iso}" = "sysresccd" ]; then
+    initrd="initrd (loop)/sysresccd/boot/intel_ucode.img (loop)/sysresccd/boot/amd_ucode.img (loop)/sysresccd/boot/x86_64/sysresccd.img"
+  else
+    initrd="initrd (loop)/live/initrd.img"
+  fi
+  echo "  ${initrd}" >> ${grub_file}
+
+  # closing bracket
+  echo "}" >> ${grub_file}
+
+  chmod 755 ${grub_file}
+  update-grub
+}
+
+remove_iso() {
+  local iso=$1
+  local iso_pattern="${RM[$iso]}"
+  local grub_file=${GRUB_FILES[$iso]}
+
+  echo "Removing ${iso} ISOs..."
+  find ${ISO_PATH} -type f -name "${iso_pattern}" -ls -delete
+  echo "Removing GRUB entry..."
+  rm -fv ${grub_file}
+  update-grub
+}
+
+reboot_iso() {
+  local iso=$1
+  local iso_file="${ISO_PATH}/${FILES[$iso]}"
+  local grub_file=${GRUB_FILES[$iso]}
+  local grub_name=${GRUB_NAMES[$iso]}
+
+  if [ ! -f "${iso_file}" ]; then
+    echo "Please click on Install button."
+    return
+  fi
+
+  DEFAULT=$(awk -F "=" '$1 == "GRUB_DEFAULT" { print $2 }' ${GRUB})
+
+  disablesubmenu
+
+  if grep -q 'submenu' ${GRUB_CFG}; then
+    ENTRY=$(grep '^menuentry ' ${GRUB_CFG} | grep -n "${grub_name}" | cut -f1 -d:)
+  else
+    ENTRY=$(($(grep 'menuentry ' ${GRUB_CFG} | grep -n "${grub_name}" | cut -f1 -d:)-1))
+  fi
+
+  echo "Configuring grub to boot once from '${grub_name}' iso... ${ENTRY}"
+
+  perl -p -i -e "s/GRUB_DEFAULT=.*/GRUB_DEFAULT=saved/g" "${GRUB}"
+  grub-set-default ${DEFAULT}
+  update-grub
+  grub-reboot ${ENTRY}
+}
+
+disablesubmenu() {
+  if ! grep -q 'GRUB_DISABLE_SUBMENU' ${GRUB}; then
+    echo "GRUB_DISABLE_SUBMENU=y" >> ${GRUB}
+    update-grub
+  fi
+}
+
+action="${1,,}"
+distro="${2,,}"
+
+case ${action} in
+  disablesubmenu)
+    disablesubmenu
+    ;;
+
+  install)
+    install_iso "${distro}"
+    ;;
+
+  remove)
+    remove_iso "${distro}"
+    ;;
+
+  reboot)
+    reboot_iso "${distro}"
+    ;;
+esac
+
+echo "Done."
+
+exit 0

@@ -5,18 +5,22 @@
     "params": {
       "type": "object",
       "properties": {
-        "command": {
+        "action": {
           "type": "string",
           "enum": [
-            "installcz",
-            "installgp",
-            "installsys",
-            "rebootcz",
-            "rebootgp",
-            "rebootsys",
-            "removecz",
-            "removegp",
-            "removesys"
+            "install",
+            "reboot",
+            "remove"
+          ],
+          "required": true
+        },
+        "distro": {
+          "type": "string",
+          "enum": [
+            "clonezilla",
+            "finnix",
+            "gpartedlive",
+            "sysresccd"
           ],
           "required": true
         }
