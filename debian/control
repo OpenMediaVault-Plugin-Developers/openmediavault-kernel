@@ -19,5 +19,6 @@ Description: kernel package
  installation of the Proxmox kernel.  It also allows for the download
  and grub entry to boot from the following rescue Linux distros:
    - Clonezilla
+   - Finnix
    - GParted Live
    - SystemRescue
