@@ -203,7 +203,7 @@ data:
                     stop:
                       hidden: true
       - type: menu
-        icon: mdi:content-copy
+        icon: mdi:wrench-cog-outline
         tooltip: _("Finnix")
         actions:
           - text: _("Install Finnix")
