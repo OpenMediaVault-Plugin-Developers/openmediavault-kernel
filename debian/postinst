@@ -28,7 +28,7 @@ case "$1" in
 
         # disable grub submenus on systems that use grub
         if [ -f /usr/sbin/update-grub ]; then
-            omv-grubiso disablesubmenu
+            omv-installiso disablesubmenu
         fi
     ;;
 
