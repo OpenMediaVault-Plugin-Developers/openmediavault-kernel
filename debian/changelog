@@ -1,3 +1,9 @@
+openmediavault-kernel (7.1.1) stable; urgency=low
+
+  * Fix typo in proxmox kernel install buttons
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 17 Jul 2024 06:35:29 -0500
+
 openmediavault-kernel (7.1) stable; urgency=low
 
   * Add Finnix
