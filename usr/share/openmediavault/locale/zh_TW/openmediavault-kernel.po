@@ -3,6 +3,9 @@
 # This file is distributed under the same license as the openmediavault-kernel package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# kochin <kochinc@outlook.com>, 2024
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,6 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-15 19:19-0500\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
+"Last-Translator: kochin <kochinc@outlook.com>, 2024\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,34 +22,34 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Are you sure you want to remove?"
-msgstr ""
+msgstr "您確定要刪除？"
 
 msgid "Clonezilla"
-msgstr ""
+msgstr "Clonezilla"
 
 msgid "Default"
-msgstr ""
+msgstr "預設"
 
 msgid "Delete kernel"
-msgstr ""
+msgstr "刪除核心"
 
 msgid "Delete kernel ..."
-msgstr ""
+msgstr "刪除核心中 ..."
 
 msgid "Docs"
-msgstr ""
+msgstr "說明文件"
 
 msgid "Finnix"
-msgstr ""
+msgstr "Finnix"
 
 msgid "GParted Live"
-msgstr ""
+msgstr "GParted Live"
 
 msgid "Install Clonezilla"
-msgstr ""
+msgstr "安裝 Clonezilla"
 
 msgid "Install Finnix"
-msgstr ""
+msgstr "安裝 Finnix"
 
 msgid "Install GParted Live"
 msgstr ""
@@ -93,7 +97,7 @@ msgid "Name"
 msgstr ""
 
 msgid "Proxmox"
-msgstr ""
+msgstr "Proxmox"
 
 msgid "Reboot to Clonezilla once"
 msgstr ""
@@ -156,7 +160,7 @@ msgid "Set boot"
 msgstr ""
 
 msgid "SystemRescue"
-msgstr ""
+msgstr "SystemRescue"
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "omv-extras 維基"
