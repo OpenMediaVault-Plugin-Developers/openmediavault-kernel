@@ -1,3 +1,9 @@
+openmediavault-kernel (7.1.2) stable; urgency=low
+
+  * Fix remove non-proxmox kernel
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 09 Aug 2024 07:56:06 -0500
+
 openmediavault-kernel (7.1.1) stable; urgency=low
 
   * Fix typo in proxmox kernel install buttons
