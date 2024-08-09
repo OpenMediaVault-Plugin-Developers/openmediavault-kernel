@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Are you sure you want to remove?"
-msgstr "您確定要刪除？"
+msgstr "您確定要移除？"
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
@@ -52,112 +52,112 @@ msgid "Install Finnix"
 msgstr "安裝 Finnix"
 
 msgid "Install GParted Live"
-msgstr ""
+msgstr "安裝 GParted Live"
 
 msgid "Install Proxmox kernel 6.2"
-msgstr ""
+msgstr "安裝 Proxmox 核心 6.2"
 
 msgid "Install Proxmox kernel 6.5"
-msgstr ""
+msgstr "安裝 Proxmox 核心 6.5"
 
 msgid "Install Proxmox kernel 6.8"
-msgstr ""
+msgstr "安裝 Proxmox 核心 6.8"
 
 msgid "Install SystemRescue"
-msgstr ""
+msgstr "安裝 SystemRescue"
 
 msgid "Installing 6.2 Proxmox kernel  ..."
-msgstr ""
+msgstr "安裝 Proxmox 核心 6.2 中 ..."
 
 msgid "Installing 6.5 Proxmox kernel  ..."
-msgstr ""
+msgstr "安裝 Proxmox 核心 6.5 中 ..."
 
 msgid "Installing 6.8 Proxmox kernel  ..."
-msgstr ""
+msgstr "安裝 Proxmox 核心 6.8 中 ..."
 
 msgid "Installing Clonezilla ..."
-msgstr ""
+msgstr "安裝 Clonezilla 中 ..."
 
 msgid "Installing Finnix ..."
-msgstr ""
+msgstr "安裝 Finnix 中 ..."
 
 msgid "Installing GParted Live ..."
-msgstr ""
+msgstr "安裝 GParted Live 中 ..."
 
 msgid "Installing SystemRescue ..."
-msgstr ""
+msgstr "安裝 SystemRescue 中 ..."
 
 msgid "Kernel"
-msgstr ""
+msgstr "核心"
 
 msgid "Key"
-msgstr ""
+msgstr "索引鍵"
 
 msgid "Name"
-msgstr ""
+msgstr "名稱"
 
 msgid "Proxmox"
 msgstr "Proxmox"
 
 msgid "Reboot to Clonezilla once"
-msgstr ""
+msgstr "重新啟動到 Clonezilla 一次"
 
 msgid "Reboot to Clonezilla once ..."
-msgstr ""
+msgstr "重新啟動到 Clonezilla 一次 ..."
 
 msgid "Reboot to Finnix once"
-msgstr ""
+msgstr "重新啟動到 Finnix 一次"
 
 msgid "Reboot to Finnix once ..."
-msgstr ""
+msgstr "重新啟動到 Finnix 一次 ..."
 
 msgid "Reboot to GParted Live once"
-msgstr ""
+msgstr "重新啟動到 GParted Live 一次"
 
 msgid "Reboot to GParted Live once ..."
-msgstr ""
+msgstr "重新啟動到 GParted Live 一次 ..."
 
 msgid "Reboot to SystemRescue once"
-msgstr ""
+msgstr "重新啟動到 SystemRescue 一次"
 
 msgid "Reboot to SystemRescue once ..."
-msgstr ""
+msgstr "重新啟動到 SystemRescue 一次 ..."
 
 msgid "Remove Clonezilla"
-msgstr ""
+msgstr "移除 Clonezilla"
 
 msgid "Remove Clonezilla ..."
-msgstr ""
+msgstr "移除 Clonezilla ..."
 
 msgid "Remove Finnix"
-msgstr ""
+msgstr "移除 Finnix"
 
 msgid "Remove Finnix ..."
-msgstr ""
+msgstr "移除 Finnix ..."
 
 msgid "Remove GParted Live"
-msgstr ""
+msgstr "移除 GParted Live"
 
 msgid "Remove GParted Live ..."
-msgstr ""
+msgstr "移除 GParted Live ..."
 
 msgid "Remove SystemRescue"
-msgstr ""
+msgstr "移除 SystemRescue"
 
 msgid "Remove SystemRescue ..."
-msgstr ""
+msgstr "移除 SystemRescue ..."
 
 msgid "Remove non-Proxmox kernels"
-msgstr ""
+msgstr "移除 非Proxmox 核心"
 
 msgid "Removeable"
-msgstr ""
+msgstr "可移除"
 
 msgid "Removing non-Proxmox kernels and headers  ..."
-msgstr ""
+msgstr "移除 非Proxmox 核心及標頭檔案"
 
 msgid "Set boot"
-msgstr ""
+msgstr "設定為啟動"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"

@@ -3,6 +3,9 @@
 # This file is distributed under the same license as the openmediavault-kernel package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,6 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-15 19:19-0500\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
+"Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024\n"
 "Language-Team: Hungarian (Hungary) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,145 +22,145 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Are you sure you want to remove?"
-msgstr ""
+msgstr "Valóban szeretné eltávolítani?"
 
 msgid "Clonezilla"
-msgstr ""
+msgstr "Clonezilla"
 
 msgid "Default"
-msgstr ""
+msgstr "Alapértelmezett"
 
 msgid "Delete kernel"
-msgstr ""
+msgstr "Kernel törlése"
 
 msgid "Delete kernel ..."
-msgstr ""
+msgstr "Kernel törlése…"
 
 msgid "Docs"
-msgstr ""
+msgstr "Dokumentáció"
 
 msgid "Finnix"
-msgstr ""
+msgstr "Finnix"
 
 msgid "GParted Live"
-msgstr ""
+msgstr "GParted Live"
 
 msgid "Install Clonezilla"
-msgstr ""
+msgstr "Clonezilla telepítése"
 
 msgid "Install Finnix"
-msgstr ""
+msgstr "Finnix telepítése"
 
 msgid "Install GParted Live"
-msgstr ""
+msgstr "GParted Live telepítése"
 
 msgid "Install Proxmox kernel 6.2"
-msgstr ""
+msgstr "Proxmox kernel 6.2 telepítése"
 
 msgid "Install Proxmox kernel 6.5"
-msgstr ""
+msgstr "Proxmox kernel 6.5 telepítése"
 
 msgid "Install Proxmox kernel 6.8"
-msgstr ""
+msgstr "Proxmox kernel 6.8 telepítése"
 
 msgid "Install SystemRescue"
-msgstr ""
+msgstr "SystemRescue telepítése"
 
 msgid "Installing 6.2 Proxmox kernel  ..."
-msgstr ""
+msgstr "Proxmox kernel 6.2 telepítése folyamatban…"
 
 msgid "Installing 6.5 Proxmox kernel  ..."
-msgstr ""
+msgstr "Proxmox kernel 6.5 telepítése folyamatban…"
 
 msgid "Installing 6.8 Proxmox kernel  ..."
-msgstr ""
+msgstr "Proxmox kernel 6.8 telepítése folyamatban…"
 
 msgid "Installing Clonezilla ..."
-msgstr ""
+msgstr "Clonezilla telepítése folyamatban…"
 
 msgid "Installing Finnix ..."
-msgstr ""
+msgstr "Finnix telepítése folyamatban…"
 
 msgid "Installing GParted Live ..."
-msgstr ""
+msgstr "GParted Live telepítése folyamatban…"
 
 msgid "Installing SystemRescue ..."
-msgstr ""
+msgstr "SystemRescue telepítése folyamatban…"
 
 msgid "Kernel"
-msgstr ""
+msgstr "Kernel"
 
 msgid "Key"
-msgstr ""
+msgstr "Kulcs"
 
 msgid "Name"
-msgstr ""
+msgstr "Név"
 
 msgid "Proxmox"
-msgstr ""
+msgstr "Proxmox"
 
 msgid "Reboot to Clonezilla once"
-msgstr ""
+msgstr "Egyszeri újraindítás Clonezilla-val"
 
 msgid "Reboot to Clonezilla once ..."
-msgstr ""
+msgstr "Egyszeri újraindítás Clonezilla-val…"
 
 msgid "Reboot to Finnix once"
-msgstr ""
+msgstr "Egyszeri újraindítás Finnix-el"
 
 msgid "Reboot to Finnix once ..."
-msgstr ""
+msgstr "Egyszeri újraindítás Finnix-el…"
 
 msgid "Reboot to GParted Live once"
-msgstr ""
+msgstr "Egyszeri újraindítás GParted Live-val"
 
 msgid "Reboot to GParted Live once ..."
-msgstr ""
+msgstr "Egyszeri újraindítás GParted Live-val…"
 
 msgid "Reboot to SystemRescue once"
-msgstr ""
+msgstr "Egyszeri újraindítás SystemRescue-val"
 
 msgid "Reboot to SystemRescue once ..."
-msgstr ""
+msgstr "Egyszeri újraindítás SystemRescue-val…"
 
 msgid "Remove Clonezilla"
-msgstr ""
+msgstr "Clonezilla eltávolítása"
 
 msgid "Remove Clonezilla ..."
-msgstr ""
+msgstr "Clonezilla eltávolítása…"
 
 msgid "Remove Finnix"
-msgstr ""
+msgstr "Finnix eltávolítása"
 
 msgid "Remove Finnix ..."
-msgstr ""
+msgstr "Finnix eltávolítása…"
 
 msgid "Remove GParted Live"
-msgstr ""
+msgstr "GParted Live eltávolítása"
 
 msgid "Remove GParted Live ..."
-msgstr ""
+msgstr "GParted Live eltávolítása…"
 
 msgid "Remove SystemRescue"
-msgstr ""
+msgstr "SystemRescue eltávolítása"
 
 msgid "Remove SystemRescue ..."
-msgstr ""
+msgstr "SystemRescue eltávolítása…"
 
 msgid "Remove non-Proxmox kernels"
-msgstr ""
+msgstr "Nem-Proxmox kernelek eltávolítása"
 
 msgid "Removeable"
-msgstr ""
+msgstr "Eltávolítható"
 
 msgid "Removing non-Proxmox kernels and headers  ..."
-msgstr ""
+msgstr "Nem-Proxmox kernelek és fejlécek eltávolítása…"
 
 msgid "Set boot"
-msgstr ""
+msgstr "Boot beállítása"
 
 msgid "SystemRescue"
-msgstr ""
+msgstr "SystemRescue"
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "omv-extras wiki"
