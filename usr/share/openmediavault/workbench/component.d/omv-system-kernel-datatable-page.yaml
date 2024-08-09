@@ -140,7 +140,7 @@ data:
                     service: Kernel
                     method: doProxmox
                     params:
-                      action: "remove"
+                      command: "remove"
                   buttons:
                     stop:
                       hidden: true
