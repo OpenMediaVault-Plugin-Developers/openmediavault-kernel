@@ -35,7 +35,7 @@ declare -A VERSIONS=(
   ["clonezilla"]="3.1.3-11"
   ["finnix"]="126"
   ["gpartedlive"]="1.6.0-3"
-  ["sysresccd"]="11.01"
+  ["sysresccd"]="11.02"
 )
 
 declare -A GRUB_FILES=(
@@ -63,7 +63,7 @@ declare -A CHECKSUMS=(
   ["clonezilla"]="819b79d37b2d241e0834941deb6cf1de3b396ed649f8f9404201256cdb304b24"
   ["finnix"]="a74173bdf1198eafb01e52de35e08e0096587baaef8f258dd2ed66348b3fb3a1"
   ["gpartedlive"]="9a82825841969b803962c754fec249fb9592bea8096cd3c0cecf939b469a46ed"
-  ["sysresccd"]="a2602cde72e3fdefba48d171d032d012bd6f1fe7bc86849e4a8bcbd9a529b795"
+  ["sysresccd"]="9eae0fe070db8a9e223b6ebd957706467840533d726dcc6686d5bc729b0b7f1c"
 )
 
 declare -A FILES=(
