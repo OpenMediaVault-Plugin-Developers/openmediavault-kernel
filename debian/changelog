@@ -1,3 +1,11 @@
+openmediavault-kernel (7.1.5) stable; urgency=low
+
+  * Update clonezilla to 3.2.1-9
+  * Update gparted-live to 1.7.0-1
+  * Update systemrescue to 11.03
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 08 Mar 2025 07:52:35 -0600
+
 openmediavault-kernel (7.1.4) stable; urgency=low
 
   * Add Proxmox 6.11 kernel
