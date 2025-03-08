@@ -32,10 +32,10 @@ GRUB_PATH="/etc/grub.d"
 ISO_PATH="/boot"
 
 declare -A VERSIONS=(
-  ["clonezilla"]="3.1.3-11"
+  ["clonezilla"]="3.2.1-9"
   ["finnix"]="126"
-  ["gpartedlive"]="1.6.0-3"
-  ["sysresccd"]="11.02"
+  ["gpartedlive"]="1.7.0-1"
+  ["sysresccd"]="11.03"
 )
 
 declare -A GRUB_FILES=(
@@ -60,10 +60,10 @@ declare -A URLS=(
 )
 
 declare -A CHECKSUMS=(
-  ["clonezilla"]="819b79d37b2d241e0834941deb6cf1de3b396ed649f8f9404201256cdb304b24"
+  ["clonezilla"]="4a93ac696b53cd98c61772ad9aa65e06c5e8fd87d9a594ce8d220e6fbbf08e0a"
   ["finnix"]="a74173bdf1198eafb01e52de35e08e0096587baaef8f258dd2ed66348b3fb3a1"
-  ["gpartedlive"]="9a82825841969b803962c754fec249fb9592bea8096cd3c0cecf939b469a46ed"
-  ["sysresccd"]="9eae0fe070db8a9e223b6ebd957706467840533d726dcc6686d5bc729b0b7f1c"
+  ["gpartedlive"]="f03fa7a9652c84c6e0d762a323a3474ca5e1887296aeb49c609c8bc2979f0de3"
+  ["sysresccd"]="efffa0ba2320a5661593a383a5099a6ac15905e297804a1150dd15a07488f0af"
 )
 
 declare -A FILES=(
