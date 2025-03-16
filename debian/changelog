@@ -1,3 +1,9 @@
+openmediavault-kernel (7.1.6) UNRELEASED; urgency=medium
+
+  * Use systemrescue 12.00
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 16 Mar 2025 09:28:19 -0500
+
 openmediavault-kernel (7.1.5) stable; urgency=low
 
   * Update clonezilla to 3.2.1-9
