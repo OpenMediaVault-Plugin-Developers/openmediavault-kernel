@@ -146,18 +146,26 @@ EOF
   echo '  loopback loop "$isofile"' >> ${grub_file}
 
   # linux line
+  # Get keyboard layout (default to "us" if not set)
+  kmap=$(awk -F '=' '$1 == "XKBLAYOUT" { gsub(/"/, "", $2); print $2 }' /etc/default/keyboard)
+  kmap=${kmap:-us}
+
+  # Get system locale (default to "en_US.UTF-8" if not set)
+  loc=$(locale | awk -F= '$1 == "LANG" { print $2 }')
+  loc=${loc:-en_US.UTF-8}
+
   case "${iso}" in
     clonezilla)
-      linux='linux (loop)/live/vmlinuz boot=live live-config noswap edd=on nomodeset ocs_prerun="dhclient" ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts=NONE ocs_live_batch="no" locales="en_US.UTF-8" ocs_daemonon="ssh" gfxpayload=text nosplash toram=filesystem.squashfs findiso="$isofile"'
+      linux="linux (loop)/live/vmlinuz boot=live live-config noswap edd=on nomodeset ocs_prerun=\"dhclient\" ocs_live_run=\"ocs-live-general\" ocs_live_extra_param=\"\" keyboard-layouts=${kmap} ocs_live_batch=\"no\" locales=\"${loc}\" ocs_daemonon=\"ssh\" gfxpayload=text nosplash toram=filesystem.squashfs findiso=\"\$isofile\""
       ;;
     finnix)
-      linux='linux (loop)/live/vmlinuz linux boot=live toram sshd passwd=openmediavault findiso="$isofile"'
+      linux="linux (loop)/live/vmlinuz linux boot=live toram sshd passwd=openmediavault locales=${loc} keyboard-layouts=${kmap} findiso=\"\$isofile\""
       ;;
     gpartedlive)
-      linux='linux (loop)/live/vmlinuz boot="live" union="overlay" username="user" config components noswap noeject toram="filesystem.squashfs" ip="" nosplash findiso="$isofile"'
+      linux="linux (loop)/live/vmlinuz boot=\"live\" union=\"overlay\" username=\"user\" config components noswap noeject toram=\"filesystem.squashfs\" ip=\"\" nosplash keyboard-layouts=${kmap} locales=${loc} findiso=\"\$isofile\""
       ;;
     sysresccd)
-      linux='linux (loop)/sysresccd/boot/x86_64/vmlinuz rootpass=openmediavault nofirewall archisobasedir=sysresccd copytoram dovnc vncpass=openmediavault setkmap=us img_dev="$imgdevpath" img_loop="$isofile" earlymodules=loop'
+      linux="linux (loop)/sysresccd/boot/x86_64/vmlinuz rootpass=openmediavault nofirewall archisobasedir=sysresccd copytoram dovnc vncpass=openmediavault setkmap=${kmap} lang=${loc} img_dev=\"\$imgdevpath\" img_loop=\"\$isofile\" earlymodules=loop"
       ;;
   esac
   echo "  ${linux}" >> ${grub_file}
