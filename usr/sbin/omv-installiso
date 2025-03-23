@@ -33,7 +33,7 @@ ISO_PATH="/boot"
 
 declare -A VERSIONS=(
   ["clonezilla"]="3.2.1-9"
-  ["finnix"]="126"
+  ["finnix"]="250"
   ["gpartedlive"]="1.7.0-1"
   ["sysresccd"]="12.00"
 )
@@ -61,7 +61,7 @@ declare -A URLS=(
 
 declare -A CHECKSUMS=(
   ["clonezilla"]="4a93ac696b53cd98c61772ad9aa65e06c5e8fd87d9a594ce8d220e6fbbf08e0a"
-  ["finnix"]="a74173bdf1198eafb01e52de35e08e0096587baaef8f258dd2ed66348b3fb3a1"
+  ["finnix"]="37920e858f2339f0602ee07624ccf6fc2b38e27c2822c4be367eb118045f367a"
   ["gpartedlive"]="f03fa7a9652c84c6e0d762a323a3474ca5e1887296aeb49c609c8bc2979f0de3"
   ["sysresccd"]="11a1f31412046cc28f2b7a465a2f1634ca5095594a9e5937e1ff9fd25f9ae8e6"
 )
