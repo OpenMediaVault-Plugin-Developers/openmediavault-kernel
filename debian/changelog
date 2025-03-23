@@ -1,8 +1,16 @@
-openmediavault-kernel (7.1.6) UNRELEASED; urgency=medium
+openmediavault-kernel (7.1.7) UNRELEASED; urgency=medium
+
+  * Use Finnix 250
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 22 Mar 2025 19:32:10 -0500
+
+openmediavault-kernel (7.1.6) stable; urgency=low
 
   * Use systemrescue 12.00
+  * Auto set iso keyboard map and locale from omv host
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 16 Mar 2025 09:28:19 -0500
+
 
 openmediavault-kernel (7.1.5) stable; urgency=low
 
