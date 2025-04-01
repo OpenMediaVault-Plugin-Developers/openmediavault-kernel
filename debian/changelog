@@ -1,8 +1,9 @@
-openmediavault-kernel (7.1.7) UNRELEASED; urgency=medium
+openmediavault-kernel (7.1.7) stable; urgency=low
 
   * Use Finnix 250
+  * Remove intel-sound since it is included in pve-firmware now
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 22 Mar 2025 19:32:10 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 31 Mar 2025 19:14:09 -0500
 
 openmediavault-kernel (7.1.6) stable; urgency=low
 
