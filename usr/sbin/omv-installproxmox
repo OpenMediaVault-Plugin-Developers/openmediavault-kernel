@@ -31,7 +31,7 @@ kernelinput="${1}"
 if [[ "${kernelinput}" =~ ^[5-6]\.[0-9]{1,2}$ ]]; then
   kernelversion="${kernelinput}"
 else
-  kernelversion="6.2"
+  kernelversion="6.8"
   echo "Invalid kernel version specified.  Using ${kernelversion}"
 fi
 
@@ -42,7 +42,7 @@ chmod 644 ${pverepo} ${pvekey}
 apt-get update
 
 # remove conflicting firmware packages
-for pkg in linux linux-nonfree ti-connectivity amd-graphics ath9k-htc cavium siano netronome realtek-rtl8723cs-bt; do
+for pkg in linux linux-nonfree ti-connectivity amd-graphics ath9k-htc cavium siano netronome realtek-rtl8723cs-bt intel-sound; do
   if dpkg -l firmware-${pkg} > /dev/null; then
     if ! dpkg --purge firmware-${pkg} 2>/dev/null; then
       echo "Failed to remove firmware-${pkg} package.  Exiting..."
