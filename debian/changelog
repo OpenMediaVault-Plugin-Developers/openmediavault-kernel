@@ -1,3 +1,9 @@
+openmediavault-kernel (7.1.8) stable; urgency=low
+
+  * Add 6.14 proxmox kernel
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 04 Apr 2025 06:08:49 -0500
+
 openmediavault-kernel (7.1.7) stable; urgency=low
 
   * Use Finnix 250
