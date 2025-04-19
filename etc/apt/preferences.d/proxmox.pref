@@ -1,0 +1,3 @@
+Package: zfs-zed libnvpair4linux libuutil3linux libnvpair3linux libzfs4linux zfsutils-linux libzpool5linux
+Pin: origin download.proxmox.com
+Pin-Priority: 700

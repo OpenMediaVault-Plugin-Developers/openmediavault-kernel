@@ -1,3 +1,4 @@
+etc/*  etc
 usr/sbin/*  usr/sbin
 usr/share/openmediavault/*  usr/share/openmediavault
 usr/share/keyrings/*  usr/share/keyrings
