@@ -23,6 +23,11 @@ data:
         flexGrow: 1
         sortable: true
         cellTemplateName: checkIcon
+      - name: _("Boot once")
+        prop: nextk
+        flexGrow: 1
+        sortable: true
+        cellTemplateName: checkIcon
       - name: _("Removeable")
         prop: remove
         flexGrow: 1

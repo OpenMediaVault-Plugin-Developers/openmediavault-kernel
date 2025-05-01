@@ -91,20 +91,134 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         );
     }
 
+    private function getCurrentKernel() {
+        $grubCfg = '/boot/grub/grub.cfg';
+        $currentKernel = php_uname('r');
+        if (!is_readable($grubCfg)) {
+            return null;
+        }
+        $lines = file($grubCfg);
+        $menuIndex = -1;
+        $submenuIndex = -1;
+        $inSubmenu = false;
+        foreach ($lines as $line) {
+            $trimmed = trim($line);
+            if (preg_match('/^submenu\s+["\'].*["\']\s*{/', $trimmed)) {
+                $inSubmenu = true;
+                $submenuIndex = -1;
+                $menuIndex++;
+            } elseif (preg_match('/^menuentry\s+["\'].*["\']\s*{/', $trimmed)) {
+                if ($inSubmenu) {
+                    $submenuIndex++;
+                } else {
+                    $menuIndex++;
+                    $submenuIndex = -1;
+                }
+            } elseif (preg_match('/^\s*linux\s+.*vmlinuz-(\S+)/', $trimmed, $matches)) {
+                $entryKernel = $matches[1];
+                if (str_starts_with($currentKernel, $entryKernel)) {
+                    return $submenuIndex >= 0 ? "{$menuIndex}>{$submenuIndex}" : (string)$menuIndex;
+                }
+            } elseif (strpos($trimmed, '}') !== false && $inSubmenu) {
+                $inSubmenu = false;
+            }
+        }
+        return null;
+    }
+
+    public function getKernelList($params, $context)
+    {
+        // Validate the RPC caller context
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // get current kernel
+        $defaultKernel = $this->getGrubEnvValue('saved_entry');
+        if ($defaultKernel === 'saved') {
+            $curKernel = $this->getCurrentKernel();
+            $defaultKernel = is_numeric($curKernel) ? (int)$curKernel : -1;
+        } else {
+            $defaultKernel = is_numeric($defaultKernel) ? (int)$defaultKernel : -1;
+        }
+        // get boot once
+        $nextEntry = $this->getGrubEnvValue('next_entry');
+        $nextEntry = is_numeric($nextEntry) ? (int)$nextEntry : -1;
+        // get list
+        $kernels = [];
+        $grubCfg = '/boot/grub/grub.cfg';
+        if (is_readable($grubCfg)) {
+            $output = [];
+            $awkArgs = '-F "\'|\"" \'$1 == "menuentry " { print $2 }\'';
+            $cmd = new \OMV\System\Process('awk', $awkArgs, $grubCfg);
+            $cmd->execute($output);
+            foreach ($output as $index => $name) {
+                $name = trim($name);
+                if (empty($name)) continue;
+                $remove = false;
+                $default = ($index === $defaultKernel);
+                $nextk = ($index === $nextEntry);
+                if (!$default) {
+                    $hasDebian = strpos($name, 'Debian GNU/Linux, with Linux') !== false;
+                    $hasProxmox = strpos($name, 'Proxmox Virtual Environment GNU/Linux, with Linux') !== false;
+                    $isRecovery = strpos($name, 'recovery mode') !== false;
+                    if (!$isRecovery && ($hasDebian || $hasProxmox)) {
+                        $remove = true;
+                    }
+                }
+                $kernels[] = [
+                    'key' => $index,
+                    'name' => $name,
+                    'default' => $default,
+                    'nextk' => $nextk,
+                    'remove' => $remove
+                ];
+            }
+        }
+        return $this->applyFilter($kernels, $params['start'], $params['limit'],
+            $params['sortfield'], $params['sortdir']
+        );
+    }
+
+    private function getGrubEnvValue($key)
+    {
+        $output = [];
+        $cmdArgs = [];
+        $cmdArgs[] = 'list';
+        $cmdArgs[] = sprintf('| awk -F \'=\' \'$1 == "%s" { print $2 }\'', $key);
+        $cmd = new \OMV\System\Process('grub-editenv', $cmdArgs);
+        $cmd->execute($output);
+        return isset($output[0]) ? trim($output[0]) : null;
+    }
+
+/*
     public function getKernelList($params, $context)
     {
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
         // Get boot kernel
-        $grub = '/etc/default/grub';
-        if (file_exists($grub)) {
-            $output = [];
-            $fnd = sprintf('grep -v "#" %s | awk -F "=" "/GRUB_DEFAULT/ { print \$2 }"', $grub);
-            $cmd = new \OMV\System\Process($fnd);
-            $cmd->execute($output);
+        $defaultKernel = -1;
+        $output = [];
+        $cmdArgs = [];
+        $cmdArgs[] = 'list';
+        $cmdArgs[] = '| awk -F \'=\' \'$1 == "saved_entry" { print $2 }\'';
+        $cmd = new \OMV\System\Process('grub-editenv', $cmdArgs);
+        $cmd->execute($output);
+        if (isset($output[0]) && trim($output[0]) !== '' && is_numeric(trim($output[0]))) {
             $defaultKernel = intval($output[0]);
-        } else {
-            $defaultKernel = -1;
+        } else if ($output[0] == "saved") {
+            $curKernel = $this->getCurrentKernel();
+            if (isset($curKernel) && trim($curKernel) !== '' && is_numeric(trim($curKernel))) {
+                $defaultKernel = intval($curKernel);
+            }
+        }
+        // get next kernel
+        $nextEntry = -1;
+        $output = [];
+        $cmdArgs = [];
+        $cmdArgs[] = 'list';
+        $cmdArgs[] = '| awk -F \'=\' \'$1 == "next_entry" { print $2 }\'';
+        $cmd = new \OMV\System\Process('grub-editenv', $cmdArgs);
+        $cmd->execute($output);
+        if (isset($output[0]) && trim($output[0]) !== '' && is_numeric(trim($output[0]))) {
+            $nextEntry = intval($output[0]);
         }
         // Get configuration data.
         $kernels = [];
@@ -118,6 +232,10 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 $remove = false;
                 if (empty($kernelv))
                     continue;
+                $nextk = false;
+                if ($kernelk == $nextEntry) {
+                    $nextk = true;
+                }
                 if ($kernelk == $defaultKernel) {
                     $default = true;
                 } else {
@@ -127,7 +245,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                     $pos3 = strpos($kernelv, 'recovery mode');
                     if (false !== $pos3) {
                         $remove = false;
-		    } elseif ($pos1 > -1 || $pos2 > -1) {
+                    } elseif ($pos1 > -1 || $pos2 > -1) {
                         $remove = true;
                     }
                 }
@@ -135,6 +253,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                     'key'  => $kernelk,
                     'name' => $kernelv,
                     'default' => $default,
+                    'nextk' => $nextk,
                     'remove' => $remove
                 ];
             }
@@ -143,6 +262,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             $params['sortfield'], $params['sortdir']
         );
     }
+*/
 
     public function deleteKernel($params, $context)
     {
