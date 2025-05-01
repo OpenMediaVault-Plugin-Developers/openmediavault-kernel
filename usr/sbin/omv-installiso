@@ -81,7 +81,6 @@ declare -A RM=(
 )
 
 GRUB="/etc/default/grub"
-GRUB_CFG="/boot/grub/grub.cfg"
 
 checkDNS() {
   host="/usr/bin/host"
@@ -208,22 +207,7 @@ reboot_iso() {
     return
   fi
 
-  DEFAULT=$(awk -F "=" '$1 == "GRUB_DEFAULT" { print $2 }' ${GRUB})
-
-  disablesubmenu
-
-  if grep -q 'submenu' ${GRUB_CFG}; then
-    ENTRY=$(grep '^menuentry ' ${GRUB_CFG} | grep -n "${grub_name}" | cut -f1 -d:)
-  else
-    ENTRY=$(($(grep 'menuentry ' ${GRUB_CFG} | grep -n "${grub_name}" | cut -f1 -d:)-1))
-  fi
-
-  echo "Configuring grub to boot once from '${grub_name}' iso... ${ENTRY}"
-
-  perl -p -i -e "s/GRUB_DEFAULT=.*/GRUB_DEFAULT=saved/g" "${GRUB}"
-  grub-set-default ${DEFAULT}
-  update-grub
-  grub-reboot ${ENTRY}
+  omv-kernel-reboot-once "${grub_name}"
 }
 
 disablesubmenu() {

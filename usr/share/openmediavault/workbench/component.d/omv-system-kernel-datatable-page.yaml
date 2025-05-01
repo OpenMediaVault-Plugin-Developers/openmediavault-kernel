@@ -50,6 +50,26 @@ data:
               key: "{{ _selected[0].key }}"
             task: false
       - type: iconButton
+        tooltip: _("Boot once")
+        icon: mdi:numeric-1-circle-outline
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Reboot to once ...")
+              startOnInit: true
+              request:
+                service: kernel
+                method: bootKernelOnce
+                params:
+                  name: "{{ _selected[0].name }}"
+              buttons:
+                stop:
+                  hidden: true
+      - type: iconButton
         tooltip: _("Delete kernel")
         icon: mdi:delete
         enabledConstraints:

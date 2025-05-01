@@ -30,6 +30,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('getArch');
 
         $this->registerMethod('setKernel');
+        $this->registerMethod('bootKernelOnce');
         $this->registerMethod('getKernelList');
         $this->registerMethod('deleteKernel');
 
@@ -69,6 +70,25 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             $cmd = new \OMV\System\Process('update-grub');
             $cmd->execute($output);
         }
+    }
+
+    public function bootKernelOnce($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmdParams = [];
+                $cmdParams[] = '/usr/sbin/omv-kernel-reboot-once';
+                $cmdParams[] = sprintf("'%s'", $params['name']);
+                $cmd = new \OMV\System\Process($cmdParams);
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                return $output;
+            }
+        );
     }
 
     public function getKernelList($params, $context)
