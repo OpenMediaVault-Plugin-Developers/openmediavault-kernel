@@ -1,10 +1,10 @@
-openmediavault-kernel (7.1.12) UNRELEASED; urgency=medium
+openmediavault-kernel (7.1.12) stable; urgency=low
 
   * Update clonezilla to 3.2.2-15
   * Update gpartedlive to 1.7.0-8
   * Update systemrescue to 12.01
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 18 Jul 2025 08:00:15 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 19 Jul 2025 10:33:51 -0500
 
 openmediavault-kernel (7.1.11) stable; urgency=low
 
