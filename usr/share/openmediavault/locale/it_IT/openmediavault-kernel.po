@@ -3,6 +3,9 @@
 # This file is distributed under the same license as the openmediavault-kernel package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Giovanni Scafora <scafora.giovanni@gmail.com>, 2025
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,6 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-15 19:19-0500\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
+"Last-Translator: Giovanni Scafora <scafora.giovanni@gmail.com>, 2025\n"
 "Language-Team: Italian (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,145 +22,145 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Are you sure you want to remove?"
-msgstr ""
+msgstr "Sei sicuro di volerlo rimuovere?"
 
 msgid "Clonezilla"
-msgstr ""
+msgstr "Clonezilla"
 
 msgid "Default"
-msgstr ""
+msgstr "Predefinito"
 
 msgid "Delete kernel"
-msgstr ""
+msgstr "Elimina kernel"
 
 msgid "Delete kernel ..."
-msgstr ""
+msgstr "Sto eliminando il kernel ..."
 
 msgid "Docs"
-msgstr ""
+msgstr "Documenti"
 
 msgid "Finnix"
-msgstr ""
+msgstr "Finnix"
 
 msgid "GParted Live"
-msgstr ""
+msgstr "GParted Live"
 
 msgid "Install Clonezilla"
-msgstr ""
+msgstr "Installa Clonezilla"
 
 msgid "Install Finnix"
-msgstr ""
+msgstr "Installa Finnix"
 
 msgid "Install GParted Live"
-msgstr ""
+msgstr "Installa GParted Live"
 
 msgid "Install Proxmox kernel 6.2"
-msgstr ""
+msgstr "Installa Proxmox kernel 6.2"
 
 msgid "Install Proxmox kernel 6.5"
-msgstr ""
+msgstr "Installa Proxmox kernel 6.5"
 
 msgid "Install Proxmox kernel 6.8"
-msgstr ""
+msgstr "Installa Proxmox kernel 6.8"
 
 msgid "Install SystemRescue"
-msgstr ""
+msgstr "Installa SystemRescue"
 
 msgid "Installing 6.2 Proxmox kernel  ..."
-msgstr ""
+msgstr "Sto installando 6.2 Proxmox kernel  ..."
 
 msgid "Installing 6.5 Proxmox kernel  ..."
-msgstr ""
+msgstr "Sto installando 6.5 Proxmox kernel  ..."
 
 msgid "Installing 6.8 Proxmox kernel  ..."
-msgstr ""
+msgstr "Sto installando 6.8 Proxmox kernel  ..."
 
 msgid "Installing Clonezilla ..."
-msgstr ""
+msgstr "Sto installando Clonezilla ..."
 
 msgid "Installing Finnix ..."
-msgstr ""
+msgstr "Sto installando Finnix ..."
 
 msgid "Installing GParted Live ..."
-msgstr ""
+msgstr "Sto installando GParted Live ..."
 
 msgid "Installing SystemRescue ..."
-msgstr ""
+msgstr "Sto installando SystemRescue ..."
 
 msgid "Kernel"
-msgstr ""
+msgstr "Kernel"
 
 msgid "Key"
-msgstr ""
+msgstr "Chiave"
 
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 msgid "Proxmox"
-msgstr ""
+msgstr "Proxmox"
 
 msgid "Reboot to Clonezilla once"
-msgstr ""
+msgstr "Riavvia in Clonezilla per una sola volta"
 
 msgid "Reboot to Clonezilla once ..."
-msgstr ""
+msgstr "Sto riavviando in Clonezilla per una sola volta ..."
 
 msgid "Reboot to Finnix once"
-msgstr ""
+msgstr "Riavvia in Finnix per una sola volta"
 
 msgid "Reboot to Finnix once ..."
-msgstr ""
+msgstr "Sto riavviando in Finnix per una sola volta ..."
 
 msgid "Reboot to GParted Live once"
-msgstr ""
+msgstr "Riavvia in GParted Live per una sola volta"
 
 msgid "Reboot to GParted Live once ..."
-msgstr ""
+msgstr "Sto riavviando in GParted Live per una sola volta ..."
 
 msgid "Reboot to SystemRescue once"
-msgstr ""
+msgstr "Riavvia in SystemRescue per una sola volta"
 
 msgid "Reboot to SystemRescue once ..."
-msgstr ""
+msgstr "Sto riavviando in SystemRescue per una sola volta ..."
 
 msgid "Remove Clonezilla"
-msgstr ""
+msgstr "Rimuovi Clonezilla"
 
 msgid "Remove Clonezilla ..."
-msgstr ""
+msgstr "Sto rimuovendo Clonezilla ..."
 
 msgid "Remove Finnix"
-msgstr ""
+msgstr "Rimuovi Finnix"
 
 msgid "Remove Finnix ..."
-msgstr ""
+msgstr "Sto rimuovendo Finnix ..."
 
 msgid "Remove GParted Live"
-msgstr ""
+msgstr "Rimuovi GParted Live"
 
 msgid "Remove GParted Live ..."
-msgstr ""
+msgstr "Sto rimuovendo GParted Live ..."
 
 msgid "Remove SystemRescue"
-msgstr ""
+msgstr "Rimuovi SystemRescue"
 
 msgid "Remove SystemRescue ..."
-msgstr ""
+msgstr "Sto rimuovendo SystemRescue ..."
 
 msgid "Remove non-Proxmox kernels"
-msgstr ""
+msgstr "Rimuovi i kernel non-Proxmox"
 
 msgid "Removeable"
-msgstr ""
+msgstr "Rimovibile"
 
 msgid "Removing non-Proxmox kernels and headers  ..."
-msgstr ""
+msgstr "Sto rimuovendo kernel e header non-Promox ..."
 
 msgid "Set boot"
-msgstr ""
+msgstr "Imposta l'avvio"
 
 msgid "SystemRescue"
-msgstr ""
+msgstr "SystemRescue"
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "wiki di omv-extras"
