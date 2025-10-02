@@ -10,10 +10,8 @@ Homepage: http://omv-extras.org/
 Package: openmediavault-kernel
 Architecture: all
 Depends: memtest86+,
-         openmediavault (>= 7),
-         openmediavault-omvextrasorg (>= 7),
+         openmediavault (>= 8),
          ${misc:Depends}
-Breaks: openmediavault (<< 6.0)
 Description: kernel package
  The plugin allows the user to select which grub entry to boot from and
  installation of the Proxmox kernel.  It also allows for the download
