@@ -30,7 +30,6 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('getArch');
 
         $this->registerMethod('setKernel');
-        $this->registerMethod('bootKernelOnce');
         $this->registerMethod('getKernelList');
         $this->registerMethod('deleteKernel');
 
@@ -55,125 +54,156 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
     {
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
-        // Set boot kernel
-        $grub = '/etc/default/grub';
-        if (file_exists($grub)) {
-            $cmdArgs = sprintf('-p -i -e "s/GRUB_DEFAULT=.*/GRUB_DEFAULT=%s/g" %s', $params['key'], $grub);
-            $output = [];
-            $cmd = new \OMV\System\Process('perl', $cmdArgs);
-            $cmd->execute($output);
-            $output = [];
-            $cmd = new \OMV\System\Process('grub-set-default', $params['key']);
-            $cmd->execute($output);
-            $output = [];
+
+        $key = trim($params['key']);
+        $bootOnce = $params['boot_once'];
+
+        // Map key -> entry_id using the parsed grub entries.
+        $entries = $this->parseGrubEntries('/boot/grub/grub.cfg');
+        $match = null;
+        foreach ($entries as $e) {
+            if ($e['title'] === $key) {
+                $match = $e;
+                break;
+            }
+        }
+        if ($match === null) {
+            throw new \OMV\ExecException(sprintf('Kernel/entry not found for key: %s', $key));
+        }
+
+        $entryId = $match['entry_id'];
+	if (!$entryId) $entryId = sprintf("'%s'", $key);
+
+        // Ensure GRUB is configured to honor saved/next entries.
+        $grubDefaultPath = '/etc/default/grub';
+        // If GRUB_DEFAULT is not "saved", set it to "saved" (idempotent).
+        $content = file_get_contents($grubDefaultPath);
+
+        // Normalize: if there is no GRUB_DEFAULT line, add it; else force to saved.
+        if (!preg_match('/^GRUB_DEFAULT=/m', $content)) {
+            $content .= PHP_EOL . 'GRUB_DEFAULT=saved' . PHP_EOL;
+            file_put_contents($grubDefaultPath, $content);
             $cmd = new \OMV\System\Process('update-grub');
             $cmd->execute($output);
+        } elseif (!preg_match('/^GRUB_DEFAULT\s*=\s*saved\s*$/m', $content)) {
+            $new = preg_replace('/^GRUB_DEFAULT\s*=.*$/m', 'GRUB_DEFAULT=saved', $content);
+            if ($new !== null && $new !== $content) {
+                file_put_contents($grubDefaultPath, $new);
+               $cmd = new \OMV\System\Process('update-grub');
+               $cmd->execute($output);
+            }
         }
+
+        if ($bootOnce) {
+            $cmd = new \OMV\System\Process('grub-reboot', $entryId);
+        } else {
+            $cmd = new \OMV\System\Process('grub-set-default', $entryId);
+        }
+        $cmd->execute($output);
+        return [
+            'entry_id' => $entryId,
+            'title' => $match['title'],
+            'kernel' => $match['kernel'],
+            'boot_once' => $bootOnce
+        ];
     }
 
-    public function bootKernelOnce($params, $context)
+    private function getCurrentKernel()
     {
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
-        // Create the background process.
-        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
-            use ($params) {
-                $cmdParams = [];
-                $cmdParams[] = '/usr/sbin/omv-kernel-reboot-once';
-                $cmdParams[] = sprintf("'%s'", $params['name']);
-                $cmd = new \OMV\System\Process($cmdParams);
-                $cmdLine = $cmd->getCommandLine();
-                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
-                    throw new \OMV\ExecException($cmdLine, $output);
-                return $output;
-            }
-        );
+        $current = php_uname('r');
+        return is_string($current) && $current !== '' ? $current : null;
     }
 
-    private function getCurrentKernel() {
-        $grubCfg = '/boot/grub/grub.cfg';
-        $currentKernel = php_uname('r');
+    private function parseGrubEntries()
+    {
+	$grubCfg = '/boot/grub/grub.cfg';
         if (!is_readable($grubCfg)) {
-            return null;
+            return [];
         }
+
         $lines = file($grubCfg);
-        $menuIndex = -1;
-        $submenuIndex = -1;
-        $inSubmenu = false;
-        foreach ($lines as $line) {
+        $entries = [];
+
+	foreach ($lines as $line) {
+	    $title = null;
+	    $id = null;
+	    $kernel = null;
+
             $trimmed = trim($line);
-            if (preg_match('/^submenu\s+["\'].*["\']\s*{/', $trimmed)) {
-                $inSubmenu = true;
-                $submenuIndex = -1;
-                $menuIndex++;
-            } elseif (preg_match('/^menuentry\s+["\'].*["\']\s*{/', $trimmed)) {
-                if ($inSubmenu) {
-                    $submenuIndex++;
-                } else {
-                    $menuIndex++;
-                    $submenuIndex = -1;
-                }
-            } elseif (preg_match('/^\s*linux\s+.*vmlinuz-(\S+)/', $trimmed, $matches)) {
-                $entryKernel = $matches[1];
-                if (str_starts_with($currentKernel, $entryKernel)) {
-                    return $submenuIndex >= 0 ? "{$menuIndex}>{$submenuIndex}" : (string)$menuIndex;
-                }
-            } elseif (strpos($trimmed, '}') !== false && $inSubmenu) {
-                $inSubmenu = false;
+	    $outer = '/^\s*menuentry\s+(["\'])(?P<title>.*?)\1(?:.*?\$menuentry_id_option\s+(["\'])(?P<id>.*?)\3)?\s*\{/';
+            if (preg_match($outer, $trimmed, $m)) {
+              $title = $m['title'];
+              $id = $m['id'] ?? null;
+              $kernel = null;
+              if (preg_match('/\bLinux\s+(?P<kernel>\d+(?:\.\d+)+(?:[^\s\'")]+)?)/', $title, $km)) {
+                $kernel = $km['kernel'];
+              }
+	    } else {
+                continue;
             }
-        }
-        return null;
+            if (!empty($title)) {
+                $entries[] = [
+                    'title' => $title,
+                    'kernel' => $kernel,
+                    'entry_id' => $id
+                ];
+            }
+	}
+
+        return $entries;
     }
 
     public function getKernelList($params, $context)
     {
         // Validate the RPC caller context
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
-        // get current kernel
-        $defaultKernel = $this->getGrubEnvValue('saved_entry');
-        if ($defaultKernel === 'saved') {
-            $curKernel = $this->getCurrentKernel();
-            $defaultKernel = is_numeric($curKernel) ? (int)$curKernel : -1;
-        } else {
-            $defaultKernel = is_numeric($defaultKernel) ? (int)$defaultKernel : -1;
-        }
-        // get boot once
-        $nextEntry = $this->getGrubEnvValue('next_entry');
-        $nextEntry = is_numeric($nextEntry) ? (int)$nextEntry : -1;
-        // get list
-        $kernels = [];
+
         $grubCfg = '/boot/grub/grub.cfg';
-        if (is_readable($grubCfg)) {
-            $output = [];
-            $awkArgs = '-F "\'|\"" \'$1 == "menuentry " { print $2 }\'';
-            $cmd = new \OMV\System\Process('awk', $awkArgs, $grubCfg);
-            $cmd->execute($output);
-            foreach ($output as $index => $name) {
-                $name = trim($name);
-                if (empty($name)) continue;
-                $remove = false;
-                $default = ($index === $defaultKernel);
-                $nextk = ($index === $nextEntry);
-                if (!$default) {
-                    $hasDebian = strpos($name, 'Debian GNU/Linux, with Linux') !== false;
-                    $hasProxmox = strpos($name, 'Proxmox Virtual Environment GNU/Linux, with Linux') !== false;
-                    $isRecovery = strpos($name, 'recovery mode') !== false;
-                    if (!$isRecovery && ($hasDebian || $hasProxmox)) {
-                        $remove = true;
-                    }
-                }
-                $kernels[] = [
-                    'key' => $index,
-                    'name' => $name,
-                    'default' => $default,
-                    'nextk' => $nextk,
-                    'remove' => $remove
-                ];
+        $entries = $this->parseGrubEntries($grubCfg);
+        $savedEntry = $this->getGrubEnvValue('saved_entry');
+        $nextEntry = $this->getGrubEnvValue('next_entry');
+        $currentKernel = $this->getCurrentKernel();
+
+        $kernels = [];
+        foreach ($entries as $e) {
+            $entryId = $e['entry_id'];
+            $name = $e['title'];
+            $kver = $e['kernel'];
+
+            // Determine default:
+            // Prefer explicit saved_entry value (when it is an entry_id != 'saved'),
+            // otherwise fall back to matching running kernel version.
+            $isDefault = false;
+            if (is_string($savedEntry) && $savedEntry !== '' && $savedEntry !== 'saved') {
+                $isDefault = ($savedEntry === $entryId || $savedEntry === $name);
+            } elseif (!empty($currentKernel) && !empty($kver)) {
+                $isDefault = str_starts_with($currentKernel, $kver);
             }
+
+            $isNext = (is_string($nextEntry) && $nextEntry !== '' && ($nextEntry === $entryId || $nextEntry === $name));
+
+            $remove = false;
+            if (!$isDefault) {
+                $hasDebian = strpos($name, 'Debian GNU/Linux, with Linux') !== false;
+                $hasProxmox = strpos($name, 'Proxmox Virtual Environment GNU/Linux, with Linux') !== false;
+                $isRecovery = strpos($name, 'recovery mode') !== false;
+                if (!$isRecovery && ($hasDebian || $hasProxmox)) {
+                    $remove = true;
+                }
+            }
+
+            $kernels[] = [
+                'name' => $name,
+                'key' => $kver,
+                'entry_id' => $entryId,
+                'default' => $isDefault,
+                'nextk' => $isNext,
+                'remove' => $remove
+            ];
         }
+
         return $this->applyFilter($kernels, $params['start'], $params['limit'],
-            $params['sortfield'], $params['sortdir']
-        );
+            $params['sortfield'], $params['sortdir']);
     }
 
     private function getGrubEnvValue($key)
