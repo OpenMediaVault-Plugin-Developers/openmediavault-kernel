@@ -29,23 +29,6 @@
   },
   {
     "type": "rpc",
-    "id": "rpc.kernel.dohold",
-    "params": {
-      "type": "object",
-      "properties": {
-        "command": {
-          "type": "string",
-          "enum": [
-            "hold",
-            "unhold"
-          ],
-          "required": true
-        }
-      }
-    }
-  },
-  {
-    "type": "rpc",
     "id": "rpc.kernel.doproxmox",
     "params": {
       "type": "object",

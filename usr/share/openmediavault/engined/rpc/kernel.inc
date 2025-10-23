@@ -35,7 +35,6 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('deleteKernel');
 
         $this->registerMethod('doCommand');
-        $this->registerMethod('doHold');
         $this->registerMethod('doProxmox');
     }
 
@@ -188,82 +187,6 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         return isset($output[0]) ? trim($output[0]) : null;
     }
 
-/*
-    public function getKernelList($params, $context)
-    {
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
-        // Get boot kernel
-        $defaultKernel = -1;
-        $output = [];
-        $cmdArgs = [];
-        $cmdArgs[] = 'list';
-        $cmdArgs[] = '| awk -F \'=\' \'$1 == "saved_entry" { print $2 }\'';
-        $cmd = new \OMV\System\Process('grub-editenv', $cmdArgs);
-        $cmd->execute($output);
-        if (isset($output[0]) && trim($output[0]) !== '' && is_numeric(trim($output[0]))) {
-            $defaultKernel = intval($output[0]);
-        } else if ($output[0] == "saved") {
-            $curKernel = $this->getCurrentKernel();
-            if (isset($curKernel) && trim($curKernel) !== '' && is_numeric(trim($curKernel))) {
-                $defaultKernel = intval($curKernel);
-            }
-        }
-        // get next kernel
-        $nextEntry = -1;
-        $output = [];
-        $cmdArgs = [];
-        $cmdArgs[] = 'list';
-        $cmdArgs[] = '| awk -F \'=\' \'$1 == "next_entry" { print $2 }\'';
-        $cmd = new \OMV\System\Process('grub-editenv', $cmdArgs);
-        $cmd->execute($output);
-        if (isset($output[0]) && trim($output[0]) !== '' && is_numeric(trim($output[0]))) {
-            $nextEntry = intval($output[0]);
-        }
-        // Get configuration data.
-        $kernels = [];
-        $grub = '/boot/grub/grub.cfg';
-        if (file_exists($grub)) {
-            $output = [];
-            $awkArgs = '-F "\'|\"" \'$1 == "menuentry " { print $2 }\'';
-            $cmd = new \OMV\System\Process('awk', $awkArgs, $grub);
-            $cmd->execute($output);
-            foreach ($output as $kernelk => $kernelv) {
-                $remove = false;
-                if (empty($kernelv))
-                    continue;
-                $nextk = false;
-                if ($kernelk == $nextEntry) {
-                    $nextk = true;
-                }
-                if ($kernelk == $defaultKernel) {
-                    $default = true;
-                } else {
-                    $default = false;
-                    $pos1 = strpos($kernelv, 'Debian GNU/Linux, with Linux');
-                    $pos2 = strpos($kernelv, 'Proxmox Virtual Environment GNU/Linux, with Linux');
-                    $pos3 = strpos($kernelv, 'recovery mode');
-                    if (false !== $pos3) {
-                        $remove = false;
-                    } elseif ($pos1 > -1 || $pos2 > -1) {
-                        $remove = true;
-                    }
-                }
-                $kernels[] = [
-                    'key'  => $kernelk,
-                    'name' => $kernelv,
-                    'default' => $default,
-                    'nextk' => $nextk,
-                    'remove' => $remove
-                ];
-            }
-        }
-        return $this->applyFilter($kernels, $params['start'], $params['limit'],
-            $params['sortfield'], $params['sortdir']
-        );
-    }
-*/
-
     public function deleteKernel($params, $context)
     {
         // Validate the RPC caller context.
@@ -314,19 +237,6 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 return $output;
             }
         );
-    }
-
-    public function doHold($params, $context)
-    {
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
-        // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, 'rpc.kernel.dohold');
-        // Execute command
-        $arch = $this->getArch([], $context);
-        $packages = sprintf('linux-image-%s linux-headers-%s', $arch['arch'], $arch['arch']);
-        $cmd = new \OMV\System\Process('apt-mark', $params['command'], $packages);
-        $cmd->execute($output);
     }
 
     public function doProxmox($params, $context)
