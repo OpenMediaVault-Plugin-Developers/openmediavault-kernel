@@ -72,14 +72,10 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         }
 
         $entryId = $match['entry_id'];
-	if (!$entryId) $entryId = sprintf("'%s'", $key);
+        if (!$entryId) $entryId = sprintf("'%s'", $key);
 
-        // Ensure GRUB is configured to honor saved/next entries.
         $grubDefaultPath = '/etc/default/grub';
-        // If GRUB_DEFAULT is not "saved", set it to "saved" (idempotent).
         $content = file_get_contents($grubDefaultPath);
-
-        // Normalize: if there is no GRUB_DEFAULT line, add it; else force to saved.
         if (!preg_match('/^GRUB_DEFAULT=/m', $content)) {
             $content .= PHP_EOL . 'GRUB_DEFAULT=saved' . PHP_EOL;
             file_put_contents($grubDefaultPath, $content);
@@ -116,7 +112,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
 
     private function parseGrubEntries()
     {
-	$grubCfg = '/boot/grub/grub.cfg';
+        $grubCfg = '/boot/grub/grub.cfg';
         if (!is_readable($grubCfg)) {
             return [];
         }
@@ -124,21 +120,21 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $lines = file($grubCfg);
         $entries = [];
 
-	foreach ($lines as $line) {
-	    $title = null;
-	    $id = null;
-	    $kernel = null;
+        foreach ($lines as $line) {
+            $title = null;
+            $id = null;
+            $kernel = null;
 
             $trimmed = trim($line);
-	    $outer = '/^\s*menuentry\s+(["\'])(?P<title>.*?)\1(?:.*?\$menuentry_id_option\s+(["\'])(?P<id>.*?)\3)?\s*\{/';
+            $outer = '/^\s*menuentry\s+(["\'])(?P<title>.*?)\1(?:.*?\$menuentry_id_option\s+(["\'])(?P<id>.*?)\3)?\s*\{/';
             if (preg_match($outer, $trimmed, $m)) {
-              $title = $m['title'];
-              $id = $m['id'] ?? null;
-              $kernel = null;
-              if (preg_match('/\bLinux\s+(?P<kernel>\d+(?:\.\d+)+(?:[^\s\'")]+)?)/', $title, $km)) {
-                $kernel = $km['kernel'];
-              }
-	    } else {
+                $title = $m['title'];
+                $id = $m['id'] ?? null;
+                $kernel = null;
+                if (preg_match('/\bLinux\s+(?P<kernel>\d+(?:\.\d+)+(?:[^\s\'")]+)?)/', $title, $km)) {
+                    $kernel = $km['kernel'];
+                }
+            } else {
                 continue;
             }
             if (!empty($title)) {
@@ -148,8 +144,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                     'entry_id' => $id
                 ];
             }
-	}
-
+        }
         return $entries;
     }
 
