@@ -1,3 +1,9 @@
+openmediavault-kernel (8.0.1) stable; urgency=low
+
+  * Update finnix to 251
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 18 Nov 2025 12:46:00 +0000
+
 openmediavault-kernel (8.0) stable; urgency=low
 
   * Update for omv 8.x
