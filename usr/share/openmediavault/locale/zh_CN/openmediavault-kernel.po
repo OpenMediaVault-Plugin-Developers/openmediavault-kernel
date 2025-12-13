@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 19:19-0500\n"
+"POT-Creation-Date: 2025-12-13 17:10+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: songming <by@songming.me>, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/zh_CN/)\n"
@@ -23,6 +23,9 @@ msgstr ""
 
 msgid "Are you sure you want to remove?"
 msgstr "你确定要删除吗？"
+
+msgid "Boot once"
+msgstr ""
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
@@ -39,6 +42,9 @@ msgstr "删除内核中 ..."
 msgid "Docs"
 msgstr "Docs"
 
+msgid "Entry ID"
+msgstr ""
+
 msgid "Finnix"
 msgstr "Finnix"
 
@@ -54,26 +60,23 @@ msgstr "安装 Finnix"
 msgid "Install GParted Live"
 msgstr "安装 GParted Live"
 
-msgid "Install Proxmox kernel 6.2"
-msgstr "安装 Proxmox kernel 6.2"
+msgid "Install Proxmox kernel 6.14"
+msgstr ""
 
-msgid "Install Proxmox kernel 6.5"
-msgstr "安装 Proxmox kernel 6.5"
-
-msgid "Install Proxmox kernel 6.8"
-msgstr "安装 Proxmox kernel 6.8"
+msgid "Install Proxmox kernel 6.17"
+msgstr ""
 
 msgid "Install SystemRescue"
 msgstr "安装 SystemRescue"
 
-msgid "Installing 6.2 Proxmox kernel  ..."
-msgstr "安装 6.2 Proxmox kernel 中..."
+msgid "Install memtest86+"
+msgstr ""
 
-msgid "Installing 6.5 Proxmox kernel  ..."
-msgstr "安装 6.5 Proxmox kernel 中..."
+msgid "Installing 6.14 Proxmox kernel  ..."
+msgstr ""
 
-msgid "Installing 6.8 Proxmox kernel  ..."
-msgstr "安装 6.8 Proxmox kernel 中..."
+msgid "Installing 6.17 Proxmox kernel  ..."
+msgstr ""
 
 msgid "Installing Clonezilla ..."
 msgstr "安装 Clonezilla 中..."
@@ -87,11 +90,11 @@ msgstr "安装 GParted Live 中..."
 msgid "Installing SystemRescue ..."
 msgstr "安装 SystemRescue 中..."
 
+msgid "Installing memtest86+ ..."
+msgstr ""
+
 msgid "Kernel"
 msgstr "Kernel"
-
-msgid "Key"
-msgstr "Key"
 
 msgid "Name"
 msgstr "名称"
@@ -147,11 +150,17 @@ msgstr "删除 SystemRescue"
 msgid "Remove SystemRescue ..."
 msgstr "删除 SystemRescue 中..."
 
+msgid "Remove memtest86+"
+msgstr ""
+
 msgid "Remove non-Proxmox kernels"
 msgstr "删除 non-Proxmox kernels"
 
 msgid "Removeable"
 msgstr "可删除的"
+
+msgid "Removing memtest86+ ..."
+msgstr ""
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "删除 non-Proxmox kernels and headers 中..."
@@ -161,6 +170,9 @@ msgstr "设置启动项"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"
+
+msgid "memtest86+"
+msgstr ""
 
 msgid "omv-extras wiki"
 msgstr "omv-extras wiki"

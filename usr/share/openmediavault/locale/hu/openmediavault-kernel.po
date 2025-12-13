@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 19:19-0500\n"
+"POT-Creation-Date: 2025-12-13 17:10+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024\n"
 "Language-Team: Hungarian (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/hu/)\n"
@@ -23,6 +23,9 @@ msgstr ""
 
 msgid "Are you sure you want to remove?"
 msgstr "Valóban szeretné eltávolítani?"
+
+msgid "Boot once"
+msgstr ""
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
@@ -39,6 +42,9 @@ msgstr "Kernel törlése…"
 msgid "Docs"
 msgstr "Dokumentáció"
 
+msgid "Entry ID"
+msgstr ""
+
 msgid "Finnix"
 msgstr "Finnix"
 
@@ -54,26 +60,23 @@ msgstr "Finnix telepítése"
 msgid "Install GParted Live"
 msgstr "GParted Live telepítése"
 
-msgid "Install Proxmox kernel 6.2"
-msgstr "Proxmox kernel 6.2 telepítése"
+msgid "Install Proxmox kernel 6.14"
+msgstr ""
 
-msgid "Install Proxmox kernel 6.5"
-msgstr "Proxmox kernel 6.5 telepítése"
-
-msgid "Install Proxmox kernel 6.8"
-msgstr "Proxmox kernel 6.8 telepítése"
+msgid "Install Proxmox kernel 6.17"
+msgstr ""
 
 msgid "Install SystemRescue"
 msgstr "SystemRescue telepítése"
 
-msgid "Installing 6.2 Proxmox kernel  ..."
-msgstr "Proxmox kernel 6.2 telepítése folyamatban…"
+msgid "Install memtest86+"
+msgstr ""
 
-msgid "Installing 6.5 Proxmox kernel  ..."
-msgstr "Proxmox kernel 6.5 telepítése folyamatban…"
+msgid "Installing 6.14 Proxmox kernel  ..."
+msgstr ""
 
-msgid "Installing 6.8 Proxmox kernel  ..."
-msgstr "Proxmox kernel 6.8 telepítése folyamatban…"
+msgid "Installing 6.17 Proxmox kernel  ..."
+msgstr ""
 
 msgid "Installing Clonezilla ..."
 msgstr "Clonezilla telepítése folyamatban…"
@@ -87,11 +90,11 @@ msgstr "GParted Live telepítése folyamatban…"
 msgid "Installing SystemRescue ..."
 msgstr "SystemRescue telepítése folyamatban…"
 
+msgid "Installing memtest86+ ..."
+msgstr ""
+
 msgid "Kernel"
 msgstr "Kernel"
-
-msgid "Key"
-msgstr "Kulcs"
 
 msgid "Name"
 msgstr "Név"
@@ -147,11 +150,17 @@ msgstr "SystemRescue eltávolítása"
 msgid "Remove SystemRescue ..."
 msgstr "SystemRescue eltávolítása…"
 
+msgid "Remove memtest86+"
+msgstr ""
+
 msgid "Remove non-Proxmox kernels"
 msgstr "Nem-Proxmox kernelek eltávolítása"
 
 msgid "Removeable"
 msgstr "Eltávolítható"
+
+msgid "Removing memtest86+ ..."
+msgstr ""
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "Nem-Proxmox kernelek és fejlécek eltávolítása…"
@@ -161,6 +170,9 @@ msgstr "Boot beállítása"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"
+
+msgid "memtest86+"
+msgstr ""
 
 msgid "omv-extras wiki"
 msgstr "omv-extras wiki"

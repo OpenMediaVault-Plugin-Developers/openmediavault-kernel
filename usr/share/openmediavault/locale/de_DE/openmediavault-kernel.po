@@ -3,165 +3,172 @@
 # This file is distributed under the same license as the openmediavault-kernel package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# Thomas Melka, 2024
-# Ettore Atalan <atalanttore@googlemail.com>, 2024
-# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 19:19-0500\n"
+"POT-Creation-Date: 2025-12-13 17:10+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2024\n"
-"Language-Team: German (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/de/)\n"
+"Language-Team: German (Germany) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Are you sure you want to remove?"
-msgstr "Sind Sie sicher, dass Sie entfernen möchten?"
+msgstr ""
+
+msgid "Boot once"
+msgstr ""
 
 msgid "Clonezilla"
-msgstr "Clonezilla"
+msgstr ""
 
 msgid "Default"
-msgstr "Standard"
+msgstr ""
 
 msgid "Delete kernel"
-msgstr "Kernel löschen"
+msgstr ""
 
 msgid "Delete kernel ..."
-msgstr "Kernel löschen ..."
+msgstr ""
 
 msgid "Docs"
-msgstr "Doku"
+msgstr ""
+
+msgid "Entry ID"
+msgstr ""
 
 msgid "Finnix"
-msgstr "Finnix"
+msgstr ""
 
 msgid "GParted Live"
-msgstr "GParted Live"
+msgstr ""
 
 msgid "Install Clonezilla"
-msgstr "Clonezilla installieren"
+msgstr ""
 
 msgid "Install Finnix"
-msgstr "Finnix installieren"
+msgstr ""
 
 msgid "Install GParted Live"
-msgstr "GParted Live installieren"
+msgstr ""
 
-msgid "Install Proxmox kernel 6.2"
-msgstr "Proxmox-Kernel 6.2 installieren"
+msgid "Install Proxmox kernel 6.14"
+msgstr ""
 
-msgid "Install Proxmox kernel 6.5"
-msgstr "Proxmox-Kernel 6.5 installieren"
-
-msgid "Install Proxmox kernel 6.8"
-msgstr "Proxmox-Kernel 6.8 installieren"
+msgid "Install Proxmox kernel 6.17"
+msgstr ""
 
 msgid "Install SystemRescue"
-msgstr "SystemRescue installieren"
+msgstr ""
 
-msgid "Installing 6.2 Proxmox kernel  ..."
-msgstr "Proxmox-Kernel 6.2 wird installiert ..."
+msgid "Install memtest86+"
+msgstr ""
 
-msgid "Installing 6.5 Proxmox kernel  ..."
-msgstr "Proxmox-Kernel 6.5 wird installiert ..."
+msgid "Installing 6.14 Proxmox kernel  ..."
+msgstr ""
 
-msgid "Installing 6.8 Proxmox kernel  ..."
-msgstr "Proxmox-Kernel 6.8 wird installiert ..."
+msgid "Installing 6.17 Proxmox kernel  ..."
+msgstr ""
 
 msgid "Installing Clonezilla ..."
-msgstr "Clonezilla wird installiert ..."
+msgstr ""
 
 msgid "Installing Finnix ..."
-msgstr "Finnix wird installiert ..."
+msgstr ""
 
 msgid "Installing GParted Live ..."
-msgstr "GParted Live wird installiert ..."
+msgstr ""
 
 msgid "Installing SystemRescue ..."
-msgstr "SystemRescue wird installiert ..."
+msgstr ""
+
+msgid "Installing memtest86+ ..."
+msgstr ""
 
 msgid "Kernel"
-msgstr "Kernel"
-
-msgid "Key"
-msgstr "Schlüssel"
+msgstr ""
 
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 msgid "Proxmox"
-msgstr "Proxmox"
+msgstr ""
 
 msgid "Reboot to Clonezilla once"
-msgstr "Clonezilla einmal neu starten"
+msgstr ""
 
 msgid "Reboot to Clonezilla once ..."
-msgstr "Clonezilla wird einmal neu gestartet ..."
+msgstr ""
 
 msgid "Reboot to Finnix once"
-msgstr "Finnix einmal neu starten"
+msgstr ""
 
 msgid "Reboot to Finnix once ..."
-msgstr "Finnix wird einmal neu gestartet ..."
+msgstr ""
 
 msgid "Reboot to GParted Live once"
-msgstr "GParted Live einmal neu starten"
+msgstr ""
 
 msgid "Reboot to GParted Live once ..."
-msgstr "GParted Live wird einmal neu gestartet ..."
+msgstr ""
 
 msgid "Reboot to SystemRescue once"
-msgstr "SystemRescue einmal neu starten"
+msgstr ""
 
 msgid "Reboot to SystemRescue once ..."
-msgstr "SystemRescue wird einmal neu gestartet ..."
+msgstr ""
 
 msgid "Remove Clonezilla"
-msgstr "Clonezilla entfernen"
+msgstr ""
 
 msgid "Remove Clonezilla ..."
-msgstr "Clonezilla entfernen ..."
+msgstr ""
 
 msgid "Remove Finnix"
-msgstr "Finnix entfernen"
+msgstr ""
 
 msgid "Remove Finnix ..."
-msgstr "Finnix entfernen ..."
+msgstr ""
 
 msgid "Remove GParted Live"
-msgstr "GParted Live entfernen"
+msgstr ""
 
 msgid "Remove GParted Live ..."
-msgstr "GParted Live entfernen ..."
+msgstr ""
 
 msgid "Remove SystemRescue"
-msgstr "SystemRescue entfernen"
+msgstr ""
 
 msgid "Remove SystemRescue ..."
-msgstr "SystemRescue entfernen ..."
+msgstr ""
+
+msgid "Remove memtest86+"
+msgstr ""
 
 msgid "Remove non-Proxmox kernels"
-msgstr "Nicht-Proxmox-Kernel entfernen"
+msgstr ""
 
 msgid "Removeable"
-msgstr "Entfernbar"
+msgstr ""
+
+msgid "Removing memtest86+ ..."
+msgstr ""
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr ""
 
 msgid "Set boot"
-msgstr "Boot festlegen"
+msgstr ""
 
 msgid "SystemRescue"
-msgstr "SystemRescue"
+msgstr ""
+
+msgid "memtest86+"
+msgstr ""
 
 msgid "omv-extras wiki"
 msgstr ""

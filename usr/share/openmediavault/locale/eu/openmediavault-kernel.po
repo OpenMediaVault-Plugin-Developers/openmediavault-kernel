@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 19:19-0500\n"
+"POT-Creation-Date: 2025-12-13 17:10+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Language-Team: Basque (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Are you sure you want to remove?"
+msgstr ""
+
+msgid "Boot once"
 msgstr ""
 
 msgid "Clonezilla"
@@ -35,6 +38,9 @@ msgstr ""
 msgid "Docs"
 msgstr ""
 
+msgid "Entry ID"
+msgstr ""
+
 msgid "Finnix"
 msgstr ""
 
@@ -50,25 +56,22 @@ msgstr ""
 msgid "Install GParted Live"
 msgstr ""
 
-msgid "Install Proxmox kernel 6.2"
+msgid "Install Proxmox kernel 6.14"
 msgstr ""
 
-msgid "Install Proxmox kernel 6.5"
-msgstr ""
-
-msgid "Install Proxmox kernel 6.8"
+msgid "Install Proxmox kernel 6.17"
 msgstr ""
 
 msgid "Install SystemRescue"
 msgstr ""
 
-msgid "Installing 6.2 Proxmox kernel  ..."
+msgid "Install memtest86+"
 msgstr ""
 
-msgid "Installing 6.5 Proxmox kernel  ..."
+msgid "Installing 6.14 Proxmox kernel  ..."
 msgstr ""
 
-msgid "Installing 6.8 Proxmox kernel  ..."
+msgid "Installing 6.17 Proxmox kernel  ..."
 msgstr ""
 
 msgid "Installing Clonezilla ..."
@@ -83,10 +86,10 @@ msgstr ""
 msgid "Installing SystemRescue ..."
 msgstr ""
 
-msgid "Kernel"
+msgid "Installing memtest86+ ..."
 msgstr ""
 
-msgid "Key"
+msgid "Kernel"
 msgstr ""
 
 msgid "Name"
@@ -143,10 +146,16 @@ msgstr ""
 msgid "Remove SystemRescue ..."
 msgstr ""
 
+msgid "Remove memtest86+"
+msgstr ""
+
 msgid "Remove non-Proxmox kernels"
 msgstr ""
 
 msgid "Removeable"
+msgstr ""
+
+msgid "Removing memtest86+ ..."
 msgstr ""
 
 msgid "Removing non-Proxmox kernels and headers  ..."
@@ -156,6 +165,9 @@ msgid "Set boot"
 msgstr ""
 
 msgid "SystemRescue"
+msgstr ""
+
+msgid "memtest86+"
 msgstr ""
 
 msgid "omv-extras wiki"
