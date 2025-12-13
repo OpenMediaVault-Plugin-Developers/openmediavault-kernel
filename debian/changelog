@@ -1,3 +1,9 @@
+openmediavault-kernel (8.0.3) stable; urgency=low
+
+  * Fix proxmox kernel removal
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 13 Dec 2025 21:47:32 +0000
+
 openmediavault-kernel (8.0.2) stable; urgency=low
 
   * Move memtest from dependency to optional install and add button to
