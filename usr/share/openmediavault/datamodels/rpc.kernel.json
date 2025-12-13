@@ -48,5 +48,22 @@
         }
       }
     }
+  },
+  {
+    "type": "rpc",
+    "id": "rpc.kernel.domemtest",
+    "params": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "install",
+            "purge"
+          ],
+          "required": true
+        }
+      }
+    }
   }
 ]

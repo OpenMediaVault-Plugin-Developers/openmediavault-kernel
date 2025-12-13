@@ -385,6 +385,42 @@ data:
                     stop:
                       hidden: true
       - type: menu
+        icon: mdi:memory
+        tooltip: _("memtest86+")
+        actions:
+          - text: _("Install memtest86+")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing memtest86+ ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doMemtest
+                    params:
+                      action: "install"
+                  buttons:
+                    stop:
+                      hidden: true
+          - text: _("Remove memtest86+")
+            icon: mdi:delete-forever-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Removing memtest86+ ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doMemtest
+                    params:
+                      action: "purge"
+                  buttons:
+                    stop:
+                      hidden: true
+      - type: menu
         icon: mdi:link
         tooltip: _("Docs")
         actions:

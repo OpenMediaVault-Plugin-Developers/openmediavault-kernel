@@ -35,6 +35,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
 
         $this->registerMethod('doCommand');
         $this->registerMethod('doProxmox');
+        $this->registerMethod('doMemtest');
     }
 
     public function getArch($params, $context)
@@ -281,6 +282,29 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                     $cmdArgs[] = $params['version'];
                 }
                 $cmd = new \OMV\System\Process($cmdBin, $cmdArgs);
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                return $output;
+            }
+        );
+    }
+
+    public function doMemtest($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.kernel.domemtest');
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmdParams = [];
+                $cmdParams[] = 'apt-get';
+                $cmdParams[] = '-y';
+                $cmdParams[] = $params['action'];
+                $cmdParams[] = 'memtest86+';
+                $cmd = new \OMV\System\Process($cmdParams);
                 $cmdLine = $cmd->getCommandLine();
                 if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
                     throw new \OMV\ExecException($cmdLine, $output);

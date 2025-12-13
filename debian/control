@@ -9,8 +9,7 @@ Homepage: http://omv-extras.org/
 
 Package: openmediavault-kernel
 Architecture: all
-Depends: memtest86+,
-         openmediavault (>= 8),
+Depends: openmediavault (>= 8),
          ${misc:Depends}
 Description: kernel package
  The plugin allows the user to select which grub entry to boot from and
