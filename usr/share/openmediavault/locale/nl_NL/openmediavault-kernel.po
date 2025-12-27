@@ -25,7 +25,7 @@ msgid "Are you sure you want to remove?"
 msgstr "Weet u zeker dat u wilt verwijderen?"
 
 msgid "Boot once"
-msgstr ""
+msgstr "Eén keer opstarten"
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
@@ -43,7 +43,7 @@ msgid "Docs"
 msgstr "Docs"
 
 msgid "Entry ID"
-msgstr ""
+msgstr "Invoer-ID"
 
 msgid "Finnix"
 msgstr "Finnix"
@@ -61,22 +61,22 @@ msgid "Install GParted Live"
 msgstr "GParted Live installeren"
 
 msgid "Install Proxmox kernel 6.14"
-msgstr ""
+msgstr "Proxmox kernel 6.14 installeren"
 
 msgid "Install Proxmox kernel 6.17"
-msgstr ""
+msgstr "Proxmox kernel 6.17 installeren"
 
 msgid "Install SystemRescue"
 msgstr "SystemRescue installeren"
 
 msgid "Install memtest86+"
-msgstr ""
+msgstr "memtest86+ installeren"
 
 msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr ""
+msgstr "Proxmox kernel 6.14 installeren…"
 
 msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr ""
+msgstr "Proxmox kernel 6.17 installeren…"
 
 msgid "Installing Clonezilla ..."
 msgstr "Clonezilla installeren..."
@@ -91,7 +91,7 @@ msgid "Installing SystemRescue ..."
 msgstr "SystemRescue installeren..."
 
 msgid "Installing memtest86+ ..."
-msgstr ""
+msgstr "memtest86+ installeren…"
 
 msgid "Kernel"
 msgstr "Kernel"
@@ -151,7 +151,7 @@ msgid "Remove SystemRescue ..."
 msgstr "SystemRescue verwijderen…"
 
 msgid "Remove memtest86+"
-msgstr ""
+msgstr "memtest86+ verwijderen"
 
 msgid "Remove non-Proxmox kernels"
 msgstr "Non-Proxmox kernels verwijderen"
@@ -160,7 +160,7 @@ msgid "Removeable"
 msgstr "Verwijderbaar"
 
 msgid "Removing memtest86+ ..."
-msgstr ""
+msgstr "memtest86+ verwijderen…"
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "Non-Proxmox kernels en headers verwijderen…"
@@ -172,7 +172,7 @@ msgid "SystemRescue"
 msgstr "SystemRescue"
 
 msgid "memtest86+"
-msgstr ""
+msgstr "memtest86+"
 
 msgid "omv-extras wiki"
 msgstr "omv-extras wiki"

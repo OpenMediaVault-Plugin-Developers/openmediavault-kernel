@@ -25,7 +25,7 @@ msgid "Are you sure you want to remove?"
 msgstr "Sei sicuro di volerlo rimuovere?"
 
 msgid "Boot once"
-msgstr ""
+msgstr "Avvia una sola volta"
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
@@ -37,13 +37,13 @@ msgid "Delete kernel"
 msgstr "Elimina kernel"
 
 msgid "Delete kernel ..."
-msgstr "Sto eliminando il kernel ..."
+msgstr "Sto eliminando il kernel..."
 
 msgid "Docs"
 msgstr "Documenti"
 
 msgid "Entry ID"
-msgstr ""
+msgstr "ID voce"
 
 msgid "Finnix"
 msgstr "Finnix"
@@ -61,37 +61,37 @@ msgid "Install GParted Live"
 msgstr "Installa GParted Live"
 
 msgid "Install Proxmox kernel 6.14"
-msgstr ""
+msgstr "Installa il kernel Proxmox 6.14"
 
 msgid "Install Proxmox kernel 6.17"
-msgstr ""
+msgstr "Installa il kernel Proxmox 6.17"
 
 msgid "Install SystemRescue"
 msgstr "Installa SystemRescue"
 
 msgid "Install memtest86+"
-msgstr ""
+msgstr "Installa memtest86+"
 
 msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr ""
+msgstr "Installazione del kernel Proxmox 6.14 in corso..."
 
 msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr ""
+msgstr "Installazione del kernel Proxmox 6.17 in corso..."
 
 msgid "Installing Clonezilla ..."
-msgstr "Sto installando Clonezilla ..."
+msgstr "Installazione di Clonezilla in corso..."
 
 msgid "Installing Finnix ..."
-msgstr "Sto installando Finnix ..."
+msgstr "Installazione di Finnix in corso..."
 
 msgid "Installing GParted Live ..."
-msgstr "Sto installando GParted Live ..."
+msgstr "Installazione di GParted Live in corso..."
 
 msgid "Installing SystemRescue ..."
-msgstr "Sto installando SystemRescue ..."
+msgstr "Installazione di SystemRescue in corso..."
 
 msgid "Installing memtest86+ ..."
-msgstr ""
+msgstr "Installazione di memtest86+ in corso..."
 
 msgid "Kernel"
 msgstr "Kernel"
@@ -103,55 +103,55 @@ msgid "Proxmox"
 msgstr "Proxmox"
 
 msgid "Reboot to Clonezilla once"
-msgstr "Riavvia in Clonezilla per una sola volta"
+msgstr "Riavvia in Clonezilla una sola volta"
 
 msgid "Reboot to Clonezilla once ..."
-msgstr "Sto riavviando in Clonezilla per una sola volta ..."
+msgstr "Riavvia in Clonezilla una sola volta…"
 
 msgid "Reboot to Finnix once"
-msgstr "Riavvia in Finnix per una sola volta"
+msgstr "Riavvia in Finnix una sola volta"
 
 msgid "Reboot to Finnix once ..."
-msgstr "Sto riavviando in Finnix per una sola volta ..."
+msgstr "Sto riavviando in Finnix una sola volta..."
 
 msgid "Reboot to GParted Live once"
-msgstr "Riavvia in GParted Live per una sola volta"
+msgstr "Riavvia in GParted Live una sola volta"
 
 msgid "Reboot to GParted Live once ..."
-msgstr "Sto riavviando in GParted Live per una sola volta ..."
+msgstr "Sto riavviando in GParted Live una sola volta..."
 
 msgid "Reboot to SystemRescue once"
-msgstr "Riavvia in SystemRescue per una sola volta"
+msgstr "Riavvia in SystemRescue una sola volta"
 
 msgid "Reboot to SystemRescue once ..."
-msgstr "Sto riavviando in SystemRescue per una sola volta ..."
+msgstr "Sto riavviando in SystemRescue una sola volta..."
 
 msgid "Remove Clonezilla"
 msgstr "Rimuovi Clonezilla"
 
 msgid "Remove Clonezilla ..."
-msgstr "Sto rimuovendo Clonezilla ..."
+msgstr "Sto rimuovendo Clonezilla..."
 
 msgid "Remove Finnix"
 msgstr "Rimuovi Finnix"
 
 msgid "Remove Finnix ..."
-msgstr "Sto rimuovendo Finnix ..."
+msgstr "Sto rimuovendo Finnix..."
 
 msgid "Remove GParted Live"
 msgstr "Rimuovi GParted Live"
 
 msgid "Remove GParted Live ..."
-msgstr "Sto rimuovendo GParted Live ..."
+msgstr "Sto rimuovendo GParted Live..."
 
 msgid "Remove SystemRescue"
 msgstr "Rimuovi SystemRescue"
 
 msgid "Remove SystemRescue ..."
-msgstr "Sto rimuovendo SystemRescue ..."
+msgstr "Sto rimuovendo SystemRescue..."
 
 msgid "Remove memtest86+"
-msgstr ""
+msgstr "Rimuovi memtest86+"
 
 msgid "Remove non-Proxmox kernels"
 msgstr "Rimuovi i kernel non-Proxmox"
@@ -160,7 +160,7 @@ msgid "Removeable"
 msgstr "Rimovibile"
 
 msgid "Removing memtest86+ ..."
-msgstr ""
+msgstr "Sto rimuovendo memtest86+..."
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "Sto rimuovendo kernel e header non-Promox ..."
@@ -172,7 +172,7 @@ msgid "SystemRescue"
 msgstr "SystemRescue"
 
 msgid "memtest86+"
-msgstr ""
+msgstr "memtest86+"
 
 msgid "omv-extras wiki"
 msgstr "wiki di omv-extras"
