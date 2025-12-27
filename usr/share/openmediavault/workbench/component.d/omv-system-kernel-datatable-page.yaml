@@ -173,23 +173,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-          - text: _("Reboot to Clonezilla once")
-            icon: mdi:restart
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Reboot to Clonezilla once ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "reboot"
-                      distro: "clonezilla"
-                  buttons:
-                    stop:
-                      hidden: true
           - text: _("Remove Clonezilla")
             icon: mdi:delete-forever-outline
             confirmationDialogConfig:
@@ -227,23 +210,6 @@ data:
                     method: doCommand
                     params:
                       action: "install"
-                      distro: "finnix"
-                  buttons:
-                    stop:
-                      hidden: true
-          - text: _("Reboot to Finnix once")
-            icon: mdi:restart
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Reboot to Finnix once ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "reboot"
                       distro: "finnix"
                   buttons:
                     stop:
@@ -289,23 +255,6 @@ data:
                   buttons:
                     stop:
                       hidden: true
-          - text: _("Reboot to GParted Live once")
-            icon: mdi:restart
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Reboot to GParted Live once ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "reboot"
-                      distro: "gpartedlive"
-                  buttons:
-                    stop:
-                      hidden: true
           - text: _("Remove GParted Live")
             icon: mdi:delete-forever-outline
             confirmationDialogConfig:
@@ -343,23 +292,6 @@ data:
                     method: doCommand
                     params:
                       action: "install"
-                      distro: "sysresccd"
-                  buttons:
-                    stop:
-                      hidden: true
-          - text: _("Reboot to SystemRescue once")
-            icon: mdi:restart
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Reboot to SystemRescue once ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "reboot"
                       distro: "sysresccd"
                   buttons:
                     stop:
