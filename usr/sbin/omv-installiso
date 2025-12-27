@@ -196,20 +196,6 @@ remove_iso() {
   update-grub
 }
 
-reboot_iso() {
-  local iso=$1
-  local iso_file="${ISO_PATH}/${FILES[$iso]}"
-  local grub_file=${GRUB_FILES[$iso]}
-  local grub_name=${GRUB_NAMES[$iso]}
-
-  if [ ! -f "${iso_file}" ]; then
-    echo "Please click on Install button."
-    return
-  fi
-
-  omv-kernel-reboot-once "${grub_name}"
-}
-
 disablesubmenu() {
   if ! grep -q 'GRUB_DISABLE_SUBMENU' ${GRUB}; then
     echo "GRUB_DISABLE_SUBMENU=y" >> ${GRUB}
@@ -231,10 +217,6 @@ case ${action} in
 
   remove)
     remove_iso "${distro}"
-    ;;
-
-  reboot)
-    reboot_iso "${distro}"
     ;;
 esac
 
