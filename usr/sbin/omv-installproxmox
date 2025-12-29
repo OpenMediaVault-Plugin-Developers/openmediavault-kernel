@@ -32,7 +32,7 @@ kernelinput="${1}"
 if [[ "${kernelinput}" =~ ^[6-7]\.[0-9]{1,2}$ ]]; then
   kernelversion="${kernelinput}"
 else
-  kernelversion="6.14"
+  kernelversion="6.17"
   echo "Invalid kernel version specified.  Using ${kernelversion}"
 fi
 
@@ -53,7 +53,7 @@ chmod 644 ${pverepo} ${pvekey}
 apt-get update
 
 # remove conflicting firmware packages
-for pkg in linux linux-nonfree ti-connectivity amd-graphics ath9k-htc cavium siano netronome realtek-rtl8723cs-bt intel-sound; do
+for pkg in linux-free amd-graphics ath9k-htc cavium siano netronome; do
   if dpkg -l firmware-${pkg} > /dev/null; then
     if ! dpkg --purge firmware-${pkg} 2>/dev/null; then
       echo "Failed to remove firmware-${pkg} package.  Exiting..."
@@ -63,7 +63,7 @@ for pkg in linux linux-nonfree ti-connectivity amd-graphics ath9k-htc cavium sia
 done
 
 # install kernel and headers
-DEBIAN_FRONTEND=noninteractive apt-get --yes --fix-missing install proxmox-kernel-${kernelversion} proxmox-headers-${kernelversion} proxmox-default-headers pve-headers
+DEBIAN_FRONTEND=noninteractive apt-get --yes --fix-missing install proxmox-kernel-${kernelversion} proxmox-headers-${kernelversion}
 if [ $? -gt 0 ]; then
   echo "Failed to install Proxmox kernel.  Exiting..."
   exit 4
