@@ -63,12 +63,20 @@ for pkg in linux-free amd-graphics ath9k-htc cavium siano netronome; do
   fi
 done
 
+# create dkms dir and set no-autoinstall
+mkdir -p /etc/dkms
+touch /etc/dkms/no-autoinstall
+
 # install kernel and headers
 DEBIAN_FRONTEND=noninteractive apt-get --yes --fix-missing install proxmox-kernel-${kernelversion} proxmox-headers-${kernelversion}
 if [ $? -gt 0 ]; then
   echo "Failed to install Proxmox kernel.  Exiting..."
+  rm -f /etc/dkms/no-autoinstall
   exit 4
 fi
+
+# cleanup no-autoinstall
+rm -f /etc/dkms/no-autoinstall
 
 # set newly install proxmox kernel as default
 awk '$1 == "menuentry" { print $6 }' ${grubconfig} | while read kernel; do
