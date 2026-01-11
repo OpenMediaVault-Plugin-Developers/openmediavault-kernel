@@ -1,3 +1,9 @@
+openmediavault-kernel (8.0.6) stable; urgency=low
+
+  * Set no-autoinstall flag for proxmox kernel install
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 11 Jan 2026 17:56:07 +0000
+
 openmediavault-kernel (8.0.5) stable; urgency=low
 
   * Improve proxmox kernel install script
