@@ -184,6 +184,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $currentKernel = $this->getCurrentKernel();
 
         $kernels = [];
+        $foundDefault = false;
         foreach ($entries as $e) {
             $entryId = $e['entry_id'];
             $name = $e['title'];
@@ -191,12 +192,15 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
 
             // Determine default:
             // Prefer explicit saved_entry value (when it is an entry_id != 'saved'),
-            // otherwise fall back to matching running kernel version.
+            // otherwise fall back to matching running kernel version (first match only).
             $isDefault = false;
             if (is_string($savedEntry) && $savedEntry !== '' && $savedEntry !== 'saved') {
                 $isDefault = ($savedEntry === $entryId || $savedEntry === $name);
-            } elseif (!empty($currentKernel) && !empty($kver)) {
+            } elseif (!$foundDefault && !empty($currentKernel) && !empty($kver)) {
                 $isDefault = str_starts_with($currentKernel, $kver);
+            }
+            if ($isDefault) {
+                $foundDefault = true;
             }
 
             $isNext = (is_string($nextEntry) && $nextEntry !== '' && ($nextEntry === $entryId || $nextEntry === $name));
