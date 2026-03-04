@@ -1,5 +1,6 @@
 openmediavault-kernel (8.0.7) UNRELEASED; urgency=medium
 
+  * Add unset default kernel button
   * Update gparted live to 1.8.0-2
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 29 Jan 2026 02:14:58 +0000
