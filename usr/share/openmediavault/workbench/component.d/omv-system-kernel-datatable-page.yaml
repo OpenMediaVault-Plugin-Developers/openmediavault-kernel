@@ -75,6 +75,15 @@ data:
               boot_once: true
             task: false
       - type: iconButton
+        tooltip: _("Unset default kernel")
+        icon: mdi:restore
+        execute:
+          type: request
+          request:
+            service: Kernel
+            method: unsetKernel
+            task: false
+      - type: iconButton
         tooltip: _("Delete kernel")
         icon: mdi:delete
         enabledConstraints:

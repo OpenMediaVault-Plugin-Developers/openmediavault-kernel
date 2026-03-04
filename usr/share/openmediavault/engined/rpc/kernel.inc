@@ -30,6 +30,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('getArch');
 
         $this->registerMethod('setKernel');
+        $this->registerMethod('unsetKernel');
         $this->registerMethod('getKernelList');
         $this->registerMethod('deleteKernel');
 
@@ -103,6 +104,28 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             'kernel' => $match['kernel'],
             'boot_once' => $bootOnce
         ];
+    }
+
+    public function unsetKernel($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+
+        // Reset GRUB_DEFAULT to 0 so GRUB boots the first entry it finds.
+        $grubDefaultPath = '/etc/default/grub';
+        $content = file_get_contents($grubDefaultPath);
+        $new = preg_replace('/^GRUB_DEFAULT\s*=.*$/m', 'GRUB_DEFAULT=0', $content);
+        if ($new !== null && $new !== $content) {
+            file_put_contents($grubDefaultPath, $new);
+            $cmd = new \OMV\System\Process('update-grub');
+            $cmd->execute($output);
+        }
+
+        // Clear saved_entry and next_entry from grubenv.
+        $cmd = new \OMV\System\Process('grub-editenv', ['/boot/grub/grubenv', 'unset', 'saved_entry', 'next_entry']);
+        $cmd->execute($output);
+
+        return [];
     }
 
     private function getCurrentKernel()
