@@ -29,7 +29,9 @@ fi
 
 OMV_SOURCEFORGE_URL=${OMV_SOURCEFORGE_URL:-"https://sourceforge.net/projects"}
 GRUB_PATH="/etc/grub.d"
-ISO_PATH="/boot"
+
+subdir="${OMV_KERNEL_BOOT_ISO_SUBDIR#/}"
+ISO_PATH="/boot${subdir:+/${subdir%/}}"
 
 declare -A VERSIONS=(
   ["clonezilla"]="3.3.1-35"
@@ -212,6 +214,7 @@ case ${action} in
     ;;
 
   install)
+    mkdir -pv "${ISO_PATH}"
     install_iso "${distro}"
     ;;
 
