@@ -1,9 +1,16 @@
-openmediavault-kernel (8.0.7) UNRELEASED; urgency=medium
+openmediavault-kernel (8.0.8) stable; urgency=low
+
+  * Add OMV_KERNEL_BOOT_ISO_SUBDIR environment variable to allow
+    storing .iso files in a subdirectory
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 06 Mar 2026 17:05:04 +0000
+
+openmediavault-kernel (8.0.7) stable; urgency=low
 
   * Add unset default kernel button
   * Update gparted live to 1.8.0-2
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 29 Jan 2026 02:14:58 +0000
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 04 Mar 2026 17:38:23 +0000
 
 openmediavault-kernel (8.0.6) stable; urgency=low
 
