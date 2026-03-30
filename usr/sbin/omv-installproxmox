@@ -5,6 +5,8 @@
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+export DEBIAN_FRONTEND=noninteractive
+
 declare -i kernnum=0
 
 distro="$(lsb_release --codename --short)"
@@ -54,21 +56,20 @@ chmod 644 ${pverepo} ${pvekey}
 apt-get update
 
 # remove conflicting firmware packages
-for pkg in linux-free amd-graphics ath9k-htc cavium siano netronome; do
-  if dpkg -l firmware-${pkg} > /dev/null; then
-    if ! dpkg --purge firmware-${pkg} 2>/dev/null; then
-      echo "Failed to remove firmware-${pkg} package.  Exiting..."
-      exit 3
-    fi
-  fi
-done
+apt-get --yes purge firmware-linux-free firmware-amd-graphics \
+                    firmware-ath9k-htc firmware-cavium \
+                    firmware-siano firmware-netronome
+if [ $? -gt 0 ]; then
+  echo "Failed to remove firmware packages.  Exiting..."
+  exit 3
+fi
 
 # create dkms dir and set no-autoinstall
 mkdir -p /etc/dkms
 touch /etc/dkms/no-autoinstall
 
 # install kernel and headers
-DEBIAN_FRONTEND=noninteractive apt-get --yes --fix-missing install proxmox-kernel-${kernelversion} proxmox-headers-${kernelversion}
+apt-get --yes --fix-missing install proxmox-kernel-${kernelversion} proxmox-headers-${kernelversion}
 if [ $? -gt 0 ]; then
   echo "Failed to install Proxmox kernel.  Exiting..."
   rm -f /etc/dkms/no-autoinstall
