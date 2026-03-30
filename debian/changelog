@@ -1,3 +1,10 @@
+openmediavault-kernel (8.0.9) stable; urgency=low
+
+  * Update to systemrescue 13.00
+  * Fix uninstall of proxmox kernel conflicts
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 30 Mar 2026 23:18:13 +0000
+
 openmediavault-kernel (8.0.8) stable; urgency=low
 
   * Add OMV_KERNEL_BOOT_ISO_SUBDIR environment variable to allow
