@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 17:10+0000\n"
+"POT-Creation-Date: 2026-03-04 12:33+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024\n"
 "Language-Team: Hungarian (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/hu/)\n"
@@ -102,30 +102,6 @@ msgstr "Név"
 msgid "Proxmox"
 msgstr "Proxmox"
 
-msgid "Reboot to Clonezilla once"
-msgstr "Egyszeri újraindítás Clonezilla-val"
-
-msgid "Reboot to Clonezilla once ..."
-msgstr "Egyszeri újraindítás Clonezilla-val…"
-
-msgid "Reboot to Finnix once"
-msgstr "Egyszeri újraindítás Finnix-el"
-
-msgid "Reboot to Finnix once ..."
-msgstr "Egyszeri újraindítás Finnix-el…"
-
-msgid "Reboot to GParted Live once"
-msgstr "Egyszeri újraindítás GParted Live-val"
-
-msgid "Reboot to GParted Live once ..."
-msgstr "Egyszeri újraindítás GParted Live-val…"
-
-msgid "Reboot to SystemRescue once"
-msgstr "Egyszeri újraindítás SystemRescue-val"
-
-msgid "Reboot to SystemRescue once ..."
-msgstr "Egyszeri újraindítás SystemRescue-val…"
-
 msgid "Remove Clonezilla"
 msgstr "Clonezilla eltávolítása"
 
@@ -170,6 +146,9 @@ msgstr "Boot beállítása"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"
+
+msgid "Unset default kernel"
+msgstr ""
 
 msgid "memtest86+"
 msgstr ""

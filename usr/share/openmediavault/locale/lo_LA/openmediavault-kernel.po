@@ -3,13 +3,17 @@
 # This file is distributed under the same license as the openmediavault-kernel package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# bounkirdni_2025, 2026
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 17:10+0000\n"
+"POT-Creation-Date: 2026-03-04 12:33+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
+"Last-Translator: bounkirdni_2025, 2026\n"
 "Language-Team: Lao (Laos) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/lo_LA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,157 +22,136 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Are you sure you want to remove?"
-msgstr ""
+msgstr "ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບອອກ?"
 
 msgid "Boot once"
-msgstr ""
+msgstr "ບູດເທື່ອດຽວ"
 
 msgid "Clonezilla"
-msgstr ""
+msgstr "Clonezilla"
 
 msgid "Default"
-msgstr ""
+msgstr "ຄ່າເລີ່ມຕົ້ນ"
 
 msgid "Delete kernel"
-msgstr ""
+msgstr "ລຶບ Kernel"
 
 msgid "Delete kernel ..."
-msgstr ""
+msgstr "ກຳລັງລຶບ Kernel ..."
 
 msgid "Docs"
-msgstr ""
+msgstr "ເອກະສານ"
 
 msgid "Entry ID"
-msgstr ""
+msgstr "ລະຫັດລາຍການ"
 
 msgid "Finnix"
-msgstr ""
+msgstr "Finnix"
 
 msgid "GParted Live"
-msgstr ""
+msgstr "GParted Live"
 
 msgid "Install Clonezilla"
-msgstr ""
+msgstr "ຕິດຕັ້ງ Clonezilla"
 
 msgid "Install Finnix"
-msgstr ""
+msgstr "ຕິດຕັ້ງ Finnix"
 
 msgid "Install GParted Live"
-msgstr ""
+msgstr "ຕິດຕັ້ງ GParted Live"
 
 msgid "Install Proxmox kernel 6.14"
-msgstr ""
+msgstr "ຕິດຕັ້ງ Proxmox kernel 6.14"
 
 msgid "Install Proxmox kernel 6.17"
-msgstr ""
+msgstr "ຕິດຕັ້ງ Proxmox kernel 6.17"
 
 msgid "Install SystemRescue"
-msgstr ""
+msgstr "ຕິດຕັ້ງ SystemRescue"
 
 msgid "Install memtest86+"
-msgstr ""
+msgstr "ຕິດຕັ້ງ memtest86+"
 
 msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr ""
+msgstr "ກຳລັງຕິດຕັ້ງ 6.14 Proxmox kernel ..."
 
 msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr ""
+msgstr "ກຳລັງຕິດຕັ້ງ 6.17 Proxmox kernel ..."
 
 msgid "Installing Clonezilla ..."
-msgstr ""
+msgstr "ກຳລັງຕິດຕັ້ງ Clonezilla ..."
 
 msgid "Installing Finnix ..."
-msgstr ""
+msgstr "ກຳລັງຕິດຕັ້ງ Finnix ..."
 
 msgid "Installing GParted Live ..."
-msgstr ""
+msgstr "ກຳລັງຕິດຕັ້ງ GParted Live ..."
 
 msgid "Installing SystemRescue ..."
-msgstr ""
+msgstr "ກຳລັງຕິດຕັ້ງ SystemRescue ..."
 
 msgid "Installing memtest86+ ..."
-msgstr ""
+msgstr "ກຳລັງຕິດຕັ້ງ memtest86+ ..."
 
 msgid "Kernel"
-msgstr ""
+msgstr "Kernel"
 
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
 msgid "Proxmox"
-msgstr ""
-
-msgid "Reboot to Clonezilla once"
-msgstr ""
-
-msgid "Reboot to Clonezilla once ..."
-msgstr ""
-
-msgid "Reboot to Finnix once"
-msgstr ""
-
-msgid "Reboot to Finnix once ..."
-msgstr ""
-
-msgid "Reboot to GParted Live once"
-msgstr ""
-
-msgid "Reboot to GParted Live once ..."
-msgstr ""
-
-msgid "Reboot to SystemRescue once"
-msgstr ""
-
-msgid "Reboot to SystemRescue once ..."
-msgstr ""
+msgstr "Proxmox"
 
 msgid "Remove Clonezilla"
-msgstr ""
+msgstr "ລຶບ Clonezilla ອອກ"
 
 msgid "Remove Clonezilla ..."
-msgstr ""
+msgstr "ກຳລັງລຶບ Clonezilla ອອກ ..."
 
 msgid "Remove Finnix"
-msgstr ""
+msgstr "ລຶບ Finnix ອອກ"
 
 msgid "Remove Finnix ..."
-msgstr ""
+msgstr "ກຳລັງລຶບ Finnix ອອກ ..."
 
 msgid "Remove GParted Live"
-msgstr ""
+msgstr "ລຶບ GParted Live ອອກ"
 
 msgid "Remove GParted Live ..."
-msgstr ""
+msgstr "ກຳລັງລຶບ GParted Live ອອກ ..."
 
 msgid "Remove SystemRescue"
-msgstr ""
+msgstr "ລຶບ SystemRescue ອອກ"
 
 msgid "Remove SystemRescue ..."
-msgstr ""
+msgstr "ກຳລັງລຶບ SystemRescue ອອກ ..."
 
 msgid "Remove memtest86+"
-msgstr ""
+msgstr "ລຶບ memtest86+ ອອກ"
 
 msgid "Remove non-Proxmox kernels"
-msgstr ""
+msgstr "ລຶບ Kernel ທີ່ບໍ່ແມ່ນຂອງ Proxmox ອອກ"
 
 msgid "Removeable"
-msgstr ""
+msgstr "ສາມາດຖອດອອກໄດ້"
 
 msgid "Removing memtest86+ ..."
-msgstr ""
+msgstr "ກຳລັງລຶບ memtest86+ ອອກ ..."
 
 msgid "Removing non-Proxmox kernels and headers  ..."
-msgstr ""
+msgstr "ກຳລັງລຶບ Kernel ແລະ Header ທີ່ບໍ່ແມ່ນຂອງ Proxmox ອອກ ..."
 
 msgid "Set boot"
-msgstr ""
+msgstr "ຕັ້ງຄ່າການບູດ"
 
 msgid "SystemRescue"
-msgstr ""
+msgstr "SystemRescue"
+
+msgid "Unset default kernel"
+msgstr "ຍົກເລີກການຕັ້ງຄ່າ Kernel ເລີ່ມຕົ້ນ"
 
 msgid "memtest86+"
-msgstr ""
+msgstr "memtest86+"
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "ວິກິ omv-extras"

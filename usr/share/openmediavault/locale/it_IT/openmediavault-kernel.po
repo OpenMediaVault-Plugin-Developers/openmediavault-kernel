@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 17:10+0000\n"
+"POT-Creation-Date: 2026-03-04 12:33+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Giovanni Scafora <scafora.giovanni@gmail.com>, 2025\n"
 "Language-Team: Italian (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/it/)\n"
@@ -102,30 +102,6 @@ msgstr "Nome"
 msgid "Proxmox"
 msgstr "Proxmox"
 
-msgid "Reboot to Clonezilla once"
-msgstr "Riavvia in Clonezilla una sola volta"
-
-msgid "Reboot to Clonezilla once ..."
-msgstr "Riavvia in Clonezilla una sola volta…"
-
-msgid "Reboot to Finnix once"
-msgstr "Riavvia in Finnix una sola volta"
-
-msgid "Reboot to Finnix once ..."
-msgstr "Sto riavviando in Finnix una sola volta..."
-
-msgid "Reboot to GParted Live once"
-msgstr "Riavvia in GParted Live una sola volta"
-
-msgid "Reboot to GParted Live once ..."
-msgstr "Sto riavviando in GParted Live una sola volta..."
-
-msgid "Reboot to SystemRescue once"
-msgstr "Riavvia in SystemRescue una sola volta"
-
-msgid "Reboot to SystemRescue once ..."
-msgstr "Sto riavviando in SystemRescue una sola volta..."
-
 msgid "Remove Clonezilla"
 msgstr "Rimuovi Clonezilla"
 
@@ -170,6 +146,9 @@ msgstr "Imposta l'avvio"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"
+
+msgid "Unset default kernel"
+msgstr ""
 
 msgid "memtest86+"
 msgstr "memtest86+"

@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2024
+# kochin <kochinc@outlook.com>, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 17:10+0000\n"
+"POT-Creation-Date: 2026-03-04 12:33+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>, 2024\n"
+"Last-Translator: kochin <kochinc@outlook.com>, 2026\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgid "Are you sure you want to remove?"
 msgstr "您確定要移除？"
 
 msgid "Boot once"
-msgstr ""
+msgstr "啟動一次"
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
@@ -43,7 +43,7 @@ msgid "Docs"
 msgstr "說明文件"
 
 msgid "Entry ID"
-msgstr ""
+msgstr "項目 ID"
 
 msgid "Finnix"
 msgstr "Finnix"
@@ -61,22 +61,22 @@ msgid "Install GParted Live"
 msgstr "安裝 GParted Live"
 
 msgid "Install Proxmox kernel 6.14"
-msgstr ""
+msgstr "安裝 Proxmox kernel 6.14"
 
 msgid "Install Proxmox kernel 6.17"
-msgstr ""
+msgstr "安裝 Proxmox kernel 6.17"
 
 msgid "Install SystemRescue"
 msgstr "安裝 SystemRescue"
 
 msgid "Install memtest86+"
-msgstr ""
+msgstr "安裝 memtest86+"
 
 msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr ""
+msgstr "安裝 6.14 Proxmox kernel 中 ..."
 
 msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr ""
+msgstr "安裝 6.17 Proxmox kernel 中 ..."
 
 msgid "Installing Clonezilla ..."
 msgstr "安裝 Clonezilla 中 ..."
@@ -91,7 +91,7 @@ msgid "Installing SystemRescue ..."
 msgstr "安裝 SystemRescue 中 ..."
 
 msgid "Installing memtest86+ ..."
-msgstr ""
+msgstr "安裝 memtest86+ 中 ..."
 
 msgid "Kernel"
 msgstr "核心"
@@ -101,30 +101,6 @@ msgstr "名稱"
 
 msgid "Proxmox"
 msgstr "Proxmox"
-
-msgid "Reboot to Clonezilla once"
-msgstr "重新啟動到 Clonezilla 一次"
-
-msgid "Reboot to Clonezilla once ..."
-msgstr "重新啟動到 Clonezilla 一次 ..."
-
-msgid "Reboot to Finnix once"
-msgstr "重新啟動到 Finnix 一次"
-
-msgid "Reboot to Finnix once ..."
-msgstr "重新啟動到 Finnix 一次 ..."
-
-msgid "Reboot to GParted Live once"
-msgstr "重新啟動到 GParted Live 一次"
-
-msgid "Reboot to GParted Live once ..."
-msgstr "重新啟動到 GParted Live 一次 ..."
-
-msgid "Reboot to SystemRescue once"
-msgstr "重新啟動到 SystemRescue 一次"
-
-msgid "Reboot to SystemRescue once ..."
-msgstr "重新啟動到 SystemRescue 一次 ..."
 
 msgid "Remove Clonezilla"
 msgstr "移除 Clonezilla"
@@ -151,7 +127,7 @@ msgid "Remove SystemRescue ..."
 msgstr "移除 SystemRescue ..."
 
 msgid "Remove memtest86+"
-msgstr ""
+msgstr "移除 memtest86+"
 
 msgid "Remove non-Proxmox kernels"
 msgstr "移除 非Proxmox 核心"
@@ -160,7 +136,7 @@ msgid "Removeable"
 msgstr "可移除"
 
 msgid "Removing memtest86+ ..."
-msgstr ""
+msgstr "移除 memtest86+ 中 ..."
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "移除 非Proxmox 核心及標頭檔案"
@@ -171,8 +147,11 @@ msgstr "設定為啟動"
 msgid "SystemRescue"
 msgstr "SystemRescue"
 
+msgid "Unset default kernel"
+msgstr "不設定預設核心"
+
 msgid "memtest86+"
-msgstr ""
+msgstr "memtest86+"
 
 msgid "omv-extras wiki"
 msgstr "omv-extras 維基"

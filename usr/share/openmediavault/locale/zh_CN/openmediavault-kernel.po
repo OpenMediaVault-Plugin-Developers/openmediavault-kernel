@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 17:10+0000\n"
+"POT-Creation-Date: 2026-03-04 12:33+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: songming <by@songming.me>, 2025\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/zh_CN/)\n"
@@ -102,30 +102,6 @@ msgstr "名称"
 msgid "Proxmox"
 msgstr "Proxmox"
 
-msgid "Reboot to Clonezilla once"
-msgstr "重启到 Clonezilla 一次"
-
-msgid "Reboot to Clonezilla once ..."
-msgstr "重启到 Clonezilla 一次..."
-
-msgid "Reboot to Finnix once"
-msgstr "重启到 Finnix 一次"
-
-msgid "Reboot to Finnix once ..."
-msgstr "重启到 Finnix 一次..."
-
-msgid "Reboot to GParted Live once"
-msgstr "重启到 GParted Live 一次"
-
-msgid "Reboot to GParted Live once ..."
-msgstr "重启到 GParted Live 一次..."
-
-msgid "Reboot to SystemRescue once"
-msgstr "重启到 SystemRescue 一次"
-
-msgid "Reboot to SystemRescue once ..."
-msgstr "重启到 SystemRescue 一次..."
-
 msgid "Remove Clonezilla"
 msgstr "删除 Clonezilla"
 
@@ -170,6 +146,9 @@ msgstr "设置启动项"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"
+
+msgid "Unset default kernel"
+msgstr ""
 
 msgid "memtest86+"
 msgstr "memtest86+"
