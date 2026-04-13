@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-04 12:33+0000\n"
+"POT-Creation-Date: 2026-04-13 16:27+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -144,6 +144,12 @@ msgid "SystemRescue"
 msgstr ""
 
 msgid "Unset default kernel"
+msgstr ""
+
+msgid "Update GRUB"
+msgstr ""
+
+msgid "Updating GRUB ..."
 msgstr ""
 
 msgid "memtest86+"
