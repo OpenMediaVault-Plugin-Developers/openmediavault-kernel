@@ -37,6 +37,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('doCommand');
         $this->registerMethod('doProxmox');
         $this->registerMethod('doMemtest');
+        $this->registerMethod('doUpdateGrub');
     }
 
     public function getArch($params, $context)
@@ -81,14 +82,12 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         if (!preg_match('/^GRUB_DEFAULT=/m', $content)) {
             $content .= PHP_EOL . 'GRUB_DEFAULT=saved' . PHP_EOL;
             file_put_contents($grubDefaultPath, $content);
-            $cmd = new \OMV\System\Process('update-grub');
-            $cmd->execute($output);
+            $this->runUpdateGrub();
         } elseif (!preg_match('/^GRUB_DEFAULT\s*=\s*saved\s*$/m', $content)) {
             $new = preg_replace('/^GRUB_DEFAULT\s*=.*$/m', 'GRUB_DEFAULT=saved', $content);
             if ($new !== null && $new !== $content) {
                 file_put_contents($grubDefaultPath, $new);
-               $cmd = new \OMV\System\Process('update-grub');
-               $cmd->execute($output);
+                $this->runUpdateGrub();
             }
         }
 
@@ -117,8 +116,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $new = preg_replace('/^GRUB_DEFAULT\s*=.*$/m', 'GRUB_DEFAULT=0', $content);
         if ($new !== null && $new !== $content) {
             file_put_contents($grubDefaultPath, $new);
-            $cmd = new \OMV\System\Process('update-grub');
-            $cmd->execute($output);
+            $this->runUpdateGrub();
         }
 
         // Clear saved_entry and next_entry from grubenv.
@@ -126,6 +124,19 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $cmd->execute($output);
 
         return [];
+    }
+
+    private function runUpdateGrub($bgOutputFilename = null)
+    {
+        $cmd = new \OMV\System\Process('update-grub');
+        if ($bgOutputFilename === null) {
+            $cmd->execute($output);
+        } else {
+            $cmd->setRedirect2to1();
+            $cmdLine = $cmd->getCommandLine();
+            if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                throw new \OMV\ExecException($cmdLine, $output);
+        }
     }
 
     private function getCurrentKernel()
@@ -232,12 +243,18 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
     private function getGrubEnvValue($key)
     {
         $output = [];
-        $cmdArgs = [];
-        $cmdArgs[] = 'list';
-        $cmdArgs[] = sprintf('| awk -F \'=\' \'$1 == "%s" { print $2 }\'', $key);
-        $cmd = new \OMV\System\Process('grub-editenv', $cmdArgs);
-        $cmd->execute($output);
-        return isset($output[0]) ? trim($output[0]) : null;
+        try {
+            $cmd = new \OMV\System\Process('grub-editenv', ['list']);
+            $cmd->execute($output);
+        } catch (\Exception $e) {
+            return null;
+        }
+        foreach ($output as $line) {
+            if (preg_match('/^' . preg_quote($key, '/') . '=(.*)$/', $line, $m)) {
+                return trim($m[1]);
+            }
+        }
+        return null;
     }
 
     public function deleteKernel($params, $context)
@@ -246,28 +263,52 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
         // Check if the package database is locked.
         \OMV\System\Apt::assertNotLocked();
-        // Create the background process.
         return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
           use ($params) {
-            $kernel = explode(' ', $params['name']);
-            // Upgrade the given packages.
-            $cmdArgs = [];
-            $cmdArgs[] = "dpkg -l |";
-            $cmdArgs[] = sprintf("grep %s", $kernel[4]);
-            $cmdArgs[] = "| cut -d' ' -f3";
-            $cmdArgs[] = "| grep -E 'proxmox-kernel|pve-kernel|linux-image'";
-            $cmdArgs[] = "| awk '{print; if ($0 ~ /^proxmox-kernel-/) { if ($0 ~ /-signed$/) { sub(/-signed$/, \"\", $0); print } else { print $0 \"-signed\" } }}'";
-            $cmdArgs[] = "| sort -u";
-            $cmdArgs[] = "| xargs";
-            $cmdArgs[] = "apt-get";
-            $cmdArgs[] = "--yes";
-            $cmdArgs[] = "purge";
-            $cmd = new \OMV\System\Process($cmdArgs);
+            // Prefer the pre-extracted 'key' (kernel version), fall back to parsing 'name'.
+            $kver = !empty($params['key']) ? trim($params['key']) : '';
+            if (empty($kver)) {
+                $parts = explode(' ', $params['name']);
+                $kver = isset($parts[4]) ? trim($parts[4]) : '';
+            }
+            if (empty($kver)) {
+                throw new \OMV\Exception("Could not determine kernel version from: %s", $params['name']);
+            }
+
+            // Get all installed packages and filter in PHP — avoids shell expansion
+            // issues with format strings and glob patterns containing '+' characters.
+            $allPkgs = [];
+            $cmd = new \OMV\System\Process('dpkg', ['--get-selections']);
+            $cmd->execute($allPkgs);
+
+            $packages = [];
+            foreach ($allPkgs as $line) {
+                $parts = preg_split('/\s+/', trim($line), 2);
+                $pkg = trim($parts[0] ?? '');
+                $status = trim($parts[1] ?? '');
+                if (empty($pkg) || $status !== 'install') continue;
+                if (!preg_match('/^(linux-image|proxmox-kernel|pve-kernel)/', $pkg)) continue;
+                if (strpos($pkg, $kver) === false) continue;
+                $packages[] = $pkg;
+            }
+            $packages = array_unique($packages);
+
+            if (empty($packages)) {
+                throw new \OMV\Exception("No installed packages found for kernel version: %s", $kver);
+            }
+
+            // Purge the packages.
+            $cmdArgs = array_merge(['--yes', 'purge'], $packages);
+            $cmd = new \OMV\System\Process('apt-get', $cmdArgs);
             $cmd->setRedirect2to1();
             $cmd->setEnv("DEBIAN_FRONTEND", "noninteractive");
             if (0 !== ($exitStatus = $this->exec($cmd->getCommandLine(), $output, $bgOutputFilename))) {
                 throw new \OMV\ExecException($cmd->getCommandLine(), $output, $exitStatus);
             }
+
+            // Regenerate grub config so removed kernels no longer appear in the menu.
+            $this->runUpdateGrub($bgOutputFilename);
+
             return $output;
         });
     }
@@ -340,5 +381,16 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 return $output;
             }
         );
+    }
+
+    public function doUpdateGrub($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename) {
+            $this->runUpdateGrub($bgOutputFilename);
+            return [];
+        });
     }
 }

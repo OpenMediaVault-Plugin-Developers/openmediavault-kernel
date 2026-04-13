@@ -104,6 +104,22 @@ data:
                 method: deleteKernel
                 params:
                   name: "{{ _selected[0].name }}"
+                  key: "{{ _selected[0].key }}"
+              buttons:
+                stop:
+                  hidden: true
+      - type: iconButton
+        tooltip: _("Update GRUB")
+        icon: mdi:refresh
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Updating GRUB ...")
+              startOnInit: true
+              request:
+                service: Kernel
+                method: doUpdateGrub
               buttons:
                 stop:
                   hidden: true
