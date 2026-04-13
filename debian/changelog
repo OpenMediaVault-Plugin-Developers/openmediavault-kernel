@@ -1,3 +1,10 @@
+openmediavault-kernel (8.0.10) stable; urgency=low
+
+  * Improve kernel delete
+  * Add button to run update-grub
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 13 Apr 2026 16:25:14 +0000
+
 openmediavault-kernel (8.0.9) stable; urgency=low
 
   * Update to systemrescue 13.00
