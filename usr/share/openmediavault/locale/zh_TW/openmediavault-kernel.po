@@ -151,10 +151,10 @@ msgid "Unset default kernel"
 msgstr "不設定預設核心"
 
 msgid "Update GRUB"
-msgstr ""
+msgstr "更新 GRUB"
 
 msgid "Updating GRUB ..."
-msgstr ""
+msgstr "更新 GRUB 中 ..."
 
 msgid "memtest86+"
 msgstr "memtest86+"

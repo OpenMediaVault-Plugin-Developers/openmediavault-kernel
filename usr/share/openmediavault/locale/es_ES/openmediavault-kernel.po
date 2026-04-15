@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Raul Fernandez Garcia <raulfg3@gmail.com>, 2024
-# Chente OMV, 2026
+# Jorge Giménez, 2026
 # 
 #, fuzzy
 msgid ""
@@ -14,31 +14,31 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-13 16:27+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
-"Last-Translator: Chente OMV, 2026\n"
-"Language-Team: Spanish (Spain) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es_ES/)\n"
+"Last-Translator: Jorge Giménez, 2026\n"
+"Language-Team: Spanish (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es_ES\n"
+"Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Are you sure you want to remove?"
 msgstr "¿Esta seguro de que desea borrarlo?"
 
 msgid "Boot once"
-msgstr "Arrancar una vez"
+msgstr "Arranca una sola vez"
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
 
 msgid "Default"
-msgstr "Por fedecto"
+msgstr "Por defecto"
 
 msgid "Delete kernel"
-msgstr "Eliminar Kernel"
+msgstr "Borrar Kernel"
 
 msgid "Delete kernel ..."
-msgstr "Eliminando Kernel ..."
+msgstr "Borrando Kernel ..."
 
 msgid "Docs"
 msgstr "Docs"
@@ -62,22 +62,22 @@ msgid "Install GParted Live"
 msgstr "Instalar GParted Live"
 
 msgid "Install Proxmox kernel 6.14"
-msgstr "Instalar kernel Proxmox 6.14"
+msgstr ""
 
 msgid "Install Proxmox kernel 6.17"
-msgstr "Instalar kernel Proxmox 6.17"
+msgstr ""
 
 msgid "Install SystemRescue"
 msgstr "Instalar SystemRescue"
 
 msgid "Install memtest86+"
-msgstr "Instalando memtest86+ ..."
+msgstr ""
 
 msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr "Instalando kernel Proxmox 6.14 ..."
+msgstr ""
 
 msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr "Instalando kernel Proxmox 6.17 ..."
+msgstr ""
 
 msgid "Installing Clonezilla ..."
 msgstr "Instalando Clonezilla ..."
@@ -92,7 +92,7 @@ msgid "Installing SystemRescue ..."
 msgstr "Instalando SystemRescue ..."
 
 msgid "Installing memtest86+ ..."
-msgstr "Instalando memtest86+ ..."
+msgstr ""
 
 msgid "Kernel"
 msgstr "Kernel"
@@ -128,22 +128,22 @@ msgid "Remove SystemRescue ..."
 msgstr "Eliminando SystemRescue ..."
 
 msgid "Remove memtest86+"
-msgstr "Eliminar memtest86+"
+msgstr ""
 
 msgid "Remove non-Proxmox kernels"
-msgstr "Eliminar Kernels no Proxmox "
+msgstr "Eliminar Kernel que no sean Proxmox "
 
 msgid "Removeable"
 msgstr "Eliminables"
 
 msgid "Removing memtest86+ ..."
-msgstr "Eliminando memtest86+ ..."
+msgstr ""
 
 msgid "Removing non-Proxmox kernels and headers  ..."
-msgstr "Eliminando los kernels no-Proxmox y las cabeceras ..."
+msgstr "Eliminando los kernel no-Proxmox y las cabeceras ..."
 
 msgid "Set boot"
-msgstr "Establecer como arranque"
+msgstr "Marcar como boot"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"
@@ -158,7 +158,7 @@ msgid "Updating GRUB ..."
 msgstr ""
 
 msgid "memtest86+"
-msgstr "memtest86+"
+msgstr ""
 
 msgid "omv-extras wiki"
 msgstr "omv-extras wiki"
