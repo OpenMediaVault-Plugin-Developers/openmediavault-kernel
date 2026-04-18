@@ -1,3 +1,10 @@
+openmediavault-kernel (8.0.11) stable; urgency=low
+
+  * Remove linux-base and linux-headers packages if installed
+  * Add --autoremove flag to kernel delete
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 18 Apr 2026 18:23:32 +0000
+
 openmediavault-kernel (8.0.10) stable; urgency=low
 
   * Improve kernel delete
