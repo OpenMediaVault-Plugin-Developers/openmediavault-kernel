@@ -287,7 +287,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 $pkg = trim($parts[0] ?? '');
                 $status = trim($parts[1] ?? '');
                 if (empty($pkg) || $status !== 'install') continue;
-                if (!preg_match('/^(linux-image|proxmox-kernel|pve-kernel)/', $pkg)) continue;
+                if (!preg_match('/^(linux-image|linux-headers|linux-base|proxmox-kernel|pve-kernel)/', $pkg)) continue;
                 if (strpos($pkg, $kver) === false) continue;
                 $packages[] = $pkg;
             }
@@ -298,7 +298,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             }
 
             // Purge the packages.
-            $cmdArgs = array_merge(['--yes', 'purge'], $packages);
+            $cmdArgs = array_merge(['--yes', '--autoremove', 'purge'], $packages);
             $cmd = new \OMV\System\Process('apt-get', $cmdArgs);
             $cmd->setRedirect2to1();
             $cmd->setEnv("DEBIAN_FRONTEND", "noninteractive");
