@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # remove other kernels and headers
-dpkg -l | grep -E "linux-image|linux-headers" | cut -d" " -f3 | xargs dpkg --purge
+packages=$(dpkg -l | grep -E "linux-image|linux-headers|linux-base" | cut -d" " -f3)
+if [ -n "${packages}" ]; then
+    DEBIAN_FRONTEND=noninteractive apt-get --yes --autoremove purge ${packages}
+fi
 
 sed -i "s/GRUB_DEFAULT=.*/GRUB_DEFAULT=0/" /etc/default/grub
 grub-set-default 0
