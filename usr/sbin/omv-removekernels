@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # remove other kernels and headers
-packages=$(dpkg -l | grep -E "linux-image|linux-headers|linux-base" | cut -d" " -f3)
+packages=$(dpkg -l | grep -E "linux-image|linux-headers|linux-base-" | cut -d" " -f3)
 if [ -n "${packages}" ]; then
     DEBIAN_FRONTEND=noninteractive apt-get --yes --autoremove purge ${packages}
 fi
