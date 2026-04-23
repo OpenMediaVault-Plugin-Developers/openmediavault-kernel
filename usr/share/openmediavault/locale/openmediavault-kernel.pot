@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-13 16:27+0000\n"
+"POT-Creation-Date: 2026-04-23 23:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,9 @@ msgstr ""
 msgid "GParted Live"
 msgstr ""
 
+msgid "Install"
+msgstr ""
+
 msgid "Install Clonezilla"
 msgstr ""
 
@@ -56,22 +59,16 @@ msgstr ""
 msgid "Install GParted Live"
 msgstr ""
 
-msgid "Install Proxmox kernel 6.14"
+msgid "Install Proxmox Kernel"
 msgstr ""
 
-msgid "Install Proxmox kernel 6.17"
+msgid "Install Proxmox kernel"
 msgstr ""
 
 msgid "Install SystemRescue"
 msgstr ""
 
 msgid "Install memtest86+"
-msgstr ""
-
-msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr ""
-
-msgid "Installing 6.17 Proxmox kernel  ..."
 msgstr ""
 
 msgid "Installing Clonezilla ..."
@@ -83,6 +80,9 @@ msgstr ""
 msgid "Installing GParted Live ..."
 msgstr ""
 
+msgid "Installing Proxmox kernel ..."
+msgstr ""
+
 msgid "Installing SystemRescue ..."
 msgstr ""
 
@@ -90,6 +90,9 @@ msgid "Installing memtest86+ ..."
 msgstr ""
 
 msgid "Kernel"
+msgstr ""
+
+msgid "Kernel Version"
 msgstr ""
 
 msgid "Name"

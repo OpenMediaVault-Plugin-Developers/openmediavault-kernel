@@ -127,40 +127,42 @@ data:
         icon: mdi:archive-arrow-down-outline
         tooltip: _("Proxmox")
         actions:
-          - text: _("Install Proxmox kernel 6.14")
+          - text: _("Install Proxmox kernel")
             icon: mdi:plus-circle-outline
             execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing 6.14 Proxmox kernel  ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doProxmox
-                    params:
-                      command: "install"
-                      version: "6.14"
-                  buttons:
-                    stop:
-                      hidden: true
-          - text: _("Install Proxmox kernel 6.17")
-            icon: mdi:plus-circle-outline
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing 6.17 Proxmox kernel  ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doProxmox
-                    params:
-                      command: "install"
-                      version: "6.17"
-                  buttons:
-                    stop:
-                      hidden: true
+              type: formDialog
+              formDialog:
+                title: _("Install Proxmox Kernel")
+                fields:
+                  - type: select
+                    name: version
+                    label: _("Kernel Version")
+                    value: ""
+                    store:
+                      data:
+                        - ["6.14", "6.14"]
+                        - ["6.17", "6.17"]
+                        - ["7.0", "7.0"]
+                    validators:
+                      required: true
+                buttons:
+                  submit:
+                    text: _("Install")
+                    execute:
+                      type: taskDialog
+                      taskDialog:
+                        config:
+                          title: _("Installing Proxmox kernel ...")
+                          startOnInit: true
+                          request:
+                            service: Kernel
+                            method: doProxmox
+                            params:
+                              command: "install"
+                              version: "{{ version }}"
+                          buttons:
+                            stop:
+                              hidden: true
           - text: _("Remove non-Proxmox kernels")
             icon: mdi:close-circle-outline
             execute:
