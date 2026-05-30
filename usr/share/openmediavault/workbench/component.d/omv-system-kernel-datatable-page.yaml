@@ -180,6 +180,42 @@ data:
                     stop:
                       hidden: true
       - type: menu
+        icon: mdi:debian
+        tooltip: _("Debian")
+        actions:
+          - text: _("Install Debian kernel")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing Debian kernel ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doDebian
+                    params:
+                      package: "linux-image-amd64"
+                  buttons:
+                    stop:
+                      hidden: true
+          - text: _("Install Debian kernel headers")
+            icon: mdi:plus-circle-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Installing Debian kernel headers ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doDebian
+                    params:
+                      package: "linux-headers-amd64"
+                  buttons:
+                    stop:
+                      hidden: true
+      - type: menu
         icon: mdi:content-copy
         tooltip: _("Clonezilla")
         actions:

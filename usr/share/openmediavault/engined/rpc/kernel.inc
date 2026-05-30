@@ -37,6 +37,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('doCommand');
         $this->registerMethod('doProxmox');
         $this->registerMethod('doMemtest');
+        $this->registerMethod('doDebian');
         $this->registerMethod('doUpdateGrub');
     }
 
@@ -110,20 +111,28 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
 
+        $this->unsetDefaultKernel();
+
+        return [];
+    }
+
+    // Reset the GRUB default so it boots the first menu entry (typically the
+    // newest installed kernel) and clear any saved/boot-once selection. Shared
+    // by the unset RPC and the kernel install paths.
+    private function unsetDefaultKernel($bgOutputFilename = null)
+    {
         // Reset GRUB_DEFAULT to 0 so GRUB boots the first entry it finds.
         $grubDefaultPath = '/etc/default/grub';
         $content = file_get_contents($grubDefaultPath);
         $new = preg_replace('/^GRUB_DEFAULT\s*=.*$/m', 'GRUB_DEFAULT=0', $content);
         if ($new !== null && $new !== $content) {
             file_put_contents($grubDefaultPath, $new);
-            $this->runUpdateGrub();
+            $this->runUpdateGrub($bgOutputFilename);
         }
 
         // Clear saved_entry and next_entry from grubenv.
         $cmd = new \OMV\System\Process('grub-editenv', ['/boot/grub/grubenv', 'unset', 'saved_entry', 'next_entry']);
         $cmd->execute($output);
-
-        return [];
     }
 
     private function runUpdateGrub($bgOutputFilename = null)
@@ -348,6 +357,10 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 if ($params['command'] == 'remove') {
                     $cmdBin = 'omv-removekernels';
                 } else {
+                    // Clear any previous default/boot-once selection first; the
+                    // installer then pins the newly installed Proxmox kernel as
+                    // the default, so the pin survives.
+                    $this->unsetDefaultKernel($bgOutputFilename);
                     $cmdBin = 'omv-installproxmox';
                     $cmdArgs[] = $params['version'];
                 }
@@ -381,6 +394,34 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 return $output;
             }
         );
+    }
+
+    public function doDebian($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.kernel.dodebian');
+        // Check if the package database is locked.
+        \OMV\System\Apt::assertNotLocked();
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+            $package = $params['package'];
+            $cmd = new \OMV\System\Process('apt-get', [
+                '--yes', 'install', '--reinstall', $package
+            ]);
+            $cmd->setRedirect2to1();
+            $cmd->setEnv("DEBIAN_FRONTEND", "noninteractive");
+            if (0 !== ($exitStatus = $this->exec($cmd->getCommandLine(), $output, $bgOutputFilename))) {
+                throw new \OMV\ExecException($cmd->getCommandLine(), $output, $exitStatus);
+            }
+            if ($package === 'linux-image-amd64') {
+                $this->unsetDefaultKernel($bgOutputFilename);
+                $this->runUpdateGrub($bgOutputFilename);
+            }
+            return $output;
+        });
     }
 
     public function doUpdateGrub($params, $context)

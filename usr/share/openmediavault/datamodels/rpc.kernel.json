@@ -51,6 +51,23 @@
   },
   {
     "type": "rpc",
+    "id": "rpc.kernel.dodebian",
+    "params": {
+      "type": "object",
+      "properties": {
+        "package": {
+          "type": "string",
+          "enum": [
+            "linux-image-amd64",
+            "linux-headers-amd64"
+          ],
+          "required": true
+        }
+      }
+    }
+  },
+  {
+    "type": "rpc",
     "id": "rpc.kernel.domemtest",
     "params": {
       "type": "object",
