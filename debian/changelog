@@ -1,3 +1,10 @@
+openmediavault-kernel (8.0.14) stable; urgency=low
+
+  * Add Debian menu to install/reinstall the kernel meta package (linux-image-amd64)
+    and install kernel headers (linux-headers-amd64)
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 30 May 2026 12:44:31 +0000
+
 openmediavault-kernel (8.0.13) stable; urgency=low
 
   * Add Proxmox 7.0 kernel install option
