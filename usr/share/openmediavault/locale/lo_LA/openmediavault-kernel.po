@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# bounkirdni_2025, 2026
+# BoneNI, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-13 16:27+0000\n"
+"POT-Creation-Date: 2026-05-30 13:31+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
-"Last-Translator: bounkirdni_2025, 2026\n"
+"Last-Translator: BoneNI, 2026\n"
 "Language-Team: Lao (Laos) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/lo_LA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,6 +29,9 @@ msgstr "ບູດເທື່ອດຽວ"
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
+
+msgid "Debian"
+msgstr ""
 
 msgid "Default"
 msgstr "ຄ່າເລີ່ມຕົ້ນ"
@@ -51,8 +54,17 @@ msgstr "Finnix"
 msgid "GParted Live"
 msgstr "GParted Live"
 
+msgid "Install"
+msgstr ""
+
 msgid "Install Clonezilla"
 msgstr "ຕິດຕັ້ງ Clonezilla"
+
+msgid "Install Debian kernel"
+msgstr ""
+
+msgid "Install Debian kernel headers"
+msgstr ""
 
 msgid "Install Finnix"
 msgstr "ຕິດຕັ້ງ Finnix"
@@ -60,11 +72,11 @@ msgstr "ຕິດຕັ້ງ Finnix"
 msgid "Install GParted Live"
 msgstr "ຕິດຕັ້ງ GParted Live"
 
-msgid "Install Proxmox kernel 6.14"
-msgstr "ຕິດຕັ້ງ Proxmox kernel 6.14"
+msgid "Install Proxmox Kernel"
+msgstr ""
 
-msgid "Install Proxmox kernel 6.17"
-msgstr "ຕິດຕັ້ງ Proxmox kernel 6.17"
+msgid "Install Proxmox kernel"
+msgstr ""
 
 msgid "Install SystemRescue"
 msgstr "ຕິດຕັ້ງ SystemRescue"
@@ -72,20 +84,23 @@ msgstr "ຕິດຕັ້ງ SystemRescue"
 msgid "Install memtest86+"
 msgstr "ຕິດຕັ້ງ memtest86+"
 
-msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr "ກຳລັງຕິດຕັ້ງ 6.14 Proxmox kernel ..."
-
-msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr "ກຳລັງຕິດຕັ້ງ 6.17 Proxmox kernel ..."
-
 msgid "Installing Clonezilla ..."
 msgstr "ກຳລັງຕິດຕັ້ງ Clonezilla ..."
+
+msgid "Installing Debian kernel ..."
+msgstr ""
+
+msgid "Installing Debian kernel headers ..."
+msgstr ""
 
 msgid "Installing Finnix ..."
 msgstr "ກຳລັງຕິດຕັ້ງ Finnix ..."
 
 msgid "Installing GParted Live ..."
 msgstr "ກຳລັງຕິດຕັ້ງ GParted Live ..."
+
+msgid "Installing Proxmox kernel ..."
+msgstr ""
 
 msgid "Installing SystemRescue ..."
 msgstr "ກຳລັງຕິດຕັ້ງ SystemRescue ..."
@@ -95,6 +110,9 @@ msgstr "ກຳລັງຕິດຕັ້ງ memtest86+ ..."
 
 msgid "Kernel"
 msgstr "Kernel"
+
+msgid "Kernel Version"
+msgstr ""
 
 msgid "Name"
 msgstr "ຊື່"

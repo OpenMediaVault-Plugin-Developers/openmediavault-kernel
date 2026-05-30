@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-13 16:27+0000\n"
+"POT-Creation-Date: 2026-05-30 13:31+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Language-Team: Spanish (Colombia) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es_CO/)\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,9 @@ msgid "Boot once"
 msgstr ""
 
 msgid "Clonezilla"
+msgstr ""
+
+msgid "Debian"
 msgstr ""
 
 msgid "Default"
@@ -47,7 +50,16 @@ msgstr ""
 msgid "GParted Live"
 msgstr ""
 
+msgid "Install"
+msgstr ""
+
 msgid "Install Clonezilla"
+msgstr ""
+
+msgid "Install Debian kernel"
+msgstr ""
+
+msgid "Install Debian kernel headers"
 msgstr ""
 
 msgid "Install Finnix"
@@ -56,10 +68,10 @@ msgstr ""
 msgid "Install GParted Live"
 msgstr ""
 
-msgid "Install Proxmox kernel 6.14"
+msgid "Install Proxmox Kernel"
 msgstr ""
 
-msgid "Install Proxmox kernel 6.17"
+msgid "Install Proxmox kernel"
 msgstr ""
 
 msgid "Install SystemRescue"
@@ -68,19 +80,22 @@ msgstr ""
 msgid "Install memtest86+"
 msgstr ""
 
-msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr ""
-
-msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr ""
-
 msgid "Installing Clonezilla ..."
+msgstr ""
+
+msgid "Installing Debian kernel ..."
+msgstr ""
+
+msgid "Installing Debian kernel headers ..."
 msgstr ""
 
 msgid "Installing Finnix ..."
 msgstr ""
 
 msgid "Installing GParted Live ..."
+msgstr ""
+
+msgid "Installing Proxmox kernel ..."
 msgstr ""
 
 msgid "Installing SystemRescue ..."
@@ -90,6 +105,9 @@ msgid "Installing memtest86+ ..."
 msgstr ""
 
 msgid "Kernel"
+msgstr ""
+
+msgid "Kernel Version"
 msgstr ""
 
 msgid "Name"

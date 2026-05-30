@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-23 23:01+0000\n"
+"POT-Creation-Date: 2026-05-30 13:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,9 @@ msgid "Boot once"
 msgstr ""
 
 msgid "Clonezilla"
+msgstr ""
+
+msgid "Debian"
 msgstr ""
 
 msgid "Default"
@@ -53,6 +56,12 @@ msgstr ""
 msgid "Install Clonezilla"
 msgstr ""
 
+msgid "Install Debian kernel"
+msgstr ""
+
+msgid "Install Debian kernel headers"
+msgstr ""
+
 msgid "Install Finnix"
 msgstr ""
 
@@ -72,6 +81,12 @@ msgid "Install memtest86+"
 msgstr ""
 
 msgid "Installing Clonezilla ..."
+msgstr ""
+
+msgid "Installing Debian kernel ..."
+msgstr ""
+
+msgid "Installing Debian kernel headers ..."
 msgstr ""
 
 msgid "Installing Finnix ..."

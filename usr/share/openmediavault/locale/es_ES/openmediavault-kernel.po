@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-13 16:27+0000\n"
+"POT-Creation-Date: 2026-05-30 13:31+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Chente OMV, 2026\n"
 "Language-Team: Spanish (Spain) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es_ES/)\n"
@@ -30,6 +30,9 @@ msgstr "Arrancar una vez"
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
+
+msgid "Debian"
+msgstr ""
 
 msgid "Default"
 msgstr "Por fedecto"
@@ -52,8 +55,17 @@ msgstr "Finnix"
 msgid "GParted Live"
 msgstr "GParted Live"
 
+msgid "Install"
+msgstr ""
+
 msgid "Install Clonezilla"
 msgstr "Instalar Clonezilla"
+
+msgid "Install Debian kernel"
+msgstr ""
+
+msgid "Install Debian kernel headers"
+msgstr ""
 
 msgid "Install Finnix"
 msgstr "Instalar Finnix"
@@ -61,11 +73,11 @@ msgstr "Instalar Finnix"
 msgid "Install GParted Live"
 msgstr "Instalar GParted Live"
 
-msgid "Install Proxmox kernel 6.14"
-msgstr "Instalar kernel Proxmox 6.14"
+msgid "Install Proxmox Kernel"
+msgstr ""
 
-msgid "Install Proxmox kernel 6.17"
-msgstr "Instalar kernel Proxmox 6.17"
+msgid "Install Proxmox kernel"
+msgstr ""
 
 msgid "Install SystemRescue"
 msgstr "Instalar SystemRescue"
@@ -73,20 +85,23 @@ msgstr "Instalar SystemRescue"
 msgid "Install memtest86+"
 msgstr "Instalando memtest86+ ..."
 
-msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr "Instalando kernel Proxmox 6.14 ..."
-
-msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr "Instalando kernel Proxmox 6.17 ..."
-
 msgid "Installing Clonezilla ..."
 msgstr "Instalando Clonezilla ..."
+
+msgid "Installing Debian kernel ..."
+msgstr ""
+
+msgid "Installing Debian kernel headers ..."
+msgstr ""
 
 msgid "Installing Finnix ..."
 msgstr "Instalando  Finnix ..."
 
 msgid "Installing GParted Live ..."
 msgstr "Instalando GParted Live ..."
+
+msgid "Installing Proxmox kernel ..."
+msgstr ""
 
 msgid "Installing SystemRescue ..."
 msgstr "Instalando SystemRescue ..."
@@ -96,6 +111,9 @@ msgstr "Instalando memtest86+ ..."
 
 msgid "Kernel"
 msgstr "Kernel"
+
+msgid "Kernel Version"
+msgstr ""
 
 msgid "Name"
 msgstr "Nombre"

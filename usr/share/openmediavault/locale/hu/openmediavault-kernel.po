@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-13 16:27+0000\n"
+"POT-Creation-Date: 2026-05-30 13:31+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024\n"
 "Language-Team: Hungarian (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/hu/)\n"
@@ -29,6 +29,9 @@ msgstr ""
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
+
+msgid "Debian"
+msgstr ""
 
 msgid "Default"
 msgstr "Alapértelmezett"
@@ -51,8 +54,17 @@ msgstr "Finnix"
 msgid "GParted Live"
 msgstr "GParted Live"
 
+msgid "Install"
+msgstr ""
+
 msgid "Install Clonezilla"
 msgstr "Clonezilla telepítése"
+
+msgid "Install Debian kernel"
+msgstr ""
+
+msgid "Install Debian kernel headers"
+msgstr ""
 
 msgid "Install Finnix"
 msgstr "Finnix telepítése"
@@ -60,10 +72,10 @@ msgstr "Finnix telepítése"
 msgid "Install GParted Live"
 msgstr "GParted Live telepítése"
 
-msgid "Install Proxmox kernel 6.14"
+msgid "Install Proxmox Kernel"
 msgstr ""
 
-msgid "Install Proxmox kernel 6.17"
+msgid "Install Proxmox kernel"
 msgstr ""
 
 msgid "Install SystemRescue"
@@ -72,20 +84,23 @@ msgstr "SystemRescue telepítése"
 msgid "Install memtest86+"
 msgstr ""
 
-msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr ""
-
-msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr ""
-
 msgid "Installing Clonezilla ..."
 msgstr "Clonezilla telepítése folyamatban…"
+
+msgid "Installing Debian kernel ..."
+msgstr ""
+
+msgid "Installing Debian kernel headers ..."
+msgstr ""
 
 msgid "Installing Finnix ..."
 msgstr "Finnix telepítése folyamatban…"
 
 msgid "Installing GParted Live ..."
 msgstr "GParted Live telepítése folyamatban…"
+
+msgid "Installing Proxmox kernel ..."
+msgstr ""
 
 msgid "Installing SystemRescue ..."
 msgstr "SystemRescue telepítése folyamatban…"
@@ -95,6 +110,9 @@ msgstr ""
 
 msgid "Kernel"
 msgstr "Kernel"
+
+msgid "Kernel Version"
+msgstr ""
 
 msgid "Name"
 msgstr "Név"

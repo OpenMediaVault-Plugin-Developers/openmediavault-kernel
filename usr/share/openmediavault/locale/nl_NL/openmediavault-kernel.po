@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-13 16:27+0000\n"
+"POT-Creation-Date: 2026-05-30 13:31+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/nl/)\n"
@@ -29,6 +29,9 @@ msgstr "Eén keer opstarten"
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
+
+msgid "Debian"
+msgstr ""
 
 msgid "Default"
 msgstr "Standaard"
@@ -51,8 +54,17 @@ msgstr "Finnix"
 msgid "GParted Live"
 msgstr "GParted Live"
 
+msgid "Install"
+msgstr "Installeren"
+
 msgid "Install Clonezilla"
 msgstr "Clonezilla installeren"
+
+msgid "Install Debian kernel"
+msgstr ""
+
+msgid "Install Debian kernel headers"
+msgstr ""
 
 msgid "Install Finnix"
 msgstr "Finnix installeren"
@@ -60,11 +72,11 @@ msgstr "Finnix installeren"
 msgid "Install GParted Live"
 msgstr "GParted Live installeren"
 
-msgid "Install Proxmox kernel 6.14"
-msgstr "Proxmox kernel 6.14 installeren"
+msgid "Install Proxmox Kernel"
+msgstr "Proxmox Kernel installeren"
 
-msgid "Install Proxmox kernel 6.17"
-msgstr "Proxmox kernel 6.17 installeren"
+msgid "Install Proxmox kernel"
+msgstr "Proxmox kernel installeren"
 
 msgid "Install SystemRescue"
 msgstr "SystemRescue installeren"
@@ -72,20 +84,23 @@ msgstr "SystemRescue installeren"
 msgid "Install memtest86+"
 msgstr "memtest86+ installeren"
 
-msgid "Installing 6.14 Proxmox kernel  ..."
-msgstr "Proxmox kernel 6.14 installeren…"
-
-msgid "Installing 6.17 Proxmox kernel  ..."
-msgstr "Proxmox kernel 6.17 installeren…"
-
 msgid "Installing Clonezilla ..."
 msgstr "Clonezilla installeren..."
+
+msgid "Installing Debian kernel ..."
+msgstr ""
+
+msgid "Installing Debian kernel headers ..."
+msgstr ""
 
 msgid "Installing Finnix ..."
 msgstr "Finnix installeren..."
 
 msgid "Installing GParted Live ..."
 msgstr "GParted Live installeren..."
+
+msgid "Installing Proxmox kernel ..."
+msgstr "Proxmox kernel installeren…"
 
 msgid "Installing SystemRescue ..."
 msgstr "SystemRescue installeren..."
@@ -95,6 +110,9 @@ msgstr "memtest86+ installeren…"
 
 msgid "Kernel"
 msgstr "Kernel"
+
+msgid "Kernel Version"
+msgstr "Kernel-versie"
 
 msgid "Name"
 msgstr "Naam"
