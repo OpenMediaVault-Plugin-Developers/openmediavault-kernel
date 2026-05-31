@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-30 13:31+0000\n"
+"POT-Creation-Date: 2026-05-31 00:58+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/nl/)\n"
@@ -31,7 +31,7 @@ msgid "Clonezilla"
 msgstr "Clonezilla"
 
 msgid "Debian"
-msgstr ""
+msgstr "Debian"
 
 msgid "Default"
 msgstr "Standaard"
@@ -61,10 +61,10 @@ msgid "Install Clonezilla"
 msgstr "Clonezilla installeren"
 
 msgid "Install Debian kernel"
-msgstr ""
+msgstr "Debian kernel installeren"
 
 msgid "Install Debian kernel headers"
-msgstr ""
+msgstr "Debian kernel-headers installeren"
 
 msgid "Install Finnix"
 msgstr "Finnix installeren"
@@ -88,10 +88,10 @@ msgid "Installing Clonezilla ..."
 msgstr "Clonezilla installeren..."
 
 msgid "Installing Debian kernel ..."
-msgstr ""
+msgstr "Debian kernel installeren…"
 
 msgid "Installing Debian kernel headers ..."
-msgstr ""
+msgstr "Debian kernel-headers installeren…"
 
 msgid "Installing Finnix ..."
 msgstr "Finnix installeren..."
