@@ -123,6 +123,69 @@ data:
               buttons:
                 stop:
                   hidden: true
+      - type: iconButton
+        tooltip: _("Write ISO to drive")
+        icon: mdi:usb-flash-drive-outline
+        execute:
+          type: formDialog
+          formDialog:
+            title: _("Write ISO to drive")
+            fields:
+              - type: select
+                name: iso
+                label: _("ISO")
+                placeholder: _("Select an ISO ...")
+                valueField: path
+                textField: name
+                store:
+                  proxy:
+                    service: Kernel
+                    get:
+                      method: getIsoList
+                  sorters:
+                    - dir: asc
+                      prop: name
+                validators:
+                  required: true
+              - type: select
+                name: device
+                label: _("Device")
+                placeholder: _("Select a device ...")
+                valueField: devicefile
+                textField: description
+                hint: _("Only unused drives are listed. All data on the selected drive will be erased.")
+                store:
+                  proxy:
+                    service: FileSystemMgmt
+                    get:
+                      method: getCandidatesBg
+                      task: true
+                  sorters:
+                    - dir: asc
+                      prop: devicefile
+                validators:
+                  required: true
+            buttons:
+              submit:
+                text: _("Write")
+                confirmationDialogConfig:
+                  template: confirmation-danger
+                  message: _("This will ERASE all data on the selected drive and write the ISO to it. Are you sure you want to continue?")
+                execute:
+                  type: taskDialog
+                  taskDialog:
+                    config:
+                      title: _("Writing ISO to drive ...")
+                      startOnInit: true
+                      request:
+                        service: Kernel
+                        method: writeIso
+                        params:
+                          iso: "{{ iso }}"
+                          device: "{{ device }}"
+                      buttons:
+                        stop:
+                          hidden: true
       - type: menu
         icon: mdi:archive-arrow-down-outline
         tooltip: _("Proxmox")

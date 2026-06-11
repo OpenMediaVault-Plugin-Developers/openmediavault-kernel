@@ -1,0 +1,140 @@
+#!/bin/bash
+
+# shellcheck disable=SC1091,SC2086,SC2181
+
+# @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
+# @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+# @copyright Copyright (c) 2013-2026 openmediavault plugin developers
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# Write an ISO image to a removable block device (e.g. a USB stick).
+#
+# Usage: omv-writeiso <iso_file> <device>
+#   <iso_file>  Absolute path to a *.iso file.
+#   <device>    Whole-disk block device, e.g. /dev/sdb.
+
+. /etc/default/openmediavault
+
+iso_file="$1"
+device="$2"
+
+if [ -z "${iso_file}" ] || [ -z "${device}" ]; then
+  echo "Usage: omv-writeiso <iso_file> <device>"
+  exit 1
+fi
+
+# --- Validate the ISO ------------------------------------------------------
+if [ ! -f "${iso_file}" ]; then
+  echo "ISO file '${iso_file}' does not exist. Exiting ..."
+  exit 2
+fi
+case "${iso_file,,}" in
+  *.iso) ;;
+  *)
+    echo "Source file '${iso_file}' is not an .iso file. Exiting ..."
+    exit 2
+    ;;
+esac
+
+# --- Validate the target device --------------------------------------------
+if [ ! -b "${device}" ]; then
+  echo "Target '${device}' is not a block device. Exiting ..."
+  exit 3
+fi
+
+name="$(basename "${device}")"
+
+# Must be a whole disk, not a partition.
+dtype="$(lsblk -dno TYPE "${device}" 2>/dev/null)"
+if [ "${dtype}" != "disk" ]; then
+  echo "Target '${device}' is not a whole disk (type=${dtype}). Exiting ..."
+  exit 3
+fi
+
+# Note whether this is a removable/USB device (informational only). The
+# device list shown in the UI comes from the core "unused disk" finder, which
+# may include non-removable empty disks, so this is not a hard requirement.
+rm_flag="$(lsblk -dno RM "${device}" 2>/dev/null | tr -d '[:space:]')"
+hotplug="$(lsblk -dno HOTPLUG "${device}" 2>/dev/null | tr -d '[:space:]')"
+tran="$(lsblk -dno TRAN "${device}" 2>/dev/null | tr -d '[:space:]')"
+if [ "${rm_flag}" != "1" ] && [ "${hotplug}" != "1" ] && [ "${tran}" != "usb" ]; then
+  echo "Warning: '${device}' does not look removable/USB; proceeding anyway."
+fi
+
+# Never write to a disk that hosts a critical mount point (/, /boot) or swap.
+# This is the hard safety backstop, re-checked here so the UI can never trick
+# the backend into overwriting the running system.
+protected_disks() {
+  local src disk mp
+  # Filesystems for / and /boot.
+  for mp in / /boot /boot/efi; do
+    src="$(findmnt -no SOURCE --target "${mp}" 2>/dev/null)"
+    [ -n "${src}" ] || continue
+    disk="$(lsblk -no PKNAME "${src}" 2>/dev/null | head -1)"
+    [ -n "${disk}" ] && echo "${disk}"
+    # If src is itself a whole disk (no parent), use its own name.
+    [ -z "${disk}" ] && lsblk -dno NAME "${src}" 2>/dev/null
+  done
+  # Active swap devices.
+  while read -r sdev _; do
+    case "${sdev}" in
+      /dev/*)
+        disk="$(lsblk -no PKNAME "${sdev}" 2>/dev/null | head -1)"
+        [ -n "${disk}" ] && echo "${disk}"
+        ;;
+    esac
+  done < <(tail -n +2 /proc/swaps 2>/dev/null)
+}
+
+for pd in $(protected_disks | sort -u); do
+  if [ "${pd}" = "${name}" ]; then
+    echo "Refusing to write: '${device}' hosts the system or swap. Exiting ..."
+    exit 5
+  fi
+done
+
+# --- Unmount any mounted partitions on the target --------------------------
+echo "Unmounting any mounted partitions on ${device} ..."
+while read -r part mountpoint; do
+  [ -n "${mountpoint}" ] || continue
+  echo "  umount ${mountpoint} (/dev/${part})"
+  umount "/dev/${part}" 2>/dev/null || umount -l "/dev/${part}" 2>/dev/null
+done < <(lsblk -lno NAME,MOUNTPOINT "${device}" 2>/dev/null | awk 'NF==2')
+
+# --- Write -----------------------------------------------------------------
+size="$(stat -c %s "${iso_file}" 2>/dev/null)"
+echo "Writing '${iso_file}' (${size:-?} bytes) to ${device} ..."
+echo "This will ERASE all data on ${device}."
+
+dd if="${iso_file}" of="${device}" bs=4M conv=fsync oflag=direct status=progress
+rc=$?
+if [ ${rc} -ne 0 ]; then
+  # Retry once without oflag=direct in case the device rejects it.
+  echo "Direct write failed (rc=${rc}); retrying without O_DIRECT ..."
+  dd if="${iso_file}" of="${device}" bs=4M conv=fsync status=progress
+  rc=$?
+fi
+if [ ${rc} -ne 0 ]; then
+  echo "Write failed (rc=${rc}). Exiting ..."
+  exit 6
+fi
+
+echo "Flushing buffers ..."
+sync
+blockdev --flushbufs "${device}" 2>/dev/null
+partprobe "${device}" 2>/dev/null
+
+echo "Done. '${iso_file}' written to ${device}."
+exit 0

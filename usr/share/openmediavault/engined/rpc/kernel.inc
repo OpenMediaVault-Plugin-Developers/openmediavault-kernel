@@ -39,6 +39,9 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('doMemtest');
         $this->registerMethod('doDebian');
         $this->registerMethod('doUpdateGrub');
+
+        $this->registerMethod('getIsoList');
+        $this->registerMethod('writeIso');
     }
 
     public function getArch($params, $context)
@@ -433,5 +436,52 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             $this->runUpdateGrub($bgOutputFilename);
             return [];
         });
+    }
+
+    public function getIsoList($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+
+        $isos = [];
+        $output = [];
+        try {
+            $cmd = new \OMV\System\Process('find', ['/boot', '-maxdepth', '3',
+                '-type', 'f', '-iname', '*.iso']);
+            $cmd->execute($output);
+        } catch (\Exception $e) {
+            $output = [];
+        }
+        foreach ($output as $path) {
+            $path = trim($path);
+            if ($path === '' || !is_file($path)) {
+                continue;
+            }
+            $isos[] = [
+                'path' => $path,
+                'name' => basename($path)
+            ];
+        }
+        return $isos;
+    }
+
+    public function writeIso($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.kernel.dowriteiso');
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmd = new \OMV\System\Process('omv-writeiso',
+                    [$params['iso'], $params['device']]);
+                $cmd->setRedirect2to1();
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                return $output;
+            }
+        );
     }
 }

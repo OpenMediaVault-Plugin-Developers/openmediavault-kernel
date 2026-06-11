@@ -82,5 +82,23 @@
         }
       }
     }
+  },
+  {
+    "type": "rpc",
+    "id": "rpc.kernel.dowriteiso",
+    "params": {
+      "type": "object",
+      "properties": {
+        "iso": {
+          "type": "string",
+          "required": true
+        },
+        "device": {
+          "type": "string",
+          "pattern": "^/dev/[A-Za-z0-9/_-]+$",
+          "required": true
+        }
+      }
+    }
   }
 ]
