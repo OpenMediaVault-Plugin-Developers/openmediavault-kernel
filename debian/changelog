@@ -1,8 +1,9 @@
 openmediavault-kernel (8.0.15) stable; urgency=low
 
   * Add option to write a downloaded ISO to a drive
+  * Update to systemrescue 13.01
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 11 Jun 2026 00:00:00 +0000
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 12 Jun 2026 11:03:39 +0000
 
 openmediavault-kernel (8.0.14) stable; urgency=low
 
