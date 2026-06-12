@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-31 00:58+0000\n"
+"POT-Creation-Date: 2026-06-12 11:04+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/nl/)\n"
@@ -42,6 +42,9 @@ msgstr "Kernel verwijderen"
 msgid "Delete kernel ..."
 msgstr "Kernel verwijderen…"
 
+msgid "Device"
+msgstr ""
+
 msgid "Docs"
 msgstr "Docs"
 
@@ -53,6 +56,9 @@ msgstr "Finnix"
 
 msgid "GParted Live"
 msgstr "GParted Live"
+
+msgid "ISO"
+msgstr ""
 
 msgid "Install"
 msgstr "Installeren"
@@ -117,6 +123,11 @@ msgstr "Kernel-versie"
 msgid "Name"
 msgstr "Naam"
 
+msgid ""
+"Only unused drives are listed. All data on the selected drive will be "
+"erased."
+msgstr ""
+
 msgid "Proxmox"
 msgstr "Proxmox"
 
@@ -159,11 +170,22 @@ msgstr "memtest86+ verwijderen…"
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "Non-Proxmox kernels en headers verwijderen…"
 
+msgid "Select a device ..."
+msgstr ""
+
+msgid "Select an ISO ..."
+msgstr ""
+
 msgid "Set boot"
 msgstr "Boot instellen"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"
+
+msgid ""
+"This will ERASE all data on the selected drive and write the ISO to it. Are "
+"you sure you want to continue?"
+msgstr ""
 
 msgid "Unset default kernel"
 msgstr "Standaardkernel uitschakelen"
@@ -173,6 +195,15 @@ msgstr "GRUB bijwerken"
 
 msgid "Updating GRUB ..."
 msgstr "GRUB bijwerken…"
+
+msgid "Write"
+msgstr ""
+
+msgid "Write ISO to drive"
+msgstr ""
+
+msgid "Writing ISO to drive ..."
+msgstr ""
 
 msgid "memtest86+"
 msgstr "memtest86+"

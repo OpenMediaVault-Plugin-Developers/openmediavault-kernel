@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-30 13:31+0000\n"
+"POT-Creation-Date: 2026-06-12 11:04+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: songming <by@songming.me>, 2026\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/zh_CN/)\n"
@@ -42,6 +42,9 @@ msgstr "删除内核"
 msgid "Delete kernel ..."
 msgstr "删除内核中 ..."
 
+msgid "Device"
+msgstr ""
+
 msgid "Docs"
 msgstr "Docs"
 
@@ -53,6 +56,9 @@ msgstr "Finnix"
 
 msgid "GParted Live"
 msgstr "GParted Live"
+
+msgid "ISO"
+msgstr ""
 
 msgid "Install"
 msgstr "安装"
@@ -117,6 +123,11 @@ msgstr "内核版本"
 msgid "Name"
 msgstr "名称"
 
+msgid ""
+"Only unused drives are listed. All data on the selected drive will be "
+"erased."
+msgstr ""
+
 msgid "Proxmox"
 msgstr "Proxmox"
 
@@ -159,11 +170,22 @@ msgstr "删除 memtest86+ 中 ..."
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "删除 non-Proxmox kernels and headers 中..."
 
+msgid "Select a device ..."
+msgstr ""
+
+msgid "Select an ISO ..."
+msgstr ""
+
 msgid "Set boot"
 msgstr "设置启动项"
 
 msgid "SystemRescue"
 msgstr "SystemRescue"
+
+msgid ""
+"This will ERASE all data on the selected drive and write the ISO to it. Are "
+"you sure you want to continue?"
+msgstr ""
 
 msgid "Unset default kernel"
 msgstr "不设定默认内核"
@@ -173,6 +195,15 @@ msgstr "更新 GRUB"
 
 msgid "Updating GRUB ..."
 msgstr "更新 GRUB 中 ..."
+
+msgid "Write"
+msgstr ""
+
+msgid "Write ISO to drive"
+msgstr ""
+
+msgid "Writing ISO to drive ..."
+msgstr ""
 
 msgid "memtest86+"
 msgstr "memtest86+"
