@@ -95,7 +95,6 @@
         },
         "device": {
           "type": "string",
-          "pattern": "^/dev/[A-Za-z0-9/_-]+$",
           "required": true
         }
       }
