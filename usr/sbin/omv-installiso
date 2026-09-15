@@ -106,6 +106,7 @@ install_iso() {
   local checksum=${CHECKSUMS[$iso]}
   local grub_file=${GRUB_FILES[$iso]}
   local grub_name=${GRUB_NAMES[$iso]}
+  local grub_isofile="${iso_file}"
 
   checkDNS
 
@@ -143,7 +144,8 @@ EOF
   fi
 
   # isofile and loopback lines
-  echo "  set isofile='${iso_file}'" >> ${grub_file}
+  grub_isofile="$(grub-mkrelpath "${iso_file}")"
+  echo "  set isofile='${grub_isofile}'" >> ${grub_file}
   echo '  loopback loop "$isofile"' >> ${grub_file}
 
   # linux line
