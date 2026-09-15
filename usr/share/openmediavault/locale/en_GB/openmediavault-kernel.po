@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 11:04+0000\n"
+"POT-Creation-Date: 2026-06-13 14:26+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2026\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/en_GB/)\n"
@@ -31,7 +31,7 @@ msgid "Clonezilla"
 msgstr "Clonezilla"
 
 msgid "Debian"
-msgstr ""
+msgstr "Debian"
 
 msgid "Default"
 msgstr "Default"
@@ -43,7 +43,7 @@ msgid "Delete kernel ..."
 msgstr "Delete kernel ..."
 
 msgid "Device"
-msgstr ""
+msgstr "Device"
 
 msgid "Docs"
 msgstr "Docs"
@@ -58,19 +58,19 @@ msgid "GParted Live"
 msgstr "GParted Live"
 
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 msgid "Install"
-msgstr ""
+msgstr "Install"
 
 msgid "Install Clonezilla"
 msgstr "Install Clonezilla"
 
 msgid "Install Debian kernel"
-msgstr ""
+msgstr "Install Debian kernel"
 
 msgid "Install Debian kernel headers"
-msgstr ""
+msgstr "Install Debian kernel headers"
 
 msgid "Install Finnix"
 msgstr "Install Finnix"
@@ -79,10 +79,10 @@ msgid "Install GParted Live"
 msgstr "Install GParted Live"
 
 msgid "Install Proxmox Kernel"
-msgstr ""
+msgstr "Install Proxmox Kernel"
 
 msgid "Install Proxmox kernel"
-msgstr ""
+msgstr "Install Proxmox kernel"
 
 msgid "Install SystemRescue"
 msgstr "Install SystemRescue"
@@ -94,10 +94,10 @@ msgid "Installing Clonezilla ..."
 msgstr "Installing Clonezilla ..."
 
 msgid "Installing Debian kernel ..."
-msgstr ""
+msgstr "Installing Debian kernel ..."
 
 msgid "Installing Debian kernel headers ..."
-msgstr ""
+msgstr "Installing Debian kernel headers ..."
 
 msgid "Installing Finnix ..."
 msgstr "Installing Finnix ..."
@@ -106,7 +106,7 @@ msgid "Installing GParted Live ..."
 msgstr "Installing GParted Live ..."
 
 msgid "Installing Proxmox kernel ..."
-msgstr ""
+msgstr "Installing Proxmox kernel ..."
 
 msgid "Installing SystemRescue ..."
 msgstr "Installing SystemRescue ..."
@@ -118,7 +118,7 @@ msgid "Kernel"
 msgstr "Kernel"
 
 msgid "Kernel Version"
-msgstr ""
+msgstr "Kernel Version"
 
 msgid "Name"
 msgstr "Name"
@@ -127,6 +127,8 @@ msgid ""
 "Only unused drives are listed. All data on the selected drive will be "
 "erased."
 msgstr ""
+"Only unused drives are listed. All data on the selected drive will be "
+"erased."
 
 msgid "Proxmox"
 msgstr "Proxmox"
@@ -171,10 +173,10 @@ msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "Removing non-Proxmox kernels and headers  ..."
 
 msgid "Select a device ..."
-msgstr ""
+msgstr "Select a device ..."
 
 msgid "Select an ISO ..."
-msgstr ""
+msgstr "Select an ISO ..."
 
 msgid "Set boot"
 msgstr "Set boot"
@@ -186,6 +188,8 @@ msgid ""
 "This will ERASE all data on the selected drive and write the ISO to it. Are "
 "you sure you want to continue?"
 msgstr ""
+"This will ERASE all data on the selected drive and write the ISO to it. Are "
+"you sure you want to continue?"
 
 msgid "Unset default kernel"
 msgstr "Unset default kernel"
@@ -197,13 +201,13 @@ msgid "Updating GRUB ..."
 msgstr "Updating GRUB ..."
 
 msgid "Write"
-msgstr ""
+msgstr "Write"
 
 msgid "Write ISO to drive"
-msgstr ""
+msgstr "Write ISO to drive"
 
 msgid "Writing ISO to drive ..."
-msgstr ""
+msgstr "Writing ISO to drive ..."
 
 msgid "memtest86+"
 msgstr "memtest86+"
