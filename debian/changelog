@@ -1,3 +1,9 @@
+openmediavault-kernel (8.0.17) stable; urgency=low
+
+  * Add support for btrfs root subvolume
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 15 Sep 2026 20:58:46 +0000
+
 openmediavault-kernel (8.0.16) stable; urgency=low
 
   * Update clonezilla to 3.3.3-15
