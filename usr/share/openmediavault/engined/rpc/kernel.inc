@@ -36,6 +36,8 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('getKernelList');
         $this->registerMethod('deleteKernel');
 
+        $this->registerMethod('getToolInstallList');
+        $this->registerMethod('getToolRemoveList');
         $this->registerMethod('doCommand');
         $this->registerMethod('doProxmox');
         $this->registerMethod('doMemtest');
@@ -512,20 +514,107 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         });
     }
 
+    // Boot tools: the ISOs handled by omv-installiso plus memtest86+.
+    private function getTools()
+    {
+        $tools = [];
+        $output = [];
+        try {
+            $cmd = new \OMV\System\Process('/usr/sbin/omv-installiso', ['status']);
+            $cmd->execute($output);
+        } catch (\Exception $e) {
+            $output = [];
+        }
+        foreach ($output as $line) {
+            $parts = explode("\t", trim($line));
+            if (count($parts) !== 4) {
+                continue;
+            }
+            $tools[] = [
+                'id' => $parts[0],
+                'name' => $parts[1],
+                'installed' => ($parts[2] === '1'),
+                'current' => ($parts[3] === '1')
+            ];
+        }
+
+        $output = [];
+        try {
+            $cmd = new \OMV\System\Process('dpkg-query', ['-W',
+                '--showformat=${db:Status-Status}\t${Version}', 'memtest86+']);
+            $cmd->setQuiet(true);
+            $cmd->execute($output);
+        } catch (\Exception $e) {
+            $output = [];
+        }
+        $parts = explode("\t", trim($output[0] ?? ''));
+        $installed = ($parts[0] === 'installed');
+        $tools[] = [
+            'id' => 'memtest',
+            'name' => $installed ? sprintf('memtest86+ %s', $parts[1] ?? '') : 'memtest86+',
+            'installed' => $installed,
+            'current' => $installed
+        ];
+        return $tools;
+    }
+
+    public function getToolInstallList($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+
+        $list = [];
+        foreach ($this->getTools() as $tool) {
+            $name = $tool['name'];
+            if ($tool['installed']) {
+                $name = sprintf('%s (%s)', $name, $tool['current'] ?
+                    gettext('installed') : gettext('update available'));
+            }
+            $list[] = ['id' => $tool['id'], 'name' => $name];
+        }
+        return $list;
+    }
+
+    public function getToolRemoveList($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+
+        $list = [];
+        foreach ($this->getTools() as $tool) {
+            if ($tool['installed']) {
+                $list[] = ['id' => $tool['id'], 'name' => $tool['name']];
+            }
+        }
+        return $list;
+    }
+
     public function doCommand($params, $context)
     {
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, 'rpc.kernel.docommand');
+        if ($params['distro'] === 'memtest') {
+            // Check if the package database is locked.
+            \OMV\System\Apt::assertNotLocked();
+        }
         // Create the background process.
         return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
             use ($params) {
-                $cmdParams = [];
-                $cmdParams[] = '/usr/sbin/omv-installiso';
-                $cmdParams[] = $params['action'];
-                $cmdParams[] = $params['distro'];
-                $cmd = new \OMV\System\Process($cmdParams);
+                if ($params['distro'] === 'memtest') {
+                    $cmd = new \OMV\System\Process('apt-get', ['--yes',
+                        ($params['action'] === 'remove') ? 'purge' : 'install',
+                        'memtest86+']);
+                    $cmd->setRedirect2to1();
+                    $cmd->setEnv('DEBIAN_FRONTEND', 'noninteractive');
+                } else {
+                    $cmdParams = [];
+                    $cmdParams[] = '/usr/sbin/omv-installiso';
+                    $cmdParams[] = $params['action'];
+                    $cmdParams[] = $params['distro'];
+                    $cmd = new \OMV\System\Process($cmdParams);
+                }
                 $cmdLine = $cmd->getCommandLine();
                 if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
                     throw new \OMV\ExecException($cmdLine, $output);

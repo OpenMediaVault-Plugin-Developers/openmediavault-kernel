@@ -52,84 +52,98 @@ data:
         sortable: true
         cellTemplateName: checkIcon
     actions:
-      - type: iconButton
-        tooltip: _("Set boot")
-        icon: mdi:update
-        enabledConstraints:
-          minSelected: 1
-          maxSelected: 1
-        execute:
-          type: request
-          request:
-            service: Kernel
-            method: setKernel
-            params:
-              key: "{{ _selected[0].name }}"
-              boot_once: false
-            task: false
-      - type: iconButton
-        tooltip: _("Set boot family")
-        icon: mdi:family-tree
-        execute:
-          type: formDialog
-          formDialog:
-            title: _("Set boot family")
-            fields:
-              - type: select
-                name: family
-                label: _("Family")
-                placeholder: _("Select a family ...")
-                valueField: id
-                textField: name
-                hint: _("Boots the newest installed kernel of the selected family, including after kernel updates. A specific version falls back to the newest kernel of the same distribution when none of that version are installed. Replaces any kernel set with 'Set boot'.")
-                store:
-                  proxy:
-                    service: Kernel
-                    get:
-                      method: getFamilyList
-                validators:
-                  required: true
-            buttons:
-              submit:
-                text: _("Set")
-                execute:
-                  type: taskDialog
-                  taskDialog:
-                    config:
-                      title: _("Setting boot family ...")
-                      startOnInit: true
-                      request:
+      - type: menu
+        icon: mdi:power
+        tooltip: _("Boot")
+        actions:
+          - text: _("Set boot")
+            icon: mdi:update
+            enabledConstraints:
+              minSelected: 1
+              maxSelected: 1
+            execute:
+              type: request
+              request:
+                service: Kernel
+                method: setKernel
+                params:
+                  key: "{{ _selected[0].name }}"
+                  boot_once: false
+                task: false
+          - text: _("Set boot family")
+            icon: mdi:family-tree
+            execute:
+              type: formDialog
+              formDialog:
+                title: _("Set boot family")
+                fields:
+                  - type: select
+                    name: family
+                    label: _("Family")
+                    placeholder: _("Select a family ...")
+                    valueField: id
+                    textField: name
+                    hint: _("Boots the newest installed kernel of the selected family, including after kernel updates. A specific version falls back to the newest kernel of the same distribution when none of that version are installed. Replaces any kernel set with 'Set boot'.")
+                    store:
+                      proxy:
                         service: Kernel
-                        method: setFamily
-                        params:
-                          family: "{{ family }}"
-                      buttons:
-                        stop:
-                          hidden: true
-      - type: iconButton
-        tooltip: _("Boot once")
-        icon: mdi:numeric-1-circle-outline
-        enabledConstraints:
-          minSelected: 1
-          maxSelected: 1
-        execute:
-          type: request
-          request:
-            service: Kernel
-            method: setKernel
-            params:
-              key: "{{ _selected[0].name }}"
-              boot_once: true
-            task: false
-      - type: iconButton
-        tooltip: _("Unset default kernel")
-        icon: mdi:restore
-        execute:
-          type: request
-          request:
-            service: Kernel
-            method: unsetKernel
-            task: false
+                        get:
+                          method: getFamilyList
+                    validators:
+                      required: true
+                buttons:
+                  submit:
+                    text: _("Set")
+                    execute:
+                      type: taskDialog
+                      taskDialog:
+                        config:
+                          title: _("Setting boot family ...")
+                          startOnInit: true
+                          request:
+                            service: Kernel
+                            method: setFamily
+                            params:
+                              family: "{{ family }}"
+                          buttons:
+                            stop:
+                              hidden: true
+          - text: _("Boot once")
+            icon: mdi:numeric-1-circle-outline
+            enabledConstraints:
+              minSelected: 1
+              maxSelected: 1
+            execute:
+              type: request
+              request:
+                service: Kernel
+                method: setKernel
+                params:
+                  key: "{{ _selected[0].name }}"
+                  boot_once: true
+                task: false
+          - text: _("Unset default kernel")
+            icon: mdi:restore
+            execute:
+              type: request
+              request:
+                service: Kernel
+                method: unsetKernel
+                task: false
+          - text: _("Update GRUB")
+            icon: mdi:refresh
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("Updating GRUB ...")
+                  startOnInit: true
+                  request:
+                    service: Kernel
+                    method: doUpdateGrub
+                  buttons:
+                    stop:
+                      hidden: true
       - type: iconButton
         tooltip: _("Delete kernel")
         icon: mdi:delete
@@ -155,84 +169,6 @@ data:
               buttons:
                 stop:
                   hidden: true
-      - type: iconButton
-        tooltip: _("Update GRUB")
-        icon: mdi:refresh
-        execute:
-          type: taskDialog
-          taskDialog:
-            config:
-              title: _("Updating GRUB ...")
-              startOnInit: true
-              request:
-                service: Kernel
-                method: doUpdateGrub
-              buttons:
-                stop:
-                  hidden: true
-      - type: iconButton
-        tooltip: _("Write ISO to drive")
-        icon: mdi:usb-flash-drive-outline
-        execute:
-          type: formDialog
-          formDialog:
-            title: _("Write ISO to drive")
-            fields:
-              - type: select
-                name: iso
-                label: _("ISO")
-                placeholder: _("Select an ISO ...")
-                valueField: path
-                textField: name
-                store:
-                  proxy:
-                    service: Kernel
-                    get:
-                      method: getIsoList
-                  sorters:
-                    - dir: asc
-                      prop: name
-                validators:
-                  required: true
-              - type: select
-                name: device
-                label: _("Device")
-                placeholder: _("Select a device ...")
-                valueField: devicefile
-                textField: description
-                hint: _("Only unused drives are listed. All data on the selected drive will be erased.")
-                store:
-                  proxy:
-                    service: FileSystemMgmt
-                    get:
-                      method: getCandidatesBg
-                      task: true
-                  sorters:
-                    - dir: asc
-                      prop: devicefile
-                validators:
-                  required: true
-            buttons:
-              submit:
-                text: _("Write")
-                confirmationDialogConfig:
-                  template: confirmation-danger
-                  message: _("This will ERASE all data on the selected drive and write the ISO to it. Are you sure you want to continue?")
-                execute:
-                  type: taskDialog
-                  taskDialog:
-                    config:
-                      title: _("Writing ISO to drive ...")
-                      startOnInit: true
-                      request:
-                        service: Kernel
-                        method: writeIso
-                        params:
-                          iso: "{{ iso }}"
-                          device: "{{ device }}"
-                      buttons:
-                        stop:
-                          hidden: true
       - type: menu
         icon: mdi:archive-arrow-down-outline
         tooltip: _("Proxmox")
@@ -326,205 +262,152 @@ data:
                     stop:
                       hidden: true
       - type: menu
-        icon: mdi:content-copy
-        tooltip: _("Clonezilla")
+        icon: mdi:toolbox-outline
+        tooltip: _("Tools")
         actions:
-          - text: _("Install Clonezilla")
+          - text: _("Install tool")
             icon: mdi:plus-circle-outline
             execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing Clonezilla ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "install"
-                      distro: "clonezilla"
-                  buttons:
-                    stop:
-                      hidden: true
-          - text: _("Remove Clonezilla")
-            icon: mdi:delete-forever-outline
-            confirmationDialogConfig:
-              template: confirmation-danger
-              message: _("Are you sure you want to remove?")
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Remove Clonezilla ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "remove"
-                      distro: "clonezilla"
-                  buttons:
-                    stop:
-                      hidden: true
-      - type: menu
-        icon: mdi:wrench-cog-outline
-        tooltip: _("Finnix")
-        actions:
-          - text: _("Install Finnix")
-            icon: mdi:plus-circle-outline
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing Finnix ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "install"
-                      distro: "finnix"
-                  buttons:
-                    stop:
-                      hidden: true
-          - text: _("Remove Finnix")
-            icon: mdi:delete-forever-outline
-            confirmationDialogConfig:
-              template: confirmation-danger
-              message: _("Are you sure you want to remove?")
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Remove Finnix ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "remove"
-                      distro: "finnix"
-                  buttons:
-                    stop:
-                      hidden: true
-      - type: menu
-        icon: mdi:database-plus-outline
-        tooltip: _("GParted Live")
-        actions:
-          - text: _("Install GParted Live")
-            icon: mdi:plus-circle-outline
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing GParted Live ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "install"
-                      distro: "gpartedlive"
-                  buttons:
-                    stop:
-                      hidden: true
-          - text: _("Remove GParted Live")
-            icon: mdi:delete-forever-outline
-            confirmationDialogConfig:
-              template: confirmation-danger
-              message: _("Are you sure you want to remove?")
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Remove GParted Live ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "remove"
-                      distro: "gpartedlive"
-                  buttons:
-                    stop:
-                      hidden: true
-      - type: menu
-        icon: mdi:hammer-screwdriver
-        tooltip: _("SystemRescue")
-        actions:
-          - text: _("Install SystemRescue")
-            icon: mdi:plus-circle-outline
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing SystemRescue ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "install"
-                      distro: "sysresccd"
-                  buttons:
-                    stop:
-                      hidden: true
-          - text: _("Remove SystemRescue")
-            icon: mdi:delete-forever-outline
-            confirmationDialogConfig:
-              template: confirmation-danger
-              message: _("Are you sure you want to remove?")
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Remove SystemRescue ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doCommand
-                    params:
-                      action: "remove"
-                      distro: "sysresccd"
-                  buttons:
-                    stop:
-                      hidden: true
-      - type: menu
-        icon: mdi:memory
-        tooltip: _("memtest86+")
-        actions:
-          - text: _("Install memtest86+")
-            icon: mdi:plus-circle-outline
-            execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Installing memtest86+ ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doMemtest
-                    params:
-                      action: "install"
-                  buttons:
-                    stop:
-                      hidden: true
-          - text: _("Remove memtest86+")
+              type: formDialog
+              formDialog:
+                title: _("Install tool")
+                fields:
+                  - type: select
+                    name: tool
+                    label: _("Tool")
+                    placeholder: _("Select a tool ...")
+                    valueField: id
+                    textField: name
+                    hint: _("Tools are added to the GRUB boot menu. Installing an installed tool reinstalls or updates it.")
+                    store:
+                      proxy:
+                        service: Kernel
+                        get:
+                          method: getToolInstallList
+                    validators:
+                      required: true
+                buttons:
+                  submit:
+                    text: _("Install")
+                    execute:
+                      type: taskDialog
+                      taskDialog:
+                        config:
+                          title: _("Installing tool ...")
+                          startOnInit: true
+                          request:
+                            service: Kernel
+                            method: doCommand
+                            params:
+                              action: "install"
+                              distro: "{{ tool }}"
+                          buttons:
+                            stop:
+                              hidden: true
+          - text: _("Remove tool")
             icon: mdi:delete-forever-outline
             execute:
-              type: taskDialog
-              taskDialog:
-                config:
-                  title: _("Removing memtest86+ ...")
-                  startOnInit: true
-                  request:
-                    service: Kernel
-                    method: doMemtest
-                    params:
-                      action: "purge"
-                  buttons:
-                    stop:
-                      hidden: true
+              type: formDialog
+              formDialog:
+                title: _("Remove tool")
+                fields:
+                  - type: select
+                    name: tool
+                    label: _("Tool")
+                    placeholder: _("Select a tool ...")
+                    valueField: id
+                    textField: name
+                    hint: _("Only installed tools are listed.")
+                    store:
+                      proxy:
+                        service: Kernel
+                        get:
+                          method: getToolRemoveList
+                    validators:
+                      required: true
+                buttons:
+                  submit:
+                    text: _("Remove")
+                    confirmationDialogConfig:
+                      template: confirmation-danger
+                      message: _("Are you sure you want to remove?")
+                    execute:
+                      type: taskDialog
+                      taskDialog:
+                        config:
+                          title: _("Removing tool ...")
+                          startOnInit: true
+                          request:
+                            service: Kernel
+                            method: doCommand
+                            params:
+                              action: "remove"
+                              distro: "{{ tool }}"
+                          buttons:
+                            stop:
+                              hidden: true
+          - text: _("Write ISO to drive")
+            icon: mdi:usb-flash-drive-outline
+            execute:
+              type: formDialog
+              formDialog:
+                title: _("Write ISO to drive")
+                fields:
+                  - type: select
+                    name: iso
+                    label: _("ISO")
+                    placeholder: _("Select an ISO ...")
+                    valueField: path
+                    textField: name
+                    store:
+                      proxy:
+                        service: Kernel
+                        get:
+                          method: getIsoList
+                      sorters:
+                        - dir: asc
+                          prop: name
+                    validators:
+                      required: true
+                  - type: select
+                    name: device
+                    label: _("Device")
+                    placeholder: _("Select a device ...")
+                    valueField: devicefile
+                    textField: description
+                    hint: _("Only unused drives are listed. All data on the selected drive will be erased.")
+                    store:
+                      proxy:
+                        service: FileSystemMgmt
+                        get:
+                          method: getCandidatesBg
+                          task: true
+                      sorters:
+                        - dir: asc
+                          prop: devicefile
+                    validators:
+                      required: true
+                buttons:
+                  submit:
+                    text: _("Write")
+                    confirmationDialogConfig:
+                      template: confirmation-danger
+                      message: _("This will ERASE all data on the selected drive and write the ISO to it. Are you sure you want to continue?")
+                    execute:
+                      type: taskDialog
+                      taskDialog:
+                        config:
+                          title: _("Writing ISO to drive ...")
+                          startOnInit: true
+                          request:
+                            service: Kernel
+                            method: writeIso
+                            params:
+                              iso: "{{ iso }}"
+                              device: "{{ device }}"
+                          buttons:
+                            stop:
+                              hidden: true
       - type: menu
         icon: mdi:link
         tooltip: _("Docs")

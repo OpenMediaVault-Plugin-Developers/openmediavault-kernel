@@ -200,6 +200,24 @@ remove_iso() {
   update-grub
 }
 
+# Print one tab separated line per ISO: id, name, installed (0/1) and
+# current (1 when the installed ISO is the version this script installs).
+status() {
+  local iso installed current found
+  for iso in clonezilla finnix gpartedlive sysresccd; do
+    installed=0
+    current=0
+    found="$(find /boot -type f -name "${RM[$iso]}" 2>/dev/null | head -n 1)"
+    if [ -f "${GRUB_FILES[$iso]}" ] || [ -n "${found}" ]; then
+      installed=1
+    fi
+    if [ -f "${GRUB_FILES[$iso]}" ] && [ "$(basename "${found}")" = "${FILES[$iso]}" ]; then
+      current=1
+    fi
+    printf '%s\t%s\t%s\t%s\n' "${iso}" "${GRUB_NAMES[$iso]}" "${installed}" "${current}"
+  done
+}
+
 disablesubmenu() {
   if ! grep -q 'GRUB_DISABLE_SUBMENU' ${GRUB}; then
     echo "GRUB_DISABLE_SUBMENU=y" >> ${GRUB}
@@ -222,6 +240,11 @@ case ${action} in
 
   remove)
     remove_iso "${distro}"
+    ;;
+
+  status)
+    status
+    exit 0
     ;;
 esac
 
