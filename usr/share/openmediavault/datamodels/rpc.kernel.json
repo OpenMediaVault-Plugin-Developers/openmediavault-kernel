@@ -85,6 +85,20 @@
   },
   {
     "type": "rpc",
+    "id": "rpc.kernel.setfamily",
+    "params": {
+      "type": "object",
+      "properties": {
+        "family": {
+          "type": "string",
+          "pattern": "^(pve|debian)(-[0-9]+\\.[0-9]+)?$",
+          "required": true
+        }
+      }
+    }
+  },
+  {
+    "type": "rpc",
     "id": "rpc.kernel.dowriteiso",
     "params": {
       "type": "object",

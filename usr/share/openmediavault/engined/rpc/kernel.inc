@@ -31,6 +31,8 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
 
         $this->registerMethod('setKernel');
         $this->registerMethod('unsetKernel');
+        $this->registerMethod('getFamilyList');
+        $this->registerMethod('setFamily');
         $this->registerMethod('getKernelList');
         $this->registerMethod('deleteKernel');
 
@@ -81,18 +83,26 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $entryId = $match['entry_id'];
         if (!$entryId) $entryId = sprintf("'%s'", $key);
 
+        $updateGrub = false;
         $grubDefaultPath = '/etc/default/grub';
         $content = file_get_contents($grubDefaultPath);
         if (!preg_match('/^GRUB_DEFAULT=/m', $content)) {
             $content .= PHP_EOL . 'GRUB_DEFAULT=saved' . PHP_EOL;
             file_put_contents($grubDefaultPath, $content);
-            $this->runUpdateGrub();
+            $updateGrub = true;
         } elseif (!preg_match('/^GRUB_DEFAULT\s*=\s*saved\s*$/m', $content)) {
             $new = preg_replace('/^GRUB_DEFAULT\s*=.*$/m', 'GRUB_DEFAULT=saved', $content);
             if ($new !== null && $new !== $content) {
                 file_put_contents($grubDefaultPath, $new);
-                $this->runUpdateGrub();
+                $updateGrub = true;
             }
+        }
+        // A persistent pin replaces any kernel family selection.
+        if (!$bootOnce && $this->unsetFamily()) {
+            $updateGrub = true;
+        }
+        if ($updateGrub) {
+            $this->runUpdateGrub();
         }
 
         if ($bootOnce) {
@@ -125,17 +135,115 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
     private function unsetDefaultKernel($bgOutputFilename = null)
     {
         // Reset GRUB_DEFAULT to 0 so GRUB boots the first entry it finds.
+        $updateGrub = $this->unsetFamily();
         $grubDefaultPath = '/etc/default/grub';
         $content = file_get_contents($grubDefaultPath);
         $new = preg_replace('/^GRUB_DEFAULT\s*=.*$/m', 'GRUB_DEFAULT=0', $content);
         if ($new !== null && $new !== $content) {
             file_put_contents($grubDefaultPath, $new);
+            $updateGrub = true;
+        }
+        if ($updateGrub) {
             $this->runUpdateGrub($bgOutputFilename);
         }
 
         // Clear saved_entry and next_entry from grubenv.
         $cmd = new \OMV\System\Process('grub-editenv', ['/boot/grub/grubenv', 'unset', 'saved_entry', 'next_entry']);
         $cmd->execute($output);
+    }
+
+    // List the kernel families that can be selected, built from the installed
+    // kernels. See omv-kernelfamily for how a family is resolved.
+    public function getFamilyList($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+
+        $current = $this->getFamily();
+        $series = [];
+        foreach (glob('/boot/vmlinuz-*') ?: [] as $path) {
+            $kver = substr(basename($path), strlen('vmlinuz-'));
+            if (preg_match('/\.(old|dpkg-.*)$/', $kver)) {
+                continue;
+            }
+            if (!preg_match('/^(\d+\.\d+)\./', $kver, $m)) {
+                continue;
+            }
+            $distro = str_ends_with($kver, '-pve') ? 'pve' : 'debian';
+            $series[$distro][$m[1]] = true;
+        }
+
+        $labels = ['pve' => 'Proxmox', 'debian' => 'Debian'];
+        $families = [];
+        foreach ($labels as $distro => $label) {
+            if (empty($series[$distro])) {
+                continue;
+            }
+            $families[] = [
+                'id' => $distro,
+                'name' => sprintf('%s (%s)', $label, gettext('latest'))
+            ];
+            $versions = array_keys($series[$distro]);
+            usort($versions, 'version_compare');
+            foreach (array_reverse($versions) as $ver) {
+                $families[] = [
+                    'id' => sprintf('%s-%s', $distro, $ver),
+                    'name' => sprintf('%s %s', $label, $ver)
+                ];
+            }
+        }
+        foreach ($families as &$family) {
+            if ($family['id'] === $current) {
+                $family['name'] = sprintf('%s (%s)', $family['name'], gettext('current'));
+            }
+        }
+        unset($family);
+        return $families;
+    }
+
+    public function setFamily($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.kernel.setfamily');
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmd = new \OMV\System\Process('omv-kernelfamily', ['set', $params['family']]);
+                $cmd->setRedirect2to1();
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                $this->runUpdateGrub($bgOutputFilename);
+                return $output;
+            }
+        );
+    }
+
+    private function getFamily()
+    {
+        $output = [];
+        try {
+            $cmd = new \OMV\System\Process('omv-kernelfamily', ['get']);
+            $cmd->execute($output);
+        } catch (\Exception $e) {
+            return null;
+        }
+        $family = trim($output[0] ?? '');
+        return $family !== '' ? $family : null;
+    }
+
+    // Remove the kernel family selection. Returns true if one was removed,
+    // in which case update-grub must be run.
+    private function unsetFamily()
+    {
+        if ($this->getFamily() === null) {
+            return false;
+        }
+        $cmd = new \OMV\System\Process('omv-kernelfamily', ['unset']);
+        $cmd->execute($output);
+        return true;
     }
 
     private function runUpdateGrub($bgOutputFilename = null)
@@ -205,6 +313,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $savedEntry = $this->getGrubEnvValue('saved_entry');
         $nextEntry = $this->getGrubEnvValue('next_entry');
         $currentKernel = $this->getCurrentKernel();
+        $family = $this->getFamily();
 
         $kernels = [];
         $foundDefault = false;
@@ -216,9 +325,12 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             // Determine default:
             // Prefer explicit saved_entry value (when it is an entry_id != 'saved'),
             // otherwise fall back to matching running kernel version (first match only).
+            // With a kernel family selected, GRUB boots the first entry.
             $isDefault = false;
             if (is_string($savedEntry) && $savedEntry !== '' && $savedEntry !== 'saved') {
                 $isDefault = ($savedEntry === $entryId || $savedEntry === $name);
+            } elseif ($family !== null) {
+                $isDefault = !$foundDefault;
             } elseif (!$foundDefault && !empty($currentKernel) && !empty($kver)) {
                 $isDefault = str_starts_with($currentKernel, $kver);
             }
@@ -238,9 +350,15 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 }
             }
 
+            $kfamily = '';
+            if (!empty($kver) && preg_match('/^(\d+\.\d+)\./', $kver, $m)) {
+                $kfamily = sprintf('%s %s', str_ends_with($kver, '-pve') ? 'Proxmox' : 'Debian', $m[1]);
+            }
+
             $kernels[] = [
                 'name' => $name,
                 'key' => $kver,
+                'family' => $kfamily,
                 'entry_id' => $entryId,
                 'default' => $isDefault,
                 'nextk' => $isNext,
@@ -361,8 +479,8 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                     $cmdBin = 'omv-removekernels';
                 } else {
                     // Clear any previous default/boot-once selection first; the
-                    // installer then pins the newly installed Proxmox kernel as
-                    // the default, so the pin survives.
+                    // installer then selects the installed Proxmox series as the
+                    // boot kernel family.
                     $this->unsetDefaultKernel($bgOutputFilename);
                     $cmdBin = 'omv-installproxmox';
                     $cmdArgs[] = $params['version'];

@@ -1,0 +1,131 @@
+#!/bin/bash
+#
+# @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
+# @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+# @copyright Copyright (c) 2021-2026 openmediavault plugin developers
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# Boot kernel family support.
+#
+# A family is one of:
+#   pve           newest Proxmox kernel
+#   pve-X.Y       newest Proxmox X.Y kernel, falling back to pve
+#   debian        newest non-Proxmox kernel
+#   debian-X.Y    newest non-Proxmox X.Y kernel, falling back to debian
+#
+# 'set' writes a /etc/default/grub.d snippet that grub-mkconfig sources on
+# every update-grub run (including the /etc/kernel/post{inst,rm}.d hooks). The
+# snippet calls 'resolve' and sets GRUB_TOP_LEVEL so the newest kernel of the
+# family becomes the first menu entry. If nothing matches, GRUB_TOP_LEVEL is
+# left alone and GRUB boots the highest version kernel as usual.
+#
+# This script does not run update-grub. Callers must run it after set/unset.
+
+familycfg="/etc/default/grub.d/omv-kernel-family.cfg"
+grubdefault="/etc/default/grub"
+grubenv="/boot/grub/grubenv"
+familyre='^(pve|debian)(-[0-9]+\.[0-9]+)?$'
+
+usage() {
+  echo "Usage: $(basename "$0") set <family> | unset | get | resolve [family]" >&2
+  exit 1
+}
+
+# Print the newest /boot/vmlinuz-* matching the series (or any series when
+# empty) for the given distro.
+newest() {
+  local distro="$1" series="$2" f
+  for f in "/boot/vmlinuz-${series:+${series}.}"*; do
+    [ -e "${f}" ] || continue
+    case "${f}" in
+      *.old|*.dpkg-*) continue ;;
+    esac
+    if [ "${distro}" = "pve" ]; then
+      [[ "${f}" == *-pve ]] || continue
+    else
+      [[ "${f}" == *-pve ]] && continue
+    fi
+    echo "${f}"
+  done | sort -V | tail -n 1
+}
+
+get_family() {
+  [ -f "${familycfg}" ] || return 0
+  sed -n 's/^OMV_KERNEL_FAMILY="\(.*\)"$/\1/p' "${familycfg}" | head -n 1
+}
+
+resolve() {
+  local family="${1:-$(get_family)}" distro series kernel
+  [[ "${family}" =~ ${familyre} ]] || return 0
+  distro="${BASH_REMATCH[1]}"
+  series="${BASH_REMATCH[2]#-}"
+  if [ -n "${series}" ]; then
+    kernel="$(newest "${distro}" "${series}")"
+  fi
+  if [ -z "${kernel}" ]; then
+    kernel="$(newest "${distro}" "")"
+  fi
+  [ -n "${kernel}" ] && echo "${kernel}"
+  return 0
+}
+
+case "$1" in
+  set)
+    family="$2"
+    if ! [[ "${family}" =~ ${familyre} ]]; then
+      echo "Invalid kernel family: ${family}" >&2
+      exit 2
+    fi
+    mkdir -p "$(dirname "${familycfg}")"
+    cat > "${familycfg}" << EOF
+# Managed by openmediavault-kernel. Do not edit.
+# Boots the newest kernel of the selected family by default.
+OMV_KERNEL_FAMILY="${family}"
+if [ -x /usr/sbin/omv-kernelfamily ]; then
+  _omv_kernel="\$(/usr/sbin/omv-kernelfamily resolve "\${OMV_KERNEL_FAMILY}" 2>/dev/null || true)"
+  if [ -n "\${_omv_kernel}" ]; then
+    GRUB_TOP_LEVEL="\${_omv_kernel}"
+  fi
+  unset _omv_kernel
+fi
+EOF
+    chmod 644 "${familycfg}"
+    # The first menu entry is the family kernel, so boot entry 0 and drop
+    # any pinned entry.
+    if grep -q '^GRUB_DEFAULT=' "${grubdefault}"; then
+      sed -i 's/^GRUB_DEFAULT=.*/GRUB_DEFAULT=0/' "${grubdefault}"
+    else
+      echo "GRUB_DEFAULT=0" >> "${grubdefault}"
+    fi
+    if [ -f "${grubenv}" ]; then
+      grub-editenv "${grubenv}" unset saved_entry
+    fi
+    echo "Kernel family set to ${family}: $(resolve "${family}")"
+    ;;
+  unset)
+    rm -f "${familycfg}"
+    ;;
+  get)
+    get_family
+    ;;
+  resolve)
+    resolve "$2"
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+exit 0

@@ -23,6 +23,14 @@ set -e
 
 remove_action() {
     dpkg-trigger update-workbench
+
+    # remove the boot kernel family selection
+    if [ -f /etc/default/grub.d/omv-kernel-family.cfg ]; then
+        rm -f /etc/default/grub.d/omv-kernel-family.cfg
+        if [ -x /usr/sbin/update-grub ]; then
+            update-grub || true
+        fi
+    fi
 }
 
 case "$1" in

@@ -7,11 +7,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-declare -i kernnum=0
-
 distro="$(lsb_release --codename --short)"
-grubconfig="/boot/grub/grub.cfg";
-grubdefault="/etc/default/grub";
 pvekey="/usr/share/keyrings/proxmox-archive-keyring.gpg"
 pverepo="/etc/apt/sources.list.d/pvekernel.sources"
 pverepoold="/etc/apt/sources.list.d/pvekernel.list"
@@ -79,23 +75,9 @@ fi
 # cleanup no-autoinstall
 rm -f /etc/dkms/no-autoinstall
 
-# set newly install proxmox kernel as default
-awk '$1 == "menuentry" { print $6 }' ${grubconfig} | while read kernel; do
-  if [[ ${kernel} == *${kernelinput}*pve\' ]]; then
-    sed -i "s/GRUB_DEFAULT=.*/GRUB_DEFAULT=saved/" ${grubdefault}
-    kerndesc=$(grep '^menuentry ' ${grubconfig} | grep "${kernel}" | cut -d"'" -f2)
-    if [ -n "${kerndesc}" ]; then
-      echo "Set ${kerndesc} as default... ${kernel/\'/}"
-      grub-set-default "${kerndesc}"
-    else
-      echo "Set ${kernel/\'/} as default... ${kernnum}"
-      grub-set-default ${kernnum}
-    fi
-    update-grub
-    break
-  fi
-  (( kernnum++ ))
-done
+# boot the newest kernel of the installed proxmox series by default
+omv-kernelfamily set "pve-${kernelversion}"
+update-grub
 
 # mark zfs module dirty to ensure the omv-zfs-provider-pve is installed
 zfs=$(dpkg -l | awk '$2 == "openmediavault-zfs" { print $1 }')

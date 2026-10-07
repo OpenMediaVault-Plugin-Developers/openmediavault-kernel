@@ -23,6 +23,10 @@ data:
         flexGrow: 1
         sortable: true
         hidden: true
+      - name: _("Family")
+        prop: family
+        flexGrow: 1
+        sortable: true
       - name: _("Entry ID")
         prop: entry_id
         flexGrow: 2
@@ -59,6 +63,45 @@ data:
               key: "{{ _selected[0].name }}"
               boot_once: false
             task: false
+      - type: iconButton
+        tooltip: _("Set boot family")
+        icon: mdi:family-tree
+        execute:
+          type: formDialog
+          formDialog:
+            title: _("Set boot family")
+            fields:
+              - type: select
+                name: family
+                label: _("Family")
+                placeholder: _("Select a family ...")
+                valueField: id
+                textField: name
+                hint: _("Boots the newest installed kernel of the selected family, including after kernel updates. A specific version falls back to the newest kernel of the same distribution when none of that version are installed. Replaces any kernel set with 'Set boot'.")
+                store:
+                  proxy:
+                    service: Kernel
+                    get:
+                      method: getFamilyList
+                validators:
+                  required: true
+            buttons:
+              submit:
+                text: _("Set")
+                execute:
+                  type: taskDialog
+                  taskDialog:
+                    config:
+                      title: _("Setting boot family ...")
+                      startOnInit: true
+                      request:
+                        service: Kernel
+                        method: setFamily
+                        params:
+                          family: "{{ family }}"
+                      buttons:
+                        stop:
+                          hidden: true
       - type: iconButton
         tooltip: _("Boot once")
         icon: mdi:numeric-1-circle-outline
