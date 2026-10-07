@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 14:26+0000\n"
+"POT-Creation-Date: 2026-10-07 12:58+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: zubr139, 2025\n"
 "Language-Team: Ukrainian (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/uk/)\n"
@@ -24,17 +24,27 @@ msgstr ""
 msgid "Are you sure you want to remove?"
 msgstr "Ви впевнені, що хочете видалити?"
 
+msgid "Boot"
+msgstr ""
+
 msgid "Boot once"
 msgstr ""
 
-msgid "Clonezilla"
-msgstr "Clonezilla"
+msgid ""
+"Boots the newest installed kernel of the selected family, including after "
+"kernel updates. A specific version falls back to the newest kernel of the "
+"same distribution when none of that version are installed. Replaces any "
+"kernel set with 'Set boot'."
+msgstr ""
 
 msgid "Debian"
 msgstr ""
 
 msgid "Default"
 msgstr "Типово"
+
+msgid "Default reason"
+msgstr ""
 
 msgid "Delete kernel"
 msgstr ""
@@ -51,10 +61,7 @@ msgstr ""
 msgid "Entry ID"
 msgstr ""
 
-msgid "Finnix"
-msgstr ""
-
-msgid "GParted Live"
+msgid "Family"
 msgstr ""
 
 msgid "ISO"
@@ -63,19 +70,10 @@ msgstr ""
 msgid "Install"
 msgstr ""
 
-msgid "Install Clonezilla"
-msgstr ""
-
 msgid "Install Debian kernel"
 msgstr ""
 
 msgid "Install Debian kernel headers"
-msgstr ""
-
-msgid "Install Finnix"
-msgstr ""
-
-msgid "Install GParted Live"
 msgstr ""
 
 msgid "Install Proxmox Kernel"
@@ -84,13 +82,7 @@ msgstr ""
 msgid "Install Proxmox kernel"
 msgstr ""
 
-msgid "Install SystemRescue"
-msgstr ""
-
-msgid "Install memtest86+"
-msgstr ""
-
-msgid "Installing Clonezilla ..."
+msgid "Install tool"
 msgstr ""
 
 msgid "Installing Debian kernel ..."
@@ -99,19 +91,10 @@ msgstr ""
 msgid "Installing Debian kernel headers ..."
 msgstr ""
 
-msgid "Installing Finnix ..."
-msgstr ""
-
-msgid "Installing GParted Live ..."
-msgstr ""
-
 msgid "Installing Proxmox kernel ..."
 msgstr ""
 
-msgid "Installing SystemRescue ..."
-msgstr ""
-
-msgid "Installing memtest86+ ..."
+msgid "Installing tool ..."
 msgstr ""
 
 msgid "Kernel"
@@ -123,6 +106,9 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
+msgid "Only installed tools are listed."
+msgstr ""
+
 msgid ""
 "Only unused drives are listed. All data on the selected drive will be "
 "erased."
@@ -131,60 +117,62 @@ msgstr ""
 msgid "Proxmox"
 msgstr ""
 
-msgid "Remove Clonezilla"
-msgstr ""
-
-msgid "Remove Clonezilla ..."
-msgstr ""
-
-msgid "Remove Finnix"
-msgstr ""
-
-msgid "Remove Finnix ..."
-msgstr ""
-
-msgid "Remove GParted Live"
-msgstr ""
-
-msgid "Remove GParted Live ..."
-msgstr ""
-
-msgid "Remove SystemRescue"
-msgstr ""
-
-msgid "Remove SystemRescue ..."
-msgstr ""
-
-msgid "Remove memtest86+"
+msgid "Remove"
 msgstr ""
 
 msgid "Remove non-Proxmox kernels"
 msgstr ""
 
-msgid "Removeable"
+msgid "Remove tool"
 msgstr ""
 
-msgid "Removing memtest86+ ..."
+msgid "Removeable"
 msgstr ""
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr ""
 
+msgid "Removing tool ..."
+msgstr ""
+
 msgid "Select a device ..."
+msgstr ""
+
+msgid "Select a family ..."
+msgstr ""
+
+msgid "Select a tool ..."
 msgstr ""
 
 msgid "Select an ISO ..."
 msgstr ""
 
+msgid "Set"
+msgstr ""
+
 msgid "Set boot"
 msgstr ""
 
-msgid "SystemRescue"
+msgid "Set boot family"
+msgstr ""
+
+msgid "Setting boot family ..."
 msgstr ""
 
 msgid ""
 "This will ERASE all data on the selected drive and write the ISO to it. Are "
 "you sure you want to continue?"
+msgstr ""
+
+msgid "Tool"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid ""
+"Tools are added to the GRUB boot menu. Installing an installed tool "
+"reinstalls or updates it."
 msgstr ""
 
 msgid "Unset default kernel"
@@ -203,9 +191,6 @@ msgid "Write ISO to drive"
 msgstr ""
 
 msgid "Writing ISO to drive ..."
-msgstr ""
-
-msgid "memtest86+"
 msgstr ""
 
 msgid "omv-extras wiki"

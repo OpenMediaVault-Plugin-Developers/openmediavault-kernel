@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 14:26+0000\n"
+"POT-Creation-Date: 2026-10-07 12:58+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2026\n"
 "Language-Team: Hungarian (Hungary) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/hu_HU/)\n"
@@ -24,17 +24,27 @@ msgstr ""
 msgid "Are you sure you want to remove?"
 msgstr "Valóban szeretné eltávolítani?"
 
+msgid "Boot"
+msgstr ""
+
 msgid "Boot once"
 msgstr "Boot egyszer"
 
-msgid "Clonezilla"
-msgstr "Clonezilla"
+msgid ""
+"Boots the newest installed kernel of the selected family, including after "
+"kernel updates. A specific version falls back to the newest kernel of the "
+"same distribution when none of that version are installed. Replaces any "
+"kernel set with 'Set boot'."
+msgstr ""
 
 msgid "Debian"
 msgstr ""
 
 msgid "Default"
 msgstr "Alapértelmezett"
+
+msgid "Default reason"
+msgstr ""
 
 msgid "Delete kernel"
 msgstr "Kernel törlése"
@@ -51,11 +61,8 @@ msgstr "Dokumentáció"
 msgid "Entry ID"
 msgstr "Bejegyzés azonosító"
 
-msgid "Finnix"
-msgstr "Finnix"
-
-msgid "GParted Live"
-msgstr "GParted Live"
+msgid "Family"
+msgstr ""
 
 msgid "ISO"
 msgstr ""
@@ -63,20 +70,11 @@ msgstr ""
 msgid "Install"
 msgstr "Telepítés"
 
-msgid "Install Clonezilla"
-msgstr "Clonezilla telepítése"
-
 msgid "Install Debian kernel"
 msgstr ""
 
 msgid "Install Debian kernel headers"
 msgstr ""
-
-msgid "Install Finnix"
-msgstr "Finnix telepítése"
-
-msgid "Install GParted Live"
-msgstr "GParted Live telepítése"
 
 msgid "Install Proxmox Kernel"
 msgstr "Proxmox kernel telepítése"
@@ -84,14 +82,8 @@ msgstr "Proxmox kernel telepítése"
 msgid "Install Proxmox kernel"
 msgstr "Proxmox kernel telepítése"
 
-msgid "Install SystemRescue"
-msgstr "SystemRescue telepítése"
-
-msgid "Install memtest86+"
-msgstr "memtest86+ telepítése"
-
-msgid "Installing Clonezilla ..."
-msgstr "Clonezilla telepítése folyamatban…"
+msgid "Install tool"
+msgstr ""
 
 msgid "Installing Debian kernel ..."
 msgstr ""
@@ -99,20 +91,11 @@ msgstr ""
 msgid "Installing Debian kernel headers ..."
 msgstr ""
 
-msgid "Installing Finnix ..."
-msgstr "Finnix telepítése folyamatban…"
-
-msgid "Installing GParted Live ..."
-msgstr "GParted Live telepítése folyamatban…"
-
 msgid "Installing Proxmox kernel ..."
 msgstr "Proxmox kernel telepítése folyamatban…"
 
-msgid "Installing SystemRescue ..."
-msgstr "SystemRescue telepítése folyamatban…"
-
-msgid "Installing memtest86+ ..."
-msgstr "memtest86+ telepítése folyamatban…"
+msgid "Installing tool ..."
+msgstr ""
 
 msgid "Kernel"
 msgstr "Kernel"
@@ -123,6 +106,9 @@ msgstr "Kernelverzió"
 msgid "Name"
 msgstr "Név"
 
+msgid "Only installed tools are listed."
+msgstr ""
+
 msgid ""
 "Only unused drives are listed. All data on the selected drive will be "
 "erased."
@@ -131,60 +117,62 @@ msgstr ""
 msgid "Proxmox"
 msgstr "Proxmox"
 
-msgid "Remove Clonezilla"
-msgstr "Clonezilla eltávolítása"
-
-msgid "Remove Clonezilla ..."
-msgstr "Clonezilla eltávolítása…"
-
-msgid "Remove Finnix"
-msgstr "Finnix eltávolítása"
-
-msgid "Remove Finnix ..."
-msgstr "Finnix eltávolítása…"
-
-msgid "Remove GParted Live"
-msgstr "GParted Live eltávolítása"
-
-msgid "Remove GParted Live ..."
-msgstr "GParted Live eltávolítása…"
-
-msgid "Remove SystemRescue"
-msgstr "SystemRescue eltávolítása"
-
-msgid "Remove SystemRescue ..."
-msgstr "SystemRescue eltávolítása…"
-
-msgid "Remove memtest86+"
-msgstr "memtest86+ eltávolítása"
+msgid "Remove"
+msgstr ""
 
 msgid "Remove non-Proxmox kernels"
 msgstr "Nem-Proxmox kernelek eltávolítása"
 
+msgid "Remove tool"
+msgstr ""
+
 msgid "Removeable"
 msgstr "Eltávolítható"
-
-msgid "Removing memtest86+ ..."
-msgstr "memtest86+ eltávolítása…"
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "Nem-Proxmox kernelek és fejlécek eltávolítása…"
 
+msgid "Removing tool ..."
+msgstr ""
+
 msgid "Select a device ..."
+msgstr ""
+
+msgid "Select a family ..."
+msgstr ""
+
+msgid "Select a tool ..."
 msgstr ""
 
 msgid "Select an ISO ..."
 msgstr ""
 
+msgid "Set"
+msgstr ""
+
 msgid "Set boot"
 msgstr "Boot beállítása"
 
-msgid "SystemRescue"
-msgstr "SystemRescue"
+msgid "Set boot family"
+msgstr ""
+
+msgid "Setting boot family ..."
+msgstr ""
 
 msgid ""
 "This will ERASE all data on the selected drive and write the ISO to it. Are "
 "you sure you want to continue?"
+msgstr ""
+
+msgid "Tool"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid ""
+"Tools are added to the GRUB boot menu. Installing an installed tool "
+"reinstalls or updates it."
 msgstr ""
 
 msgid "Unset default kernel"
@@ -204,9 +192,6 @@ msgstr ""
 
 msgid "Writing ISO to drive ..."
 msgstr ""
-
-msgid "memtest86+"
-msgstr "memtest86+"
 
 msgid "omv-extras wiki"
 msgstr "omv-extras wiki"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-kernel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 14:26+0000\n"
+"POT-Creation-Date: 2026-10-07 12:58+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
 "Last-Translator: Jonatan Nyberg, 2026\n"
 "Language-Team: Swedish (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/sv/)\n"
@@ -24,17 +24,27 @@ msgstr ""
 msgid "Are you sure you want to remove?"
 msgstr "Vill du verkligen ta bort detta?"
 
+msgid "Boot"
+msgstr ""
+
 msgid "Boot once"
 msgstr "Starta en gång"
 
-msgid "Clonezilla"
-msgstr "Clonezilla"
+msgid ""
+"Boots the newest installed kernel of the selected family, including after "
+"kernel updates. A specific version falls back to the newest kernel of the "
+"same distribution when none of that version are installed. Replaces any "
+"kernel set with 'Set boot'."
+msgstr ""
 
 msgid "Debian"
 msgstr "Debian"
 
 msgid "Default"
 msgstr "Standard"
+
+msgid "Default reason"
+msgstr ""
 
 msgid "Delete kernel"
 msgstr "Ta bort kärna"
@@ -51,11 +61,8 @@ msgstr "Dokumentation"
 msgid "Entry ID"
 msgstr "Post-ID"
 
-msgid "Finnix"
-msgstr "Finnix"
-
-msgid "GParted Live"
-msgstr "GParted Live"
+msgid "Family"
+msgstr ""
 
 msgid "ISO"
 msgstr "ISO"
@@ -63,20 +70,11 @@ msgstr "ISO"
 msgid "Install"
 msgstr "Installera"
 
-msgid "Install Clonezilla"
-msgstr "Installera Clonezilla"
-
 msgid "Install Debian kernel"
 msgstr "Installera Debian-kärna"
 
 msgid "Install Debian kernel headers"
 msgstr "Installera huvudfiler för Debian-kärnan"
-
-msgid "Install Finnix"
-msgstr "Installera Finnix"
-
-msgid "Install GParted Live"
-msgstr "Installera GParted Live"
 
 msgid "Install Proxmox Kernel"
 msgstr "Installera Proxmox-kärna"
@@ -84,14 +82,8 @@ msgstr "Installera Proxmox-kärna"
 msgid "Install Proxmox kernel"
 msgstr "Installera Proxmox-kärna"
 
-msgid "Install SystemRescue"
-msgstr "Installera SystemRescue"
-
-msgid "Install memtest86+"
-msgstr "Installera memtest86+"
-
-msgid "Installing Clonezilla ..."
-msgstr "Installerar Clonezilla…"
+msgid "Install tool"
+msgstr ""
 
 msgid "Installing Debian kernel ..."
 msgstr "Installerar Debian-kärna…"
@@ -99,20 +91,11 @@ msgstr "Installerar Debian-kärna…"
 msgid "Installing Debian kernel headers ..."
 msgstr "Installerar huvudfiler för Debian-kärnan…"
 
-msgid "Installing Finnix ..."
-msgstr "Installerar Finnix…"
-
-msgid "Installing GParted Live ..."
-msgstr "Installerar GParted Live…"
-
 msgid "Installing Proxmox kernel ..."
 msgstr "Installerar Proxmox-kärna…"
 
-msgid "Installing SystemRescue ..."
-msgstr "Installerar SystemRescue…"
-
-msgid "Installing memtest86+ ..."
-msgstr "Installerar memtest86+…"
+msgid "Installing tool ..."
+msgstr ""
 
 msgid "Kernel"
 msgstr "Kärna"
@@ -122,6 +105,9 @@ msgstr "Kärnversion"
 
 msgid "Name"
 msgstr "Namn"
+
+msgid "Only installed tools are listed."
+msgstr ""
 
 msgid ""
 "Only unused drives are listed. All data on the selected drive will be "
@@ -133,56 +119,47 @@ msgstr ""
 msgid "Proxmox"
 msgstr "Proxmox"
 
-msgid "Remove Clonezilla"
-msgstr "Ta bort Clonezilla"
-
-msgid "Remove Clonezilla ..."
-msgstr "Tar bort Clonezilla…"
-
-msgid "Remove Finnix"
-msgstr "Ta bort Finnix"
-
-msgid "Remove Finnix ..."
-msgstr "Tar bort Finnix…"
-
-msgid "Remove GParted Live"
-msgstr "Ta bort GParted Live"
-
-msgid "Remove GParted Live ..."
-msgstr "Tar bort GParted Live…"
-
-msgid "Remove SystemRescue"
-msgstr "Ta bort SystemRescue"
-
-msgid "Remove SystemRescue ..."
-msgstr "Tar bort SystemRescue…"
-
-msgid "Remove memtest86+"
-msgstr "Ta bort memtest86+"
+msgid "Remove"
+msgstr ""
 
 msgid "Remove non-Proxmox kernels"
 msgstr "Ta bort kärnor som inte kommer från Proxmox"
 
+msgid "Remove tool"
+msgstr ""
+
 msgid "Removeable"
 msgstr "Flyttbar"
-
-msgid "Removing memtest86+ ..."
-msgstr "Tar bort memtest86+…"
 
 msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "Tar bort kärnor och huvudfiler som inte kommer från Proxmox…"
 
+msgid "Removing tool ..."
+msgstr ""
+
 msgid "Select a device ..."
 msgstr "Välj en enhet…"
+
+msgid "Select a family ..."
+msgstr ""
+
+msgid "Select a tool ..."
+msgstr ""
 
 msgid "Select an ISO ..."
 msgstr "Välj en ISO-fil…"
 
+msgid "Set"
+msgstr ""
+
 msgid "Set boot"
 msgstr "Ange startalternativ"
 
-msgid "SystemRescue"
-msgstr "SystemRescue"
+msgid "Set boot family"
+msgstr ""
+
+msgid "Setting boot family ..."
+msgstr ""
 
 msgid ""
 "This will ERASE all data on the selected drive and write the ISO to it. Are "
@@ -190,6 +167,17 @@ msgid ""
 msgstr ""
 "Detta RADERAR alla data på den valda enheten och skriver ISO-filen till den."
 " Vill du verkligen fortsätta?"
+
+msgid "Tool"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid ""
+"Tools are added to the GRUB boot menu. Installing an installed tool "
+"reinstalls or updates it."
+msgstr ""
 
 msgid "Unset default kernel"
 msgstr "Ta bort standardkärna"
@@ -208,9 +196,6 @@ msgstr "Skriv ISO till enhet"
 
 msgid "Writing ISO to drive ..."
 msgstr "Skriver ISO till enhet…"
-
-msgid "memtest86+"
-msgstr "memtest86+"
 
 msgid "omv-extras wiki"
 msgstr "omv-extras-wiki"
