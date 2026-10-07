@@ -37,6 +37,10 @@ data:
         flexGrow: 1
         sortable: true
         cellTemplateName: checkIcon
+      - name: _("Default reason")
+        prop: reason
+        flexGrow: 2
+        sortable: true
       - name: _("Boot once")
         prop: nextk
         flexGrow: 1

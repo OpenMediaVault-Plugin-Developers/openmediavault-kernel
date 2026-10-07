@@ -173,23 +173,19 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             $series[$distro][$m[1]] = true;
         }
 
-        $labels = ['pve' => 'Proxmox', 'debian' => 'Debian'];
         $families = [];
-        foreach ($labels as $distro => $label) {
+        foreach (['pve', 'debian'] as $distro) {
             if (empty($series[$distro])) {
                 continue;
             }
-            $families[] = [
-                'id' => $distro,
-                'name' => sprintf('%s (%s)', $label, gettext('latest'))
-            ];
+            $ids = [$distro];
             $versions = array_keys($series[$distro]);
             usort($versions, 'version_compare');
             foreach (array_reverse($versions) as $ver) {
-                $families[] = [
-                    'id' => sprintf('%s-%s', $distro, $ver),
-                    'name' => sprintf('%s %s', $label, $ver)
-                ];
+                $ids[] = sprintf('%s-%s', $distro, $ver);
+            }
+            foreach ($ids as $id) {
+                $families[] = ['id' => $id, 'name' => $this->getFamilyLabel($id)];
             }
         }
         foreach ($families as &$family) {
@@ -219,6 +215,50 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 return $output;
             }
         );
+    }
+
+    private function getFamilyLabel($family)
+    {
+        if (!preg_match('/^(pve|debian)(?:-(\d+\.\d+))?$/', $family, $m)) {
+            return $family;
+        }
+        $label = ($m[1] === 'pve') ? 'Proxmox' : 'Debian';
+        if (empty($m[2])) {
+            return sprintf('%s (%s)', $label, gettext('latest'));
+        }
+        return sprintf('%s %s', $label, $m[2]);
+    }
+
+    // Describe the active kernel family, noting when a series family has no
+    // installed kernels and falls back to the newest of its distribution.
+    private function getFamilyReason($family)
+    {
+        $reason = sprintf('%s: %s', gettext('Family'), $this->getFamilyLabel($family));
+        if (!preg_match('/^(pve|debian)-(\d+\.\d+)$/', $family, $m)) {
+            return $reason;
+        }
+        $output = [];
+        try {
+            $cmd = new \OMV\System\Process('omv-kernelfamily', ['resolve', $family]);
+            $cmd->execute($output);
+        } catch (\Exception $e) {
+            return $reason;
+        }
+        $kver = substr(basename(trim($output[0] ?? '')), strlen('vmlinuz-'));
+        if ($kver === '' || !str_starts_with($kver, $m[2] . '.')) {
+            $reason .= sprintf(' → %s %s', gettext('fallback'), $this->getFamilyLabel($m[1]));
+        }
+        return $reason;
+    }
+
+    private function getGrubDefault()
+    {
+        $content = @file_get_contents('/etc/default/grub');
+        if ($content === false || !preg_match_all('/^GRUB_DEFAULT\s*=\s*(.*)$/m', $content, $m)) {
+            return null;
+        }
+        // The last assignment wins, as when the file is sourced.
+        return trim(end($m[1]), " \t\"'");
     }
 
     private function getFamily()
@@ -314,6 +354,33 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
         $nextEntry = $this->getGrubEnvValue('next_entry');
         $currentKernel = $this->getCurrentKernel();
         $family = $this->getFamily();
+        $grubDefault = $this->getGrubDefault();
+
+        // Is saved_entry set, and does it still match a menu entry? GRUB boots
+        // the first entry when the saved entry no longer exists.
+        $savedSet = is_string($savedEntry) && $savedEntry !== '' && $savedEntry !== 'saved';
+        $savedValid = false;
+        if ($savedSet) {
+            foreach ($entries as $e) {
+                if ($savedEntry === $e['entry_id'] || $savedEntry === $e['title']) {
+                    $savedValid = true;
+                    break;
+                }
+            }
+        }
+
+        // Explain why the default kernel boots.
+        if ($savedValid) {
+            $defaultReason = gettext('Set boot');
+        } elseif ($family !== null) {
+            $defaultReason = $this->getFamilyReason($family);
+        } elseif ($savedSet) {
+            $defaultReason = gettext('GRUB fallback (Set boot kernel missing)');
+        } elseif ($grubDefault === '0' || $grubDefault === 'saved') {
+            $defaultReason = gettext('GRUB fallback (highest version)');
+        } else {
+            $defaultReason = sprintf('GRUB_DEFAULT=%s', $grubDefault ?? '');
+        }
 
         $kernels = [];
         $foundDefault = false;
@@ -323,13 +390,14 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
             $kver = $e['kernel'];
 
             // Determine default:
-            // Prefer explicit saved_entry value (when it is an entry_id != 'saved'),
-            // otherwise fall back to matching running kernel version (first match only).
-            // With a kernel family selected, GRUB boots the first entry.
+            // Prefer a saved_entry that still matches a menu entry. Otherwise
+            // GRUB boots the first entry when GRUB_DEFAULT is 0 or saved (a
+            // kernel family moves its kernel to the top). For any other
+            // GRUB_DEFAULT, fall back to matching the running kernel version.
             $isDefault = false;
-            if (is_string($savedEntry) && $savedEntry !== '' && $savedEntry !== 'saved') {
+            if ($savedValid) {
                 $isDefault = ($savedEntry === $entryId || $savedEntry === $name);
-            } elseif ($family !== null) {
+            } elseif ($family !== null || $savedSet || $grubDefault === '0' || $grubDefault === 'saved') {
                 $isDefault = !$foundDefault;
             } elseif (!$foundDefault && !empty($currentKernel) && !empty($kver)) {
                 $isDefault = str_starts_with($currentKernel, $kver);
@@ -361,6 +429,7 @@ class OMVRpcServiceKernel extends \OMV\Rpc\ServiceAbstract
                 'family' => $kfamily,
                 'entry_id' => $entryId,
                 'default' => $isDefault,
+                'reason' => $isDefault ? $defaultReason : '',
                 'nextk' => $isNext,
                 'remove' => $remove
             ];
