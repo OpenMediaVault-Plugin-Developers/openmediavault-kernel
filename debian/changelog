@@ -5,6 +5,9 @@ openmediavault-kernel (8.1.0) stable; urgency=low
   * Proxmox kernel install now selects the installed series as the boot
     kernel family instead of pinning one kernel version
   * Add Default reason column showing why the default kernel boots
+  * Group boot actions into a Boot menu
+  * Replace ISO and memtest86+ menus with a Tools menu that installs and
+    removes tools from a list showing their installed status
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 07 Oct 2026 12:41:00 +0000
 
