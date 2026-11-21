@@ -25,7 +25,7 @@ msgid "Are you sure you want to remove?"
 msgstr "Weet u zeker dat u wilt verwijderen?"
 
 msgid "Boot"
-msgstr ""
+msgstr "Boot"
 
 msgid "Boot once"
 msgstr "Eén keer opstarten"
@@ -36,6 +36,10 @@ msgid ""
 "same distribution when none of that version are installed. Replaces any "
 "kernel set with 'Set boot'."
 msgstr ""
+"Boots de nieuwste geïnstalleerde kernel van de geselecteerde familie, ook na"
+" kernelupdates. Een specifieke versie valt terug naar de nieuwste kernel van"
+" dezelfde distributie wanneer geen van die versies is geïnstalleerd. "
+"Vervangt elke kernel ingesteld met 'Boot instellen'."
 
 msgid "Debian"
 msgstr "Debian"
@@ -44,7 +48,7 @@ msgid "Default"
 msgstr "Standaard"
 
 msgid "Default reason"
-msgstr ""
+msgstr "Standaard reden"
 
 msgid "Delete kernel"
 msgstr "Kernel verwijderen"
@@ -62,7 +66,7 @@ msgid "Entry ID"
 msgstr "Invoer-ID"
 
 msgid "Family"
-msgstr ""
+msgstr "Familie"
 
 msgid "ISO"
 msgstr "ISO"
@@ -83,7 +87,7 @@ msgid "Install Proxmox kernel"
 msgstr "Proxmox kernel installeren"
 
 msgid "Install tool"
-msgstr ""
+msgstr "Installatiehulpmiddel"
 
 msgid "Installing Debian kernel ..."
 msgstr "Debian kernel installeren…"
@@ -95,7 +99,7 @@ msgid "Installing Proxmox kernel ..."
 msgstr "Proxmox kernel installeren…"
 
 msgid "Installing tool ..."
-msgstr ""
+msgstr "Installatiehulpmiddel…"
 
 msgid "Kernel"
 msgstr "Kernel"
@@ -107,7 +111,7 @@ msgid "Name"
 msgstr "Naam"
 
 msgid "Only installed tools are listed."
-msgstr ""
+msgstr "Alleen geïnstalleerde hulpmiddelen worden vermeld."
 
 msgid ""
 "Only unused drives are listed. All data on the selected drive will be "
@@ -120,13 +124,13 @@ msgid "Proxmox"
 msgstr "Proxmox"
 
 msgid "Remove"
-msgstr ""
+msgstr "Verwijderen"
 
 msgid "Remove non-Proxmox kernels"
 msgstr "Non-Proxmox kernels verwijderen"
 
 msgid "Remove tool"
-msgstr ""
+msgstr "Hulpmiddel verwijderen"
 
 msgid "Removeable"
 msgstr "Verwijderbaar"
@@ -135,31 +139,31 @@ msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "Non-Proxmox kernels en headers verwijderen…"
 
 msgid "Removing tool ..."
-msgstr ""
+msgstr "Hulpmiddel verwijderen…"
 
 msgid "Select a device ..."
 msgstr "Kies een apparaat…"
 
 msgid "Select a family ..."
-msgstr ""
+msgstr "Selecteer een familie…"
 
 msgid "Select a tool ..."
-msgstr ""
+msgstr "Selecteer een hulpmiddel…"
 
 msgid "Select an ISO ..."
 msgstr "Kies een ISO…"
 
 msgid "Set"
-msgstr ""
+msgstr "Instellen"
 
 msgid "Set boot"
 msgstr "Boot instellen"
 
 msgid "Set boot family"
-msgstr ""
+msgstr "Boot-familie instellen"
 
 msgid "Setting boot family ..."
-msgstr ""
+msgstr "Boot-familie instellen…"
 
 msgid ""
 "This will ERASE all data on the selected drive and write the ISO to it. Are "
@@ -169,15 +173,17 @@ msgstr ""
 "ISO ernaar geschreven. Weet u zeker dat u door wilt gaan?"
 
 msgid "Tool"
-msgstr ""
+msgstr "Hulpmiddel"
 
 msgid "Tools"
-msgstr ""
+msgstr "Hulpmiddelen"
 
 msgid ""
 "Tools are added to the GRUB boot menu. Installing an installed tool "
 "reinstalls or updates it."
 msgstr ""
+"Hulpmiddelen worden toegevoegd aan het GRUB-opstartmenu. Het installeren van"
+" een geïnstalleerde tool installeert deze opnieuw of werkt deze bij."
 
 msgid "Unset default kernel"
 msgstr "Standaardkernel uitschakelen"

@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Raul Fernandez Garcia <raulfg3@gmail.com>, 2024
-# Jorge Giménez, 2026
+# Chente OMV, 2026
 # 
 #, fuzzy
 msgid ""
@@ -14,12 +14,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-07 12:58+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
-"Last-Translator: Jorge Giménez, 2026\n"
-"Language-Team: Spanish (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es/)\n"
+"Last-Translator: Chente OMV, 2026\n"
+"Language-Team: Spanish (Spain) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Are you sure you want to remove?"
@@ -29,7 +29,7 @@ msgid "Boot"
 msgstr ""
 
 msgid "Boot once"
-msgstr "Arranca una sola vez"
+msgstr "Arrancar una vez"
 
 msgid ""
 "Boots the newest installed kernel of the selected family, including after "
@@ -42,16 +42,16 @@ msgid "Debian"
 msgstr ""
 
 msgid "Default"
-msgstr "Por defecto"
+msgstr "Por fedecto"
 
 msgid "Default reason"
 msgstr ""
 
 msgid "Delete kernel"
-msgstr "Borrar Kernel"
+msgstr "Eliminar Kernel"
 
 msgid "Delete kernel ..."
-msgstr "Borrando Kernel ..."
+msgstr "Eliminando Kernel ..."
 
 msgid "Device"
 msgstr ""
@@ -122,7 +122,7 @@ msgid "Remove"
 msgstr ""
 
 msgid "Remove non-Proxmox kernels"
-msgstr "Eliminar Kernel que no sean Proxmox "
+msgstr "Eliminar Kernels no Proxmox "
 
 msgid "Remove tool"
 msgstr ""
@@ -131,7 +131,7 @@ msgid "Removeable"
 msgstr "Eliminables"
 
 msgid "Removing non-Proxmox kernels and headers  ..."
-msgstr "Eliminando los kernel no-Proxmox y las cabeceras ..."
+msgstr "Eliminando los kernels no-Proxmox y las cabeceras ..."
 
 msgid "Removing tool ..."
 msgstr ""
@@ -152,7 +152,7 @@ msgid "Set"
 msgstr ""
 
 msgid "Set boot"
-msgstr "Marcar como boot"
+msgstr "Establecer como arranque"
 
 msgid "Set boot family"
 msgstr ""
@@ -180,10 +180,10 @@ msgid "Unset default kernel"
 msgstr ""
 
 msgid "Update GRUB"
-msgstr "Actualizar GRUB"
+msgstr ""
 
 msgid "Updating GRUB ..."
-msgstr "Actualizando GRUB"
+msgstr ""
 
 msgid "Write"
 msgstr ""

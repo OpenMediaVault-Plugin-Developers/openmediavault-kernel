@@ -3,6 +3,9 @@
 # This file is distributed under the same license as the openmediavault-kernel package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Дмитрий <bardimnik@rambler.ru>, 2026
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,6 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-07 12:58+0000\n"
 "PO-Revision-Date: 2024-07-16 00:20+0000\n"
+"Last-Translator: Дмитрий <bardimnik@rambler.ru>, 2026\n"
 "Language-Team: Russian (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,13 +22,13 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "Are you sure you want to remove?"
-msgstr ""
+msgstr "Вы действительно хотите удалить?"
 
 msgid "Boot"
-msgstr ""
+msgstr "Загрузка"
 
 msgid "Boot once"
-msgstr ""
+msgstr "Загрузить один раз"
 
 msgid ""
 "Boots the newest installed kernel of the selected family, including after "
@@ -32,162 +36,172 @@ msgid ""
 "same distribution when none of that version are installed. Replaces any "
 "kernel set with 'Set boot'."
 msgstr ""
+"Загружает новейшее установленное ядро выбранного семейства, в том числе "
+"после обновлений ядра. Конкретная версия, если не установлена, откатывается "
+"к новейшему ядру того же дистрибутива. Заменяет ядро, заданное через «Задать"
+" загрузку»."
 
 msgid "Debian"
-msgstr ""
+msgstr "Debian"
 
 msgid "Default"
-msgstr ""
+msgstr "По умолчанию"
 
 msgid "Default reason"
-msgstr ""
+msgstr "Причина по умолчанию"
 
 msgid "Delete kernel"
-msgstr ""
+msgstr "Удалить ядро"
 
 msgid "Delete kernel ..."
-msgstr ""
+msgstr "Удаление ядра ..."
 
 msgid "Device"
-msgstr ""
+msgstr "Устройство"
 
 msgid "Docs"
-msgstr ""
+msgstr "Документация"
 
 msgid "Entry ID"
-msgstr ""
+msgstr "ID записи"
 
 msgid "Family"
-msgstr ""
+msgstr "Семейство"
 
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 msgid "Install"
-msgstr ""
+msgstr "Установить"
 
 msgid "Install Debian kernel"
-msgstr ""
+msgstr "Установить ядро Debian"
 
 msgid "Install Debian kernel headers"
-msgstr ""
+msgstr "Установить заголовочные файлы Debian"
 
 msgid "Install Proxmox Kernel"
-msgstr ""
+msgstr "Установить ядро Proxmox"
 
 msgid "Install Proxmox kernel"
-msgstr ""
+msgstr "Установить ядро Proxmox"
 
 msgid "Install tool"
-msgstr ""
+msgstr "Установочный инструмент"
 
 msgid "Installing Debian kernel ..."
-msgstr ""
+msgstr "Установка ядра Debian ..."
 
 msgid "Installing Debian kernel headers ..."
-msgstr ""
+msgstr "Установка заголовочных файлов Debian ..."
 
 msgid "Installing Proxmox kernel ..."
-msgstr ""
+msgstr "Установка ядра Proxmox ..."
 
 msgid "Installing tool ..."
-msgstr ""
+msgstr "Установка инструмента ..."
 
 msgid "Kernel"
-msgstr ""
+msgstr "Ядро"
 
 msgid "Kernel Version"
-msgstr ""
+msgstr "Версия ядра"
 
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 msgid "Only installed tools are listed."
-msgstr ""
+msgstr "Показаны только установленные инструменты."
 
 msgid ""
 "Only unused drives are listed. All data on the selected drive will be "
 "erased."
 msgstr ""
+"Показаны только неиспользуемые диски. Все данные на выбранном диске будут "
+"стёрты."
 
 msgid "Proxmox"
-msgstr ""
+msgstr "Proxmox"
 
 msgid "Remove"
-msgstr ""
+msgstr "Удалить"
 
 msgid "Remove non-Proxmox kernels"
-msgstr ""
+msgstr "Удалить не-Proxmox ядра"
 
 msgid "Remove tool"
-msgstr ""
+msgstr "Удалить инструмент"
 
 msgid "Removeable"
-msgstr ""
+msgstr "Съёмный"
 
 msgid "Removing non-Proxmox kernels and headers  ..."
-msgstr ""
+msgstr "Удаление не-Proxmox ядер и заголовочных файлов ..."
 
 msgid "Removing tool ..."
-msgstr ""
+msgstr "Удаление инструмента ..."
 
 msgid "Select a device ..."
-msgstr ""
+msgstr "Выберите устройство ..."
 
 msgid "Select a family ..."
-msgstr ""
+msgstr "Выберите семейство ..."
 
 msgid "Select a tool ..."
-msgstr ""
+msgstr "Выберите инструмент ..."
 
 msgid "Select an ISO ..."
-msgstr ""
+msgstr "Выберите ISO ..."
 
 msgid "Set"
-msgstr ""
+msgstr "Задать"
 
 msgid "Set boot"
-msgstr ""
+msgstr "Задать загрузку"
 
 msgid "Set boot family"
-msgstr ""
+msgstr "Задать семейство загрузки"
 
 msgid "Setting boot family ..."
-msgstr ""
+msgstr "Задание семейства загрузки ..."
 
 msgid ""
 "This will ERASE all data on the selected drive and write the ISO to it. Are "
 "you sure you want to continue?"
 msgstr ""
+"ВСЕ ДАННЫЕ на выбранном диске будут стёрты, и на него будет записан ISO. "
+"Продолжить?"
 
 msgid "Tool"
-msgstr ""
+msgstr "Инструмент"
 
 msgid "Tools"
-msgstr ""
+msgstr "Инструменты"
 
 msgid ""
 "Tools are added to the GRUB boot menu. Installing an installed tool "
 "reinstalls or updates it."
 msgstr ""
+"Инструменты добавляются в меню загрузки GRUB. Повторная установка уже "
+"установленного переустанавливает или обновляет его."
 
 msgid "Unset default kernel"
-msgstr ""
+msgstr "Снять ядро по умолчанию"
 
 msgid "Update GRUB"
-msgstr ""
+msgstr "Обновить GRUB"
 
 msgid "Updating GRUB ..."
-msgstr ""
+msgstr "Обновление GRUB ..."
 
 msgid "Write"
-msgstr ""
+msgstr "Записать"
 
 msgid "Write ISO to drive"
-msgstr ""
+msgstr "Записать ISO на диск"
 
 msgid "Writing ISO to drive ..."
-msgstr ""
+msgstr "Запись ISO на диск ..."
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "Вики omv-extras"

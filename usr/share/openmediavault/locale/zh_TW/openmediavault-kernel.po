@@ -25,7 +25,7 @@ msgid "Are you sure you want to remove?"
 msgstr "您確定要移除？"
 
 msgid "Boot"
-msgstr ""
+msgstr "啟動"
 
 msgid "Boot once"
 msgstr "啟動一次"
@@ -36,15 +36,17 @@ msgid ""
 "same distribution when none of that version are installed. Replaces any "
 "kernel set with 'Set boot'."
 msgstr ""
+"啟動所選家族中最新安裝的核心，包括更新後的核心。當未安裝該版本任何核心時，明訂版本退回到同一發行版已安裝的最新核心。用 'Set boot' "
+"來取代任何核心集。"
 
 msgid "Debian"
-msgstr ""
+msgstr "Debian"
 
 msgid "Default"
 msgstr "預設"
 
 msgid "Default reason"
-msgstr ""
+msgstr "預設理由"
 
 msgid "Delete kernel"
 msgstr "刪除核心"
@@ -53,7 +55,7 @@ msgid "Delete kernel ..."
 msgstr "刪除核心中 ..."
 
 msgid "Device"
-msgstr ""
+msgstr "裝置"
 
 msgid "Docs"
 msgstr "說明文件"
@@ -62,69 +64,69 @@ msgid "Entry ID"
 msgstr "項目 ID"
 
 msgid "Family"
-msgstr ""
+msgstr "家族"
 
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 msgid "Install"
-msgstr ""
+msgstr "安裝"
 
 msgid "Install Debian kernel"
-msgstr ""
+msgstr "安裝 Debian 核心"
 
 msgid "Install Debian kernel headers"
-msgstr ""
+msgstr "安裝 Debian 核心標頭檔案"
 
 msgid "Install Proxmox Kernel"
-msgstr ""
+msgstr "安裝 Proxmox 核心"
 
 msgid "Install Proxmox kernel"
-msgstr ""
+msgstr "安裝 Proxmox 核心"
 
 msgid "Install tool"
-msgstr ""
+msgstr "安裝工具"
 
 msgid "Installing Debian kernel ..."
-msgstr ""
+msgstr "安裝 Debian 核心中 ..."
 
 msgid "Installing Debian kernel headers ..."
-msgstr ""
+msgstr "安裝 Debian 核心標頭檔案中 ..."
 
 msgid "Installing Proxmox kernel ..."
-msgstr ""
+msgstr "安裝 Proxmox 核心中 ..."
 
 msgid "Installing tool ..."
-msgstr ""
+msgstr "安裝工具中 ..."
 
 msgid "Kernel"
 msgstr "核心"
 
 msgid "Kernel Version"
-msgstr ""
+msgstr "核心版本"
 
 msgid "Name"
 msgstr "名稱"
 
 msgid "Only installed tools are listed."
-msgstr ""
+msgstr "僅列出已安裝的工具。"
 
 msgid ""
 "Only unused drives are listed. All data on the selected drive will be "
 "erased."
-msgstr ""
+msgstr "僅列出未使用的驅動器。所選驅動器上的所有資料都將被清除。"
 
 msgid "Proxmox"
 msgstr "Proxmox"
 
 msgid "Remove"
-msgstr ""
+msgstr "移除"
 
 msgid "Remove non-Proxmox kernels"
 msgstr "移除 非Proxmox 核心"
 
 msgid "Remove tool"
-msgstr ""
+msgstr "移除工具"
 
 msgid "Removeable"
 msgstr "可移除"
@@ -133,47 +135,47 @@ msgid "Removing non-Proxmox kernels and headers  ..."
 msgstr "移除 非Proxmox 核心及標頭檔案"
 
 msgid "Removing tool ..."
-msgstr ""
+msgstr "移除工具中 ..."
 
 msgid "Select a device ..."
-msgstr ""
+msgstr "選擇一個裝置 ..."
 
 msgid "Select a family ..."
-msgstr ""
+msgstr "選擇一個家族 ..."
 
 msgid "Select a tool ..."
-msgstr ""
+msgstr "選擇一個工具 ..."
 
 msgid "Select an ISO ..."
-msgstr ""
+msgstr "選擇一個 ISO ..."
 
 msgid "Set"
-msgstr ""
+msgstr "設定"
 
 msgid "Set boot"
 msgstr "設定為啟動"
 
 msgid "Set boot family"
-msgstr ""
+msgstr "設定啟動家族"
 
 msgid "Setting boot family ..."
-msgstr ""
+msgstr "設定啟動家族中 ..."
 
 msgid ""
 "This will ERASE all data on the selected drive and write the ISO to it. Are "
 "you sure you want to continue?"
-msgstr ""
+msgstr "此操作將清除所選磁碟機上的所有資料，並將 ISO 寫入其中。您確定要繼續嗎？"
 
 msgid "Tool"
-msgstr ""
+msgstr "工具"
 
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 msgid ""
 "Tools are added to the GRUB boot menu. Installing an installed tool "
 "reinstalls or updates it."
-msgstr ""
+msgstr "工具會被加入到 GRUB 啟動選單中。對已安裝的工具執行安裝操作，會將其重新安裝或更新。"
 
 msgid "Unset default kernel"
 msgstr "不設定預設核心"
@@ -185,13 +187,13 @@ msgid "Updating GRUB ..."
 msgstr "更新 GRUB 中 ..."
 
 msgid "Write"
-msgstr ""
+msgstr "寫入"
 
 msgid "Write ISO to drive"
-msgstr ""
+msgstr "寫 ISO 到驅動器"
 
 msgid "Writing ISO to drive ..."
-msgstr ""
+msgstr "寫 ISO 到驅動器中 ..."
 
 msgid "omv-extras wiki"
 msgstr "omv-extras 維基"
